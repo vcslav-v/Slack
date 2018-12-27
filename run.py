@@ -31,3 +31,4 @@ text='Hello from epic bot!',
 #channel='#general',
 channel='#testch', #"#random"
 icon_emoji=':sunglasses:'
+)
