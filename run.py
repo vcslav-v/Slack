@@ -29,7 +29,7 @@ def slack_post_msg(text, channel, **kwargs):
 
 slack_post_msg(
     text='Hello from epic bot!',
-    channel='#general',
+    channel='#testch',
     #channel='#random',
     icon_emoji=':sunglasses:'
     )
