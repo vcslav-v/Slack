@@ -3,7 +3,7 @@ from slackclient import SlackClient
 from flask import Flask, request
 #from flask_sqlalchemy import SQLAlchemy
 
-sc = SlackClient(os.environ('TOKEN'))
+sc = SlackClient(environ('TOKEN'))
 app = Flask(__name__)
 #app.config['SQLALCHEMY_DATABASE_URI'] = environ['DATABASE_URL']
 #db = SQLAlchemy(app)
