@@ -92,9 +92,15 @@ def slack_send_webhook(text, channel, **kwargs):
 
 def write_gdoc(message):
 
+    
     pp('Task started...')
+    submission = message['submission']
 
     response_text = 'Good'
+
+    if submission['income_from'] == 'plus':
+        response_text = 'Plus'
+
 
     slack_send_webhook(
         text=response_text,
