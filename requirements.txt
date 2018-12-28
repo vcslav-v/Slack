@@ -1,3 +1,1 @@
-httplib2
-slackclient
 Flask==0.12
