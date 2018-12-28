@@ -7,7 +7,7 @@ from flask import Flask, make_response
 from pprint import pprint as pp
 
 SLACK_BOT_TOKEN = os.environ.get('SLACK_BOT_TOKEN')
-SLACK_WEBHOOK_INC = os.environ.get('SLACK_WEBHOOK_INC')
+# SLACK_WEBHOOK_INC = os.environ.get('SLACK_WEBHOOK_INC')
 
 app = Flask(__name__)
 
@@ -32,6 +32,29 @@ def income_get():
 
     return make_response("Processing started...", 200)
 
+@app.route('/api/v1/interactive_action', methods=['POST'])
+def on_interactive_action():
+
+    response_text = ''
+    interactive_action = json.loads(flask.request.values["payload"])
+
+    try:
+
+        if interactive_action["type"] == "interactive_message":
+            pass
+
+        elif interactive_action["type"] == "dialog_submission":
+
+            #TODO: input validation
+            executor.submit(
+                write_gdoc,
+                interactive_action
+            )
+
+    except Exception as ex:
+        response_text = ":x: Error: `%s`" % ex
+
+    return make_response(response_text, 200)
 
 def slack_post_msg(text, channel, **kwargs):
     data = {
@@ -51,6 +74,21 @@ def slack_post_msg(text, channel, **kwargs):
             response.status_code,
             json.dumps(json.loads(response.text), indent=4)
     ))
+
+def write_gdoc(message):
+
+    pp('Task started...')
+
+    response_text = 'Good'
+
+    except Exception as ex:
+        response_text = ':x: Что-то пошло не так: `%s`' % ex
+
+    slack_send_webhook(
+        text=response_text,
+        channel=message['channel']['id'],
+        icon=':chart_with_upwards_trend:',
+    )
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, threaded=True)
