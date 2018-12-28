@@ -100,6 +100,12 @@ def write_gdoc(message):
 
     if submission['income_from'] == 'plus':
         response_text = 'Plus'
+    elif submission['income_from'] == 'banners':
+        response_text = 'Banners'
+    elif submission['income_from'] == 'email':
+        response_text = 'Email'
+    elif submission['income_from'] == 'products':
+        response_text = 'Products'
 
 
     slack_send_webhook(
