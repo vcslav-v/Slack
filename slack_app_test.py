@@ -5,16 +5,26 @@ import os
 import requests
 from flask import Flask, make_response
 from pprint import pprint as pp
+from datetime import datetime
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
 SLACK_BOT_TOKEN = os.environ.get('SLACK_BOT_TOKEN')
 SLACK_WEBHOOK_INC = os.environ.get('SLACK_WEBHOOK_INC')
+PLUS_ROW = '3'
+
+scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
+client = gspread.authorize(creds)
 
 app = Flask(__name__)
 
+# штука чисто для теста - отдает hello world если зайти на url бота
 @app.route('/', methods=['GET'])
 def on_root():
     return make_response('<h1>Hello world!</h1>', 200)
 
+# поднимается на слэш команду /income добавляем новый доход
 @app.route('/api/income', methods=['POST'])
 def income_get():
     data = {
@@ -32,6 +42,7 @@ def income_get():
 
     return make_response("Processing started...", 200)
 
+# Обрабатываем форму
 @app.route('/api/interactive_action', methods=['POST'])
 def on_interactive_action():
 
@@ -44,7 +55,8 @@ def on_interactive_action():
             pass
 
         elif interactive_action["type"] == "dialog_submission":
-            write_gdoc(interactive_action)
+            if interactive_action['title'] == 'Доход':
+                write_income_gdoc(interactive_action)
 
     except Exception as ex:
         response_text = ":x: Error: `%s`" % ex
@@ -90,16 +102,18 @@ def slack_send_webhook(text, channel, **kwargs):
         response.text
     ))
 
-def write_gdoc(message):
+# Пишем в google sheet
+def write_income_gdoc(message):
 
     
     pp('Task started...')
     submission = message['submission']
 
     response_text = 'Good'
+    tm = datetime.strftime(datetime.now(), "%m")
 
     if submission['income_from'] == 'plus':
-        response_text = 'Plus'
+        income_plus_writer(table_currency_changer(submission['income_currency']), submission['income_value'], tm)
     elif submission['income_from'] == 'banners':
         response_text = 'Banners'
     elif submission['income_from'] == 'email':
@@ -113,6 +127,28 @@ def write_gdoc(message):
         channel=message['channel']['id'],
         icon=':chart_with_upwards_trend:',
     )
+
+def table_currency_changer(cur):
+    if cur == 'usd':
+        sheet = client.open('PB2019USD').sheet1
+    elif cur == 'rur':
+        sheet = client.open('PB2019RUR').sheet1
+    elif cur == 'eur':
+        sheet = client.open('PB2019EUR').sheet1
+    return sheet
+
+def income_plus_writer(table, income, tm):
+    letter = resources.mouth_dic[tm]
+    place = letter + PLUS_ROW
+    data = table.acell(place, 'FORMULA')
+
+    if data[:1] == '=':
+        data = data + '+' + income
+    else:
+        data = '=' + income
+
+    table.update_acell(place, data)
+    
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, threaded=True)
