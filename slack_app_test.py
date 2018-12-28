@@ -32,29 +32,29 @@ def income_get():
 
     return make_response("Processing started...", 200)
 
-# @app.route('/api/v1/interactive_action', methods=['POST'])
-# def on_interactive_action():
+@app.route('/api/v1/interactive_action', methods=['POST'])
+def on_interactive_action():
 
-#     response_text = ''
-#     interactive_action = json.loads(flask.request.values["payload"])
+    response_text = ''
+    interactive_action = json.loads(flask.request.values["payload"])
 
-#     try:
+    try:
 
-#         if interactive_action["type"] == "interactive_message":
-#             pass
+        if interactive_action["type"] == "interactive_message":
+            pass
 
-#         elif interactive_action["type"] == "dialog_submission":
+        elif interactive_action["type"] == "dialog_submission":
 
-#             #TODO: input validation
-#             executor.submit(
-#                 write_gdoc,
-#                 interactive_action
-#             )
+            #TODO: input validation
+            executor.submit(
+                write_gdoc,
+                interactive_action
+            )
 
-#     except Exception as ex:
-#         response_text = ":x: Error: `%s`" % ex
+    except Exception as ex:
+        response_text = ":x: Error: `%s`" % ex
 
-#     return make_response(response_text, 200)
+    return make_response(response_text, 200)
 
 def slack_post_msg(text, channel, **kwargs):
     data = {
