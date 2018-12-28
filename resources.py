@@ -1,4 +1,3 @@
-import os
 dialog_income = {
     'title': 'Доход',
     'submit_label': 'Submit',
@@ -74,7 +73,7 @@ mouth_dic = {
     '11':'l',
     '12':'m'
 }
-
+import os
 client_secret = {
     'type': os.environ.get('g_type'),
     'project_id': os.environ.get('g_project_id'),
