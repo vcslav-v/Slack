@@ -24,19 +24,19 @@ def on_root():
 @app.route('/api/income', methods=['POST'])
 def income_get():
     data = {
-        "token": SLACK_BOT_TOKEN,
-        'trigger_id': flask.request.values["trigger_id"],
-        "dialog": json.dumps(resources.dialog_income)
+        'token': SLACK_BOT_TOKEN,
+        'trigger_id': flask.request.values['trigger_id'],
+        'dialog': json.dumps(resources.dialog_income)
     }
 
     response = requests.post(
-        url="https://slack.com/api/dialog.open",
+        url='https://slack.com/api/dialog.open',
         data=data
     )
 
     pp(response)
 
-    return make_response("Processing started...", 200)
+    return make_response('Processing started...', 200)
 
 # Обрабатываем форму
 @app.route('/api/interactive_action', methods=['POST'])
@@ -45,38 +45,38 @@ def on_interactive_action():
     
 
     response_text = 'bad'
-    interactive_action = json.loads(flask.request.values["payload"])
+    interactive_action = json.loads(flask.request.values['payload'])
     pp(interactive_action)
 
     try:
-        if interactive_action["type"] == "interactive_message":
+        if interactive_action['type'] == 'interactive_message':
             pass
 
-        elif interactive_action["type"] == "dialog_submission":
-            if interactive_action['title'] == 'Доход':
+        elif interactive_action['type'] == 'dialog_submission':
+            if interactive_action['callback_id'] == 'income_form':
                 pp('HI!')
                 write_income_gdoc(interactive_action)
 
     except Exception as ex:
-        response_text = ":x: Error: `%s`" % ex
+        response_text = ':x: Error: `%s`' % ex
 
     return make_response(response_text, 200)
 
 def slack_post_msg(text, channel, **kwargs):
     data = {
-        "token": SLACK_BOT_TOKEN,
-        "channel": channel,
-        "text": text
+        'token': SLACK_BOT_TOKEN,
+        'channel': channel,
+        'text': text
     }
 
     data.update(kwargs)
 
     response = requests.post(
-        url="https://slack.com/api/chat.postMessage",
+        url='https://slack.com/api/chat.postMessage',
         data=data
     )
 
-    pp("response from 'slack_post_msg' [%d]: %s" % (
+    pp('response from 'slack_post_msg' [%d]: %s' % (
             response.status_code,
             json.dumps(json.loads(response.text), indent=4)
     ))
@@ -84,8 +84,8 @@ def slack_post_msg(text, channel, **kwargs):
 def slack_send_webhook(text, channel, **kwargs):
 
     data = {
-        "channel": channel,
-        "text": text
+        'channel': channel,
+        'text': text
     }
 
     data.update(kwargs)
@@ -96,7 +96,7 @@ def slack_send_webhook(text, channel, **kwargs):
         headers={'content-type': 'application/json'}
     )
 
-    pp("response from 'send_webhook' [%d]: %s" % (
+    pp('response from 'send_webhook' [%d]: %s' % (
         response.status_code,
         response.text
     ))
@@ -109,7 +109,7 @@ def write_income_gdoc(message):
     submission = message['submission']
 
     response_text = 'Good'
-    tm = datetime.strftime(datetime.now(), "%m")
+    tm = datetime.strftime(datetime.now(), '%m')
 
     if submission['income_from'] == 'plus':
         income_plus_writer(table_currency_changer(submission['income_currency']), submission['income_value'], tm)
