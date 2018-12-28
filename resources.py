@@ -76,10 +76,10 @@ mouth_dic = {
 }
 
 client_secret = {
-    'type': , os.environ.get('g_type'),
+    'type': os.environ.get('g_type'),
     'project_id': os.environ.get('g_project_id'),
     'private_key_id': os.environ.get('g_private_key_id'),
-    'private_key': os.environ.get('g_private_key),
+    'private_key': os.environ.get('g_private_key'),
     'client_email': os.environ.get('g_client_email'),
     'client_id': os.environ.get('g_client_id'),
     'auth_uri': os.environ.get('g_auth_uri'),
