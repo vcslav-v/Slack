@@ -13,10 +13,6 @@ SLACK_BOT_TOKEN = os.environ.get('SLACK_BOT_TOKEN')
 SLACK_WEBHOOK_INC = os.environ.get('SLACK_WEBHOOK_INC')
 PLUS_ROW = '3'
 
-scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-creds = ServiceAccountCredentials.from_json_keyfile_dict(resources.client_secret, scope)
-client = gspread.authorize(creds)
-
 app = Flask(__name__)
 
 # штука чисто для теста - отдает hello world если зайти на url бота
@@ -129,6 +125,10 @@ def write_income_gdoc(message):
     )
 
 def table_currency_changer(cur):
+    scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+    creds = ServiceAccountCredentials.from_json_keyfile_dict(resources.client_secret, scope)
+    client = gspread.authorize(creds)
+    
     if cur == 'usd':
         sheet = client.open('PB2019USD').sheet1
     elif cur == 'rur':
