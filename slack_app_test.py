@@ -70,14 +70,31 @@ def slack_post_msg(text, channel, **kwargs):
             json.dumps(json.loads(response.text), indent=4)
     ))
 
+def slack_send_webhook(text, channel, **kwargs):
+
+    data = {
+        "channel": channel,
+        "text": text
+    }
+
+    data.update(kwargs)
+
+    response = requests.post(
+        url=SLACK_WEBHOOK_INC,
+        data=json.dumps(data),
+        headers={'content-type': 'application/json'}
+    )
+
+    pp("response from 'send_webhook' [%d]: %s" % (
+        response.status_code,
+        response.text
+    ))
+
 def write_gdoc(message):
 
     pp('Task started...')
 
     response_text = 'Good'
-
-    except Exception as ex:
-        response_text = ':x: Что-то пошло не так: `%s`' % ex
 
     slack_send_webhook(
         text=response_text,
