@@ -49,11 +49,11 @@ def on_interactive_action():
     pp(interactive_action)
 
     try:
-        if interactive_action['callback_id'] == 'income_form':
+        if interactive_action['type'] == 'interactive_message':
             pass
 
         elif interactive_action['type'] == 'dialog_submission':
-            if interactive_action['title'] == 'Доход':
+            if interactive_action['callback_id'] == 'income_form':
                 pp('HI!')
                 write_income_gdoc(interactive_action)
 
