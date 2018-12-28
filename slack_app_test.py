@@ -41,6 +41,7 @@ def income_get():
 # Обрабатываем форму
 @app.route('/api/interactive_action', methods=['POST'])
 def on_interactive_action():
+    pp('foo!')
 
     response_text = 'bad'
     interactive_action = json.loads(flask.request.values["payload"])
