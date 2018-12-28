@@ -42,7 +42,7 @@ def income_get():
 @app.route('/api/interactive_action', methods=['POST'])
 def on_interactive_action():
 
-    response_text = ''
+    response_text = 'bad'
     interactive_action = json.loads(flask.request.values["payload"])
 
     try:
