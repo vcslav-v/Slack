@@ -46,12 +46,12 @@ def on_interactive_action():
     interactive_action = json.loads(flask.request.values["payload"])
 
     try:
-
         if interactive_action["type"] == "interactive_message":
             pass
 
         elif interactive_action["type"] == "dialog_submission":
             if interactive_action['title'] == 'Доход':
+                response_text = 'income'
                 write_income_gdoc(interactive_action)
 
     except Exception as ex:
@@ -128,7 +128,7 @@ def table_currency_changer(cur):
     scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
     creds = ServiceAccountCredentials.from_json_keyfile_dict(resources.client_secret, scope)
     client = gspread.authorize(creds)
-    
+
     if cur == 'usd':
         sheet = client.open('PB2019USD').sheet1
     elif cur == 'rur':
