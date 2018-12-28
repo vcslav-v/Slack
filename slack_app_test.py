@@ -7,7 +7,7 @@ from flask import Flask, make_response
 from pprint import pprint as pp
 
 SLACK_BOT_TOKEN = os.environ.get('SLACK_BOT_TOKEN')
-# SLACK_WEBHOOK_INC = os.environ.get('SLACK_WEBHOOK_INC')
+SLACK_WEBHOOK_INC = os.environ.get('SLACK_WEBHOOK_INC')
 
 app = Flask(__name__)
 
