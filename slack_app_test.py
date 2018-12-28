@@ -32,7 +32,7 @@ def income_get():
 
     return make_response("Processing started...", 200)
 
-@app.route('/api/v1/interactive_action', methods=['POST'])
+@app.route('/api/interactive_action', methods=['POST'])
 def on_interactive_action():
 
     response_text = ''
