@@ -51,7 +51,7 @@ def on_interactive_action():
 
         elif interactive_action["type"] == "dialog_submission":
             if interactive_action['title'] == 'Доход':
-                response_text = 'income'
+                pp('HI!')
                 write_income_gdoc(interactive_action)
 
     except Exception as ex:
