@@ -49,11 +49,11 @@ def on_interactive_action():
     pp(interactive_action)
 
     try:
-        if interactive_action['type'] == 'interactive_message':
+        if interactive_action['callback_id'] == 'income_form':
             pass
 
         elif interactive_action['type'] == 'dialog_submission':
-            if interactive_action['callback_id'] == 'income_form':
+            if interactive_action['title'] == 'Доход':
                 pp('HI!')
                 write_income_gdoc(interactive_action)
 
@@ -76,7 +76,7 @@ def slack_post_msg(text, channel, **kwargs):
         data=data
     )
 
-    pp('response from 'slack_post_msg' [%d]: %s' % (
+    pp("response from 'slack_post_msg' [%d]: %s" % (
             response.status_code,
             json.dumps(json.loads(response.text), indent=4)
     ))
@@ -96,7 +96,7 @@ def slack_send_webhook(text, channel, **kwargs):
         headers={'content-type': 'application/json'}
     )
 
-    pp('response from 'send_webhook' [%d]: %s' % (
+    pp("response from 'send_webhook' [%d]: %s" % (
         response.status_code,
         response.text
     ))
