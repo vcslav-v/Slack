@@ -14,7 +14,7 @@ SLACK_WEBHOOK_INC = os.environ.get('SLACK_WEBHOOK_INC')
 PLUS_ROW = '3'
 
 scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-creds = ServiceAccountCredentials.from_json_keyfile_name(json.dumps(resources.client_secret), scope)
+creds = ServiceAccountCredentials.from_json_keyfile_dict(resources.client_secret, scope)
 client = gspread.authorize(creds)
 
 app = Flask(__name__)
