@@ -44,12 +44,7 @@ def on_interactive_action():
             pass
 
         elif interactive_action["type"] == "dialog_submission":
-
-            #TODO: input validation
-            executor.submit(
-                write_gdoc,
-                interactive_action
-            )
+            write_gdoc(interactive_action)
 
     except Exception as ex:
         response_text = ":x: Error: `%s`" % ex
@@ -75,20 +70,20 @@ def slack_post_msg(text, channel, **kwargs):
             json.dumps(json.loads(response.text), indent=4)
     ))
 
-# def write_gdoc(message):
+def write_gdoc(message):
 
-#     pp('Task started...')
+    pp('Task started...')
 
-#     response_text = 'Good'
+    response_text = 'Good'
 
-#     except Exception as ex:
-#         response_text = ':x: Что-то пошло не так: `%s`' % ex
+    except Exception as ex:
+        response_text = ':x: Что-то пошло не так: `%s`' % ex
 
-#     slack_send_webhook(
-#         text=response_text,
-#         channel=message['channel']['id'],
-#         icon=':chart_with_upwards_trend:',
-#     )
+    slack_send_webhook(
+        text=response_text,
+        channel=message['channel']['id'],
+        icon=':chart_with_upwards_trend:',
+    )
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, threaded=True)
