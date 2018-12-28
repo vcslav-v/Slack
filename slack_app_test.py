@@ -42,10 +42,11 @@ def income_get():
 @app.route('/api/interactive_action', methods=['POST'])
 def on_interactive_action():
     pp('foo!')
-    pp(interactive_action)
+    
 
     response_text = 'bad'
     interactive_action = json.loads(flask.request.values["payload"])
+    pp(interactive_action)
 
     try:
         if interactive_action["type"] == "interactive_message":
