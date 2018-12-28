@@ -1,1 +1,1 @@
-web: python run.py
+web: gunicorn slack_app_test:app
