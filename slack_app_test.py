@@ -8,14 +8,12 @@ from pprint import pprint as pp
 from datetime import datetime
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-from concurrent.futures import ThreadPoolExecutor
 
 SLACK_BOT_TOKEN = os.environ.get('SLACK_BOT_TOKEN')
 SLACK_WEBHOOK_INC = os.environ.get('SLACK_WEBHOOK_INC')
 PLUS_ROW = '3'
 
 app = Flask(__name__)
-executor = ThreadPoolExecutor(1)
 
 # штука чисто для теста - отдает hello world если зайти на url бота
 @app.route('/', methods=['GET'])
@@ -43,8 +41,7 @@ def income_get():
 # Обрабатываем форму
 @app.route('/api/interactive_action', methods=['POST'])
 def on_interactive_action():
-    pp('foo!')
-    response_text = 'bad'
+    response_text = ''
     interactive_action = json.loads(flask.request.values['payload'])
     pp(interactive_action)
 
@@ -60,11 +57,12 @@ def on_interactive_action():
     except Exception as ex:
         response_text = ':x: Error: `%s`' % ex
 
-    executor.submit(
-        slack_send_webhook(text=response_text, 
+    
+    slack_send_webhook(
+        text='response_text', 
         channel=interactive_action['channel']['id'], 
         icon=':chart_with_upwards_trend:')
-        )
+    
 
     return make_response(response_text, 200)
 
