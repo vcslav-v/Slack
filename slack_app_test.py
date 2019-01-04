@@ -8,12 +8,14 @@ from pprint import pprint as pp
 from datetime import datetime
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+from concurrent.futures import ThreadPoolExecutor
 
 SLACK_BOT_TOKEN = os.environ.get('SLACK_BOT_TOKEN')
 SLACK_WEBHOOK_INC = os.environ.get('SLACK_WEBHOOK_INC')
 PLUS_ROW = '3'
 
 app = Flask(__name__)
+executor = ThreadPoolExecutor(1)
 
 # штука чисто для теста - отдает hello world если зайти на url бота
 @app.route('/', methods=['GET'])
