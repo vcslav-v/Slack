@@ -19,7 +19,7 @@ app = Flask(__name__)
 @app.route('/', methods=['GET'])
 def on_root():
     pp(resources.client_secret)
-    return make_response(resources.client_secret, 200)
+    return make_response('sec', 200)
 
 # поднимается на слэш команду /income добавляем новый доход
 @app.route('/api/income', methods=['POST'])
