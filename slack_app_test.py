@@ -145,10 +145,10 @@ def table_currency_changer(cur):
     return sheet
 
 def income_plus_writer(table, income, tm):
-    pp('writer')
     letter = resources.mouth_dic[tm]
     place = letter + PLUS_ROW
     data = table.acell(place, 'FORMULA')
+    pp(place)
 
     if data[:1] == '=':
         data = data + '+' + income
