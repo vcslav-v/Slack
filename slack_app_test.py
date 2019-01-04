@@ -110,7 +110,7 @@ def write_income_gdoc(message):
 
     if submission['income_from'] == 'plus':
         response_text = 'Plus'
-        income_plus_writer(table_currency_changer(submission['income_currency']), submission['income_value'], tm)
+        #income_plus_writer(table_currency_changer(submission['income_currency']), submission['income_value'], tm)
     elif submission['income_from'] == 'banners':
         response_text = 'Banners'
     elif submission['income_from'] == 'email':
@@ -142,7 +142,6 @@ def income_plus_writer(table, income, tm):
     letter = resources.mouth_dic[tm]
     place = letter + PLUS_ROW
     data = table.acell(place, 'FORMULA')
-    pp(data)
 
     if data[:1] == '=':
         data = data + '+' + income
