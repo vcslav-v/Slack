@@ -78,6 +78,7 @@ i=0
 secret = ''
 while i<=25:
     secret = secret + os.environ.get('sec'+str(i)) + '\n'
+    i=i+1
 client_secret = {
     'type': os.environ.get('g_type'),
     'project_id': os.environ.get('g_project_id'),
