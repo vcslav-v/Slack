@@ -137,6 +137,7 @@ def table_currency_changer(cur):
 
     if cur == 'usd':
         sheet = client.open('PB2019USD').sheet1
+        pp('usd')
     elif cur == 'rur':
         sheet = client.open('PB2019RUR').sheet1
     elif cur == 'eur':
@@ -144,6 +145,7 @@ def table_currency_changer(cur):
     return sheet
 
 def income_plus_writer(table, income, tm):
+    pp('writer')
     letter = resources.mouth_dic[tm]
     place = letter + PLUS_ROW
     data = table.acell(place, 'FORMULA')
