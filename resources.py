@@ -74,11 +74,12 @@ mouth_dic = {
     '12':'m'
 }
 import os
+secret = '-----BEGIN PRIVATE KEY-----'+os.environ.get('g_private_key')+'\\n-----END PRIVATE KEY-----\\n'
 client_secret = {
     'type': os.environ.get('g_type'),
     'project_id': os.environ.get('g_project_id'),
     'private_key_id': os.environ.get('g_private_key_id'),
-    'private_key': os.environ.get('g_private_key'),
+    'private_key': secret,
     'client_email': os.environ.get('g_client_email'),
     'client_id': os.environ.get('g_client_id'),
     'auth_uri': os.environ.get('g_auth_uri'),
