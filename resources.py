@@ -59,7 +59,7 @@ dialog_income = {
     ]
 }
 
-mouth_dic = {
+month_dic = {
     '01':'b',
     '02':'c',
     '03':'d',
