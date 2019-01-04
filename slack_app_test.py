@@ -18,7 +18,8 @@ app = Flask(__name__)
 # штука чисто для теста - отдает hello world если зайти на url бота
 @app.route('/', methods=['GET'])
 def on_root():
-    return make_response(resources.secret, 200)
+    pp(resources.secret)
+    return make_response('secret', 200)
 
 # поднимается на слэш команду /income добавляем новый доход
 @app.route('/api/income', methods=['POST'])
