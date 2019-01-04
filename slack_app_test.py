@@ -53,7 +53,7 @@ def on_interactive_action():
         elif interactive_action['type'] == 'dialog_submission':
             if interactive_action['callback_id'] == 'income_form':
                 pp('HI!')
-                write_income_gdoc(interactive_action)
+                #write_income_gdoc(interactive_action)
 
     except Exception as ex:
         response_text = ':x: Error: `%s`' % ex
