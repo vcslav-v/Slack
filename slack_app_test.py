@@ -126,10 +126,11 @@ def write_income_gdoc(message):
     )
 
 def table_currency_changer(cur):
-    pp('cur')
+    pp(cur)
     scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
     creds = ServiceAccountCredentials.from_json_keyfile_dict(resources.client_secret, scope)
     client = gspread.authorize(creds)
+    pp('client')
 
     if cur == 'usd':
         sheet = client.open('PB2019USD').sheet1
