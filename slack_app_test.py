@@ -110,7 +110,7 @@ def write_income_gdoc(message):
 
     if submission['income_from'] == 'plus':
         response_text = 'Plus'
-        #income_plus_writer(table_currency_changer(submission['income_currency']), submission['income_value'], tm)
+        income_plus_writer(table_currency_changer(submission['income_currency']), submission['income_value'], tm)
     elif submission['income_from'] == 'banners':
         response_text = 'Banners'
     elif submission['income_from'] == 'email':
@@ -129,6 +129,7 @@ def table_currency_changer(cur):
     scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
     creds = ServiceAccountCredentials.from_json_keyfile_dict(resources.client_secret, scope)
     client = gspread.authorize(creds)
+    pp('hoooo')
 
     if cur == 'usd':
         sheet = client.open('PB2019USD').sheet1
