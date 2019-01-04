@@ -58,10 +58,6 @@ def on_interactive_action():
     except Exception as ex:
         response_text = ':x: Error: `%s`' % ex
 
-    
-                build_plot,
-                interactive_action
-            )
     executor.submit(
         slack_send_webhook(text=response_text, 
         channel=interactive_action['channel']['id'], 
