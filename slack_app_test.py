@@ -150,9 +150,9 @@ def income_plus_writer(table, income, tm):
     data = table.acell(place, 'FORMULA')
     pp(data)
 
-    if data[:1] == '=':
+    if data.value[:1] == '=':
         pp('=')
-        data = data + '+' + income
+        data = data.value + '+' + income
     else:
         pp('!=')
         data = '=' + income
