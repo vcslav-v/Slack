@@ -151,8 +151,10 @@ def income_plus_writer(table, income, tm):
     pp(data)
 
     if data[:1] == '=':
+        pp('=')
         data = data + '+' + income
     else:
+        pp('!=')
         data = '=' + income
 
     table.update_acell(place, data)
