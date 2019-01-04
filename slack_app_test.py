@@ -128,7 +128,9 @@ def write_income_gdoc(message):
 def table_currency_changer(cur):
     pp(cur)
     scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+    pp(scope)
     creds = ServiceAccountCredentials.from_json_keyfile_dict(resources.client_secret, scope)
+    pp(creds)
     client = gspread.authorize(creds)
     pp('client')
 
