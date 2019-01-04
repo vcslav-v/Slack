@@ -58,7 +58,12 @@ def on_interactive_action():
     except Exception as ex:
         response_text = ':x: Error: `%s`' % ex
 
-    pp('Hdddd!')
+    slack_send_webhook(
+        text=response_text,
+        channel=interactive_action['channel']['id'],
+        icon=':chart_with_upwards_trend:',
+    )
+
     return make_response(response_text, 200)
 
 def slack_post_msg(text, channel, **kwargs):
