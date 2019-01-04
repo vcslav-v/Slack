@@ -58,6 +58,7 @@ def on_interactive_action():
     except Exception as ex:
         response_text = ':x: Error: `%s`' % ex
 
+    pp('Hdddd!')
     return make_response(response_text, 200)
 
 def slack_post_msg(text, channel, **kwargs):
