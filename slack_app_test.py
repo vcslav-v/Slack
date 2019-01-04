@@ -42,8 +42,6 @@ def income_get():
 @app.route('/api/interactive_action', methods=['POST'])
 def on_interactive_action():
     pp('foo!')
-    
-
     response_text = 'bad'
     interactive_action = json.loads(flask.request.values['payload'])
     pp(interactive_action)
@@ -112,7 +110,8 @@ def write_income_gdoc(message):
     tm = datetime.strftime(datetime.now(), '%m')
 
     if submission['income_from'] == 'plus':
-        income_plus_writer(table_currency_changer(submission['income_currency']), submission['income_value'], tm)
+        response_text = 'Plus'
+        #income_plus_writer(table_currency_changer(submission['income_currency']), submission['income_value'], tm)
     elif submission['income_from'] == 'banners':
         response_text = 'Banners'
     elif submission['income_from'] == 'email':
