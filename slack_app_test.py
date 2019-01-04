@@ -142,6 +142,7 @@ def income_plus_writer(table, income, tm):
     letter = resources.mouth_dic[tm]
     place = letter + PLUS_ROW
     data = table.acell(place, 'FORMULA')
+    pp(data)
 
     if data[:1] == '=':
         data = data + '+' + income
