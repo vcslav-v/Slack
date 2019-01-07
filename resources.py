@@ -113,23 +113,23 @@ dialog_expense = {
             'options': [
                 {
                     'label': 'Products',
-                    'value': 'products'
+                    'value': 'Products'
                 },
                 {
                     'label': 'Tech',
-                    'value': 'tech'
+                    'value': 'Tech'
                 },
                 {
                     'label': 'Аренда',
-                    'value': 'rent'
+                    'value': 'Аренда'
                 },
                 {
                     'label': 'Инвестиции',
-                    'value': 'invest'
+                    'value': 'Инвестиции'
                 },
                 {
                     'label': 'Иное',
-                    'value': 'other'
+                    'value': 'Иное'
                 }
             ]
         },
@@ -192,6 +192,10 @@ dialog_expense = {
                 {
                     'label': 'Mello Bank',
                     'value': 'Mello Bank'
+                },
+                {
+                    'label': 'Никита',
+                    'value': 'Никита'
                 }
             ]
         },
@@ -239,6 +243,14 @@ client_secret = {
 
 PLUS_ROW = '3'
 BANNERS_ROW = '6'
+TECH_ROW = '13'
+RENT_ROW = '14'
+INVEST_ROW = '15'
+OTHER_EXP_ROW = '17'
 
 plus_income = '*Доход Plus* / '
 banner_income = '*Доход Banners* / '
+tech_expense = '*Расход Tech* / '
+rent = '*Расход Аренда* / '
+invest = '*Расход Инвестиции* / '
+other_expense = '*Расход Иное* / '

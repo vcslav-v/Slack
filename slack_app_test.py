@@ -130,7 +130,7 @@ def write_income_gdoc(message):
         else:
             response_text = (resources.plus_income+submission['income_value'] + submission['income_currency'] + ' / '
                             + submission['income_to'] + ' / ' + submission['comment'])
-        income_writer(table_currency_changer(submission['income_currency']), submission['income_value'], tm, resources.PLUS_ROW)
+        gdoc_writer(table_currency_changer(submission['income_currency']), submission['income_value'], tm, resources.PLUS_ROW)
     
     elif submission['income_from'] == 'banners':
         if submission['comment'] == '':
@@ -139,7 +139,7 @@ def write_income_gdoc(message):
         else:
             response_text = (resources.banner_income+submission['income_value'] + submission['income_currency'] + ' / '
                             + submission['income_to'] + ' / ' + submission['comment'])
-        income_writer(table_currency_changer(submission['income_currency']), submission['income_value'], 
+        gdoc_writer(table_currency_changer(submission['income_currency']), submission['income_value'], 
                             tm, resources.BANNERS_ROW)
     
     elif submission['income_from'] == 'email':
@@ -155,7 +155,55 @@ def write_income_gdoc(message):
     )
 
 def write_expense_gdoc(message):
-    response_text = 'write_expense_gdoc'
+
+    submission = message['submission']
+
+    response_text = 'Smth bad'
+    tm = datetime.strftime(datetime.now(), '%m')
+
+    if submission['expense_to'] == 'Products':
+        pass
+
+    elif submission['expense_to'] == 'Tech':
+        if submission['comment'] == '':
+            response_text = (resources.tech_expense + submission['expense_value'] + submission['expense_currency'] + ' / '
+                            + submission['expense_from'])
+        else:
+            response_text = (resources.tech_expense + submission['expense_value'] + submission['expense_currency'] + ' / '
+                            + submission['expense_from'] + ' / ' + submission['comment'])
+        gdoc_writer(table_currency_changer(submission['expense_currency']), submission['expense_value'], tm, 
+                    resources.TECH_ROW)
+
+    elif submission['expense_to'] == 'Аренда':
+        if submission['comment'] == '':
+            response_text = (resources.rent + submission['expense_value'] + submission['expense_currency'] + ' / '
+                            + submission['expense_from'])
+        else:
+            response_text = (resources.rent + submission['expense_value'] + submission['expense_currency'] + ' / '
+                            + submission['expense_from'] + ' / ' + submission['comment'])
+        gdoc_writer(table_currency_changer(submission['expense_currency']), submission['expense_value'], tm, 
+                    resources.RENT_ROW)
+
+    elif submission['expense_to'] == 'Инвестиции':
+        if submission['comment'] == '':
+            response_text = (resources.invest + submission['expense_value'] + submission['expense_currency'] + ' / '
+                            + submission['expense_from'])
+        else:
+            response_text = (resources.invest + submission['expense_value'] + submission['expense_currency'] + ' / '
+                            + submission['expense_from'] + ' / ' + submission['comment'])
+        gdoc_writer(table_currency_changer(submission['expense_currency']), submission['expense_value'], tm, 
+                    resources.INVEST_ROW)
+
+    elif submission['expense_to'] == 'Иное':
+        if submission['comment'] == '':
+            response_text = (resources.other_expense + submission['expense_value'] + submission['expense_currency'] + ' / '
+                            + submission['expense_from'])
+        else:
+            response_text = (resources.other_expense + submission['expense_value'] + submission['expense_currency'] + ' / '
+                            + submission['expense_from'] + ' / ' + submission['comment'])
+        gdoc_writer(table_currency_changer(submission['expense_currency']), submission['expense_value'], tm, 
+                    resources.OTHER_EXP_ROW)
+
     slack_send_webhook(
         text=response_text,
         channel=message['channel']['id'],
@@ -175,7 +223,7 @@ def table_currency_changer(cur):
         sheet = client.open('PB2019EUR').sheet1
     return sheet
 
-def income_writer(table, income, tm, row):
+def gdoc_writer(table, income, tm, row):
     letter = resources.month_dic[str(tm)]
     place = letter + row
     data = table.acell(place, 'FORMULA')
