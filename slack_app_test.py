@@ -18,7 +18,6 @@ app = Flask(__name__)
 # штука чисто для теста - отдает hello world если зайти на url бота
 @app.route('/', methods=['GET'])
 def on_root():
-    pp(resources.client_secret)
     return make_response('sec', 200)
 
 # поднимается на слэш команду /income добавляем новый доход
@@ -107,8 +106,12 @@ def write_income_gdoc(message):
     tm = datetime.strftime(datetime.now(), '%m')
 
     if submission['income_from'] == 'plus':
-        response_text = (resources.pluse_income+submission['income_value'] + ' ' + submission['income_currency'] + 
-                        ' / ' + submission['income_to'])
+        if submission['comment'] == '':
+            response_text = (resources.pluse_income+submission['income_value'] + submission['income_currency'] + ' / '
+                            + submission['income_to'])
+        else:
+            response_text = (resources.pluse_income+submission['income_value'] + submission['income_currency'] + ' / '
+                            + submission['income_to'] + ' / ' + submission['comment'])
         income_plus_writer(table_currency_changer(submission['income_currency']), submission['income_value'], tm)
     elif submission['income_from'] == 'banners':
         response_text = 'Banners'
@@ -125,20 +128,15 @@ def write_income_gdoc(message):
     )
 
 def table_currency_changer(cur):
-    pp(cur)
     scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-    pp(resources.client_secret)
     creds = ServiceAccountCredentials.from_json_keyfile_dict(resources.client_secret, scope)
-    pp('cred')
     client = gspread.authorize(creds)
-    pp('client')
 
-    if cur == 'usd':
+    if cur == 'USD':
         sheet = client.open('PB2019USD').sheet1
-        pp('usd')
-    elif cur == 'rur':
+    elif cur == 'RUR':
         sheet = client.open('PB2019RUR').sheet1
-    elif cur == 'eur':
+    elif cur == 'EUR':
         sheet = client.open('PB2019EUR').sheet1
     return sheet
 
@@ -146,13 +144,10 @@ def income_plus_writer(table, income, tm):
     letter = resources.month_dic[str(tm)]
     place = letter + PLUS_ROW
     data = table.acell(place, 'FORMULA')
-    pp(data)
 
     if data.value[:1] == '=':
-        pp('=')
         data = data.value + '+' + income
     else:
-        pp('!=')
         data = '=' + income
 
     table.update_acell(place, data)

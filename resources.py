@@ -35,7 +35,7 @@ dialog_income = {
             'name': 'income_value'
         },
 
-               {
+        {
             'label': 'Валюта',
             'type': 'select',
             'name': 'income_currency',
@@ -44,15 +44,15 @@ dialog_income = {
             'options': [
                 {
                     'label': 'USD',
-                    'value': 'usd'
+                    'value': 'USD'
                 },
                 {
                     'label': 'RUR',
-                    'value': 'rur'
+                    'value': 'RUR'
                 },
                 {
                     'label': 'EUR',
-                    'value': 'eur'
+                    'value': 'EUR'
                 }
             ]
         },
@@ -66,27 +66,27 @@ dialog_income = {
             'options': [
                 {
                     'label': 'Ksenia PayPal',
-                    'value': 'ks'
+                    'value': 'Ksenia PayPal'
                 },
                 {
                     'label': 'Milka PayPal',
-                    'value': 'ml'
+                    'value': 'Milka PayPal'
                 },
                 {
                     'label': 'Payoner',
-                    'value': 'pnr'
+                    'value': 'Payoner'
                 },
                 {
                     'label': 'Astakhov PayPal',
-                    'value': 'ast'
+                    'value': 'Astakhov PayPal'
                 },
                 {
                     'label': 'Mello PayPal',
-                    'value': 'mlp'
+                    'value': 'Mello PayPal'
                 },
                 {
                     'label': 'Mello Bank',
-                    'value': 'mlb'
+                    'value': 'Mello Bank'
                 }
             ]
         },
@@ -132,4 +132,4 @@ client_secret = {
     'client_x509_cert_url': os.environ.get('g_client_x509_cert_url')
 }
 
-pluse_income = '*Доход Pluse* / '
+pluse_income = '*Доход Plus* / '
