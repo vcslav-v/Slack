@@ -52,7 +52,6 @@ def on_interactive_action():
 
         elif interactive_action['type'] == 'dialog_submission':
             if interactive_action['callback_id'] == 'income_form':
-                pp('HI!')
                 write_income_gdoc(interactive_action)
 
     except Exception as ex:
@@ -102,15 +101,14 @@ def slack_send_webhook(text, channel, **kwargs):
 # Пишем в google sheet
 def write_income_gdoc(message):
 
-    
-    pp('Task started...')
     submission = message['submission']
 
     response_text = 'Good'
     tm = datetime.strftime(datetime.now(), '%m')
 
     if submission['income_from'] == 'plus':
-        response_text = 'Plus'
+        response_text = (resources.pluse_income+submission['income_value'] + ' ' + submission['income_currency'] + 
+                        ' / ' + submission['income_to'])
         income_plus_writer(table_currency_changer(submission['income_currency']), submission['income_value'], tm)
     elif submission['income_from'] == 'banners':
         response_text = 'Banners'

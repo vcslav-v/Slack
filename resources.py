@@ -30,6 +30,12 @@ dialog_income = {
         },
 
         {
+            'type': 'text',
+            'label': 'Сумма',
+            'name': 'income_value'
+        },
+
+               {
             'label': 'Валюта',
             'type': 'select',
             'name': 'income_currency',
@@ -52,9 +58,43 @@ dialog_income = {
         },
 
         {
+            'label': 'Счёт',
+            'type': 'select',
+            'name': 'income_to',
+            'placeholder': 'Укажите куда пришли деньги',
+            'value': 'ks',
+            'options': [
+                {
+                    'label': 'Ksenia PayPal',
+                    'value': 'ks'
+                },
+                {
+                    'label': 'Milka PayPal',
+                    'value': 'ml'
+                },
+                {
+                    'label': 'Payoner',
+                    'value': 'pnr'
+                },
+                {
+                    'label': 'Astakhov PayPal',
+                    'value': 'ast'
+                },
+                {
+                    'label': 'Mello PayPal',
+                    'value': 'mlp'
+                },
+                {
+                    'label': 'Mello Bank',
+                    'value': 'mlb'
+                }
+            ]
+        },
+
+        {
             'type': 'text',
-            'label': 'Сколько?',
-            'name': 'income_value'
+            'label': 'Комментарий',
+            'name': 'comment'
         }
     ]
 }
@@ -91,3 +131,5 @@ client_secret = {
     'auth_provider_x509_cert_url': os.environ.get('g_auth_provider_x509_cert_url'),
     'client_x509_cert_url': os.environ.get('g_client_x509_cert_url')
 }
+
+pluse_income = '*Доход Pluse* / '
