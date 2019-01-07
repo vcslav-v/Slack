@@ -132,4 +132,8 @@ client_secret = {
     'client_x509_cert_url': os.environ.get('g_client_x509_cert_url')
 }
 
-pluse_income = '*Доход Plus* / '
+PLUS_ROW = '3'
+BANNERS_ROW = '6'
+
+plus_income = '*Доход Plus* / '
+banner_income = '*Доход Banners* / '

@@ -11,7 +11,6 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 SLACK_BOT_TOKEN = os.environ.get('SLACK_BOT_TOKEN')
 SLACK_WEBHOOK_INC = os.environ.get('SLACK_WEBHOOK_INC')
-PLUS_ROW = '3'
 
 app = Flask(__name__)
 
@@ -102,19 +101,28 @@ def write_income_gdoc(message):
 
     submission = message['submission']
 
-    response_text = 'Good'
+    response_text = 'Smth bad'
     tm = datetime.strftime(datetime.now(), '%m')
 
     if submission['income_from'] == 'plus':
         if submission['comment'] == '':
-            response_text = (resources.pluse_income+submission['income_value'] + submission['income_currency'] + ' / '
+            response_text = (resources.plus_income+submission['income_value'] + submission['income_currency'] + ' / '
                             + submission['income_to'])
         else:
-            response_text = (resources.pluse_income+submission['income_value'] + submission['income_currency'] + ' / '
+            response_text = (resources.plus_income+submission['income_value'] + submission['income_currency'] + ' / '
                             + submission['income_to'] + ' / ' + submission['comment'])
-        income_plus_writer(table_currency_changer(submission['income_currency']), submission['income_value'], tm)
+        income_writer(table_currency_changer(submission['income_currency']), submission['income_value'], tm, resources.PLUS_ROW)
+    
     elif submission['income_from'] == 'banners':
-        response_text = 'Banners'
+        if submission['comment'] == '':
+            response_text = (resources.banner_income+submission['income_value'] + submission['income_currency'] + ' / '
+                            + submission['income_to'])
+        else:
+            response_text = (resources.banner_income+submission['income_value'] + submission['income_currency'] + ' / '
+                            + submission['income_to'] + ' / ' + submission['comment'])
+        income_writer(table_currency_changer(submission['income_currency']), submission['income_value'], 
+                            tm, resources.BANNERS_ROW)
+    
     elif submission['income_from'] == 'email':
         response_text = 'Email'
     elif submission['income_from'] == 'products':
@@ -124,7 +132,7 @@ def write_income_gdoc(message):
     slack_send_webhook(
         text=response_text,
         channel=message['channel']['id'],
-        icon=':chart_with_upwards_trend:',
+        icon=':chart_with_upwards_trend:'
     )
 
 def table_currency_changer(cur):
@@ -140,9 +148,9 @@ def table_currency_changer(cur):
         sheet = client.open('PB2019EUR').sheet1
     return sheet
 
-def income_plus_writer(table, income, tm):
+def income_writer(table, income, tm, row):
     letter = resources.month_dic[str(tm)]
-    place = letter + PLUS_ROW
+    place = letter + row
     data = table.acell(place, 'FORMULA')
 
     if data.value[:1] == '=':
