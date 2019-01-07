@@ -37,6 +37,23 @@ def income_get():
 
     return make_response('Processing started...', 200)
 
+@app.route('/api/expense', methods=['POST'])
+def expense_get():
+    data = {
+        'token': SLACK_BOT_TOKEN,
+        'trigger_id': flask.request.values['trigger_id'],
+        'dialog': json.dumps(resources.dialog_expense)
+    }
+
+    response = requests.post(
+        url='https://slack.com/api/dialog.open',
+        data=data
+    )
+
+    pp(response)
+
+    return make_response('Processing started...', 200)
+
 # Обрабатываем форму
 @app.route('/api/interactive_action', methods=['POST'])
 def on_interactive_action():
@@ -51,6 +68,8 @@ def on_interactive_action():
         elif interactive_action['type'] == 'dialog_submission':
             if interactive_action['callback_id'] == 'income_form':
                 write_income_gdoc(interactive_action)
+            elif interactive_action['callback_id'] == 'expense_form':
+                write_expense_gdoc(interactive_action)
 
     except Exception as ex:
         response_text = ':x: Error: `%s`' % ex
@@ -129,6 +148,14 @@ def write_income_gdoc(message):
         response_text = 'Products'
 
 
+    slack_send_webhook(
+        text=response_text,
+        channel=message['channel']['id'],
+        icon=':chart_with_upwards_trend:'
+    )
+
+def write_expense_gdoc(message):
+    response_text = 'write_expense_gdoc'
     slack_send_webhook(
         text=response_text,
         channel=message['channel']['id'],

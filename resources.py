@@ -99,6 +99,111 @@ dialog_income = {
     ]
 }
 
+dialog_expense = {
+    'title': 'Расход',
+    'submit_label': 'Submit',
+    'callback_id': 'expense_form',
+    'elements': [
+        {
+            'label': 'Категория',
+            'type': 'select',
+            'name': 'expense_to',
+            'placeholder': 'Выберите категорию',
+            'value': 'products',
+            'options': [
+                {
+                    'label': 'Products',
+                    'value': 'products'
+                },
+                {
+                    'label': 'Tech',
+                    'value': 'tech'
+                },
+                {
+                    'label': 'Аренда',
+                    'value': 'rent'
+                },
+                {
+                    'label': 'Инвестиции',
+                    'value': 'invest'
+                },
+                {
+                    'label': 'Иное',
+                    'value': 'other'
+                }
+            ]
+        },
+
+        {
+            'type': 'text',
+            'label': 'Сумма',
+            'name': 'expense_value'
+        },
+
+        {
+            'label': 'Валюта',
+            'type': 'select',
+            'name': 'expense_currency',
+            'placeholder': 'Выберите валюту',
+            'value': 'usd',
+            'options': [
+                {
+                    'label': 'USD',
+                    'value': 'USD'
+                },
+                {
+                    'label': 'RUR',
+                    'value': 'RUR'
+                },
+                {
+                    'label': 'EUR',
+                    'value': 'EUR'
+                }
+            ]
+        },
+
+        {
+            'label': 'Счёт',
+            'type': 'select',
+            'name': 'expense_from',
+            'placeholder': 'Укажите c какого счёта была оплата',
+            'value': 'ks',
+            'options': [
+                {
+                    'label': 'Ksenia PayPal',
+                    'value': 'Ksenia PayPal'
+                },
+                {
+                    'label': 'Milka PayPal',
+                    'value': 'Milka PayPal'
+                },
+                {
+                    'label': 'Payoner',
+                    'value': 'Payoner'
+                },
+                {
+                    'label': 'Astakhov PayPal',
+                    'value': 'Astakhov PayPal'
+                },
+                {
+                    'label': 'Mello PayPal',
+                    'value': 'Mello PayPal'
+                },
+                {
+                    'label': 'Mello Bank',
+                    'value': 'Mello Bank'
+                }
+            ]
+        },
+
+        {
+            'type': 'text',
+            'label': 'Комментарий',
+            'name': 'comment'
+        }
+    ]
+}
+
 month_dic = {
     '01':'b',
     '02':'c',
