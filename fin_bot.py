@@ -150,7 +150,6 @@ def write_income_gdoc(message):
                             tm, resources.BANNERS_ROW)
     
     elif submission['income_from'] == 'email':
-        pp('email')
         try:
             del_row = models.finam_income.query.filter_by(user_id = message['user']['id']).first()
             if del_row:
@@ -160,9 +159,11 @@ def write_income_gdoc(message):
             comment = submission['comment'], income_from = submission['income_from'], user_id = message['user']['id'])
             db.session.add(new_row)
             db.session.commit()
-            
+
         except Exception as ex:
             response_text = ':x: Error: `%s`' % ex
+
+        make_response('Уточняем', 200)
 
         data = {
         'token': SLACK_BOT_TOKEN,
@@ -175,9 +176,7 @@ def write_income_gdoc(message):
         data=data
         )
         
-        pp(response_text)
-        
-        return make_response('Уточняем', 200)
+        pp(response)
 
     elif submission['income_from'] == 'products':
         response_text = 'Products'
