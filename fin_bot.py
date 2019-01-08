@@ -9,7 +9,6 @@ from datetime import datetime
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from flask_sqlalchemy import SQLAlchemy
-import models
 
 SLACK_BOT_TOKEN = os.environ.get('SLACK_BOT_TOKEN')
 SLACK_WEBHOOK_INC = os.environ.get('SLACK_WEBHOOK_INC')
@@ -17,6 +16,8 @@ SLACK_WEBHOOK_INC = os.environ.get('SLACK_WEBHOOK_INC')
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
+
+import models
 
 # штука чисто для теста - отдает hello world если зайти на url бота
 @app.route('/', methods=['GET'])
