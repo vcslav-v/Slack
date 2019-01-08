@@ -134,10 +134,7 @@ def write_income_gdoc(message):
             response_text = (resources.plus_income+submission['income_value'] + submission['income_currency'] + ' / '
                             + submission['income_to'])
         else:
-            # response_text = (resources.plus_income+submission['income_value'] + submission['income_currency'] + ' / '
-            #                 + submission['income_to'] + ' / ' + submission['comment'])
-            pass
-        pp(resources.plus_income)
+            response_text = (resources.plus_income + submission['income_value'])
         gdoc_writer(table_currency_changer(submission['income_currency']), submission['income_value'], tm, resources.PLUS_ROW)
     
     elif submission['income_from'] == 'banners':
