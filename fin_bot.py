@@ -163,7 +163,7 @@ def write_income_gdoc(message):
         except Exception as ex:
             response_text = ':x: Error: `%s`' % ex
 
-        make_response('Уточняем', 200)
+        make_response('', 200)
 
         data = {
         'token': SLACK_BOT_TOKEN,
@@ -171,10 +171,10 @@ def write_income_gdoc(message):
         'dialog': json.dumps(resources.dialog_income_email)
         }
         
-        response = requests.post(
-        url='https://slack.com/api/dialog.open',
-        data=data
-        )
+        # response = requests.post(
+        # url='https://slack.com/api/dialog.open',
+        # data=data
+        # )
         
         pp(response)
 
