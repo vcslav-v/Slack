@@ -175,8 +175,6 @@ def write_income_gdoc(message):
         # url='https://slack.com/api/dialog.open',
         # data=data
         # )
-        
-        pp(response)
 
     elif submission['income_from'] == 'products':
         response_text = 'Products'
