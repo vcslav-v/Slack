@@ -131,12 +131,13 @@ def write_income_gdoc(message):
 
     if submission['income_from'] == 'plus':
         if submission['comment'] == '':
+            pp('if')
             response_text = (resources.plus_income+submission['income_value'] + submission['income_currency'] + ' / '
                             + submission['income_to'])
         else:
+            pp('else')
             response_text = (resources.plus_income+submission['income_value'] + submission['income_currency'] + ' / '
                             + submission['income_to'] + ' / ' + submission['comment'])
-        pp('mmmmm')
         gdoc_writer(table_currency_changer(submission['income_currency']), submission['income_value'], tm, resources.PLUS_ROW)
     
     elif submission['income_from'] == 'banners':
@@ -265,6 +266,7 @@ def write_expense_gdoc(message):
     )
 
 def table_currency_changer(cur):
+    pp('table_currency_changer')
     scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
     creds = ServiceAccountCredentials.from_json_keyfile_dict(resources.client_secret, scope)
     client = gspread.authorize(creds)
@@ -278,7 +280,7 @@ def table_currency_changer(cur):
     return sheet
 
 def gdoc_writer(table, income, tm, row):
-    pp('fffaf')
+    pp('gdoc_writer')
     letter = resources.month_dic[str(tm)]
     place = letter + row
     data = table.acell(place, 'FORMULA')
