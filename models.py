@@ -1,4 +1,4 @@
-from app import db
+from fin_bot import db
 
 class finam_income(db.Model):
     id = db.Column(db.Integer, primary_key=True)
