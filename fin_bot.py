@@ -124,6 +124,7 @@ def slack_send_webhook(text, channel, **kwargs):
 def write_income_gdoc(message):
 
     submission = message['submission']
+    pp(submission)
 
     response_text = 'Smth bad'
     tm = datetime.strftime(datetime.now(), '%m')
