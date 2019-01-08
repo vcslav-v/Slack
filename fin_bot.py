@@ -150,27 +150,32 @@ def write_income_gdoc(message):
                             tm, resources.BANNERS_ROW)
     
     elif submission['income_from'] == 'email':
+        pp('email')
+        try:
+            del_row = models.finam_income.query.filter_by(user_id = message['user']['id']).first()
+            db.session.delete(del_row)
         
-        del_row = models.finam_income.query.filter_by(user_id = message['user']['id']).first()
-        db.session.delete(del_row)
-        new_row = models.finam_income(chanel_id = message['channel']['id'], income_value = submission['income_value'], 
-        income_currency = submission['income_currency'], income_to = submission['income_to'], 
-        comment = submission['comment'], income_from = submission['income_from'], user_id = message['user']['id'])
-        db.session.add(new_row)
-        db.session.commit()
+            new_row = models.finam_income(chanel_id = message['channel']['id'], income_value = submission['income_value'], 
+            income_currency = submission['income_currency'], income_to = submission['income_to'], 
+            comment = submission['comment'], income_from = submission['income_from'], user_id = message['user']['id'])
+            db.session.add(new_row)
+            db.session.commit()
 
-        data = {
-        'token': SLACK_BOT_TOKEN,
-        'trigger_id': flask.request.values['trigger_id'],
-        'dialog': json.dumps(resources.dialog_income_email)
-        }
+        # data = {
+        # 'token': SLACK_BOT_TOKEN,
+        # 'trigger_id': flask.request.values['trigger_id'],
+        # 'dialog': json.dumps(resources.dialog_income_email)
+        # }
         
-        response = requests.post(
-        url='https://slack.com/api/dialog.open',
-        data=data
-        )
+        # response = requests.post(
+        # url='https://slack.com/api/dialog.open',
+        # data=data
+        # )
         
-        pp(response)
+        except Exception as ex:
+            response_text = ':x: Error: `%s`' % ex
+        
+        pp(response_text)
         
         return make_response('Уточняем', 200)
 
