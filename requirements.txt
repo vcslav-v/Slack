@@ -6,3 +6,4 @@ oauth2client
 datetime
 flask-sqlalchemy
 sqlalchemy
+psycopg2
