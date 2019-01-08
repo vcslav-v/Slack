@@ -1,4 +1,4 @@
-from slack_app_test import db
+from app import db
 
 class finam_income(db.Model):
     id = db.Column(db.Integer, primary_key=True)
