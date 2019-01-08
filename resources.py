@@ -60,8 +60,8 @@ dialog_income = {
         {
             'label': 'Счёт',
             'type': 'select',
-            'name': 'expense_from',
-            'placeholder': 'Укажите c какого счёта была оплата',
+            'name': 'income_to',
+            'placeholder': 'Укажите куда пришли деньги',
             'value': 'ks',
             'options': [
                 {

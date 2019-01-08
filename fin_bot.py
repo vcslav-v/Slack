@@ -124,7 +124,6 @@ def slack_send_webhook(text, channel, **kwargs):
 def write_income_gdoc(message):
 
     submission = message['submission']
-    pp(submission)
 
     response_text = 'Smth bad'
     tm = datetime.strftime(datetime.now(), '%m')
@@ -135,7 +134,7 @@ def write_income_gdoc(message):
                             + submission['income_to'])
         else:
             response_text = (resources.plus_income + submission['income_value'] + submission['income_currency'] + ' / '
-                            )
+                            + submission['income_to'] + ' / ' + submission['comment'])
         gdoc_writer(table_currency_changer(submission['income_currency']), submission['income_value'], tm, resources.PLUS_ROW)
     
     elif submission['income_from'] == 'banners':
