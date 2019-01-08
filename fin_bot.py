@@ -160,20 +160,20 @@ def write_income_gdoc(message):
             comment = submission['comment'], income_from = submission['income_from'], user_id = message['user']['id'])
             db.session.add(new_row)
             db.session.commit()
-
-        # data = {
-        # 'token': SLACK_BOT_TOKEN,
-        # 'trigger_id': flask.request.values['trigger_id'],
-        # 'dialog': json.dumps(resources.dialog_income_email)
-        # }
-        
-        # response = requests.post(
-        # url='https://slack.com/api/dialog.open',
-        # data=data
-        # )
-        
+            
         except Exception as ex:
             response_text = ':x: Error: `%s`' % ex
+
+        data = {
+        'token': SLACK_BOT_TOKEN,
+        'trigger_id': flask.request.values['trigger_id'],
+        'dialog': json.dumps(resources.dialog_income_email)
+        }
+        
+        response = requests.post(
+        url='https://slack.com/api/dialog.open',
+        data=data
+        )
         
         pp(response_text)
         
