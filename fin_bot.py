@@ -153,12 +153,12 @@ def write_income_gdoc(message):
         pp('email')
         try:
             del_row = models.finam_income.query.filter_by(user_id = message['user']['id']).first()
-            db.session.delete(del_row)
-        
-            # new_row = models.finam_income(chanel_id = message['channel']['id'], income_value = submission['income_value'], 
-            # income_currency = submission['income_currency'], income_to = submission['income_to'], 
-            # comment = submission['comment'], income_from = submission['income_from'], user_id = message['user']['id'])
-            # db.session.add(new_row)
+            if del_row:
+                db.session.delete(del_row)
+            new_row = models.finam_income(chanel_id = message['channel']['id'], income_value = submission['income_value'], 
+            income_currency = submission['income_currency'], income_to = submission['income_to'], 
+            comment = submission['comment'], income_from = submission['income_from'], user_id = message['user']['id'])
+            db.session.add(new_row)
             db.session.commit()
 
         # data = {
