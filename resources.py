@@ -246,7 +246,7 @@ BANNERS_ROW = '6'
 TECH_ROW = '13'
 RENT_ROW = '14'
 INVEST_ROW = '15'
-OTHER_EXP_ROW = '17'
+OTHER_EXP_ROW = '16'
 
 plus_income = '*Доход Plus* / '
 banner_income = '*Доход Banners* / '
