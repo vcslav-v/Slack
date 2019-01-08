@@ -163,7 +163,7 @@ def write_income_gdoc(message):
         except Exception as ex:
             response_text = ':x: Error: `%s`' % ex
 
-        make_response('', 200)
+        # make_response('', 200)
 
         data = {
         'token': SLACK_BOT_TOKEN,
