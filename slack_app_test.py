@@ -8,11 +8,15 @@ from pprint import pprint as pp
 from datetime import datetime
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+from flask_sqlalchemy import SQLAlchemy
+import models
 
 SLACK_BOT_TOKEN = os.environ.get('SLACK_BOT_TOKEN')
 SLACK_WEBHOOK_INC = os.environ.get('SLACK_WEBHOOK_INC')
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+db = SQLAlchemy(app)
 
 # штука чисто для теста - отдает hello world если зайти на url бота
 @app.route('/', methods=['GET'])
@@ -70,6 +74,8 @@ def on_interactive_action():
                 write_income_gdoc(interactive_action)
             elif interactive_action['callback_id'] == 'expense_form':
                 write_expense_gdoc(interactive_action)
+            elif interactive_action['callback_id'] == 'dialog_income_email':
+                write_email_income(interactive_action)
 
     except Exception as ex:
         response_text = ':x: Error: `%s`' % ex
@@ -143,10 +149,57 @@ def write_income_gdoc(message):
                             tm, resources.BANNERS_ROW)
     
     elif submission['income_from'] == 'email':
-        response_text = 'Email'
+        
+        del_row = models.finam_income.query.filter_by(user_id = message['user']['id']).first()
+        db.session.delete(del_row)
+        new_row = models.finam_income(chanel_id = message['channel']['id'], income_value = submission['income_value'], 
+        income_currency = submission['income_currency'], income_to = submission['income_to'], 
+        comment = submission['comment'], income_from = submission['income_from'], user_id = message['user']['id'])
+        db.session.add(new_row)
+        db.session.commit()
+
+        data = {
+        'token': SLACK_BOT_TOKEN,
+        'trigger_id': flask.request.values['trigger_id'],
+        'dialog': json.dumps(resources.dialog_income_email)
+        }
+        
+        response = requests.post(
+        url='https://slack.com/api/dialog.open',
+        data=data
+        )
+        
+        pp(response)
+        
+        return make_response('Уточняем', 200)
+
     elif submission['income_from'] == 'products':
         response_text = 'Products'
 
+
+    slack_send_webhook(
+        text=response_text,
+        channel=message['channel']['id'],
+        icon=':chart_with_upwards_trend:'
+    )
+
+def write_email_income(message):
+
+    submission = message['submission']
+
+    response_text = 'Smth bad'
+    tm = int(datetime.strftime(datetime.now(), '%m'))
+    data = models.finam_income.query.filter_by(user_id = message['user']['id']).first()
+    response_text = data['comment']
+
+
+    # if data['comment'] == '':
+    #         response_text = (resources.plus_income+submission['income_value'] + submission['income_currency'] + ' / '
+    #                         + submission['income_to'])
+    #     else:
+    #         response_text = (resources.plus_income+submission['income_value'] + submission['income_currency'] + ' / '
+    #                         + submission['income_to'] + ' / ' + submission['comment'])
+    #     gdoc_writer(table_currency_changer(submission['income_currency']), submission['income_value'], tm, resources.PLUS_ROW)
 
     slack_send_webhook(
         text=response_text,

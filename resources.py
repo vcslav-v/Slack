@@ -60,8 +60,8 @@ dialog_income = {
         {
             'label': 'Счёт',
             'type': 'select',
-            'name': 'income_to',
-            'placeholder': 'Укажите куда пришли деньги',
+            'name': 'expense_from',
+            'placeholder': 'Укажите c какого счёта была оплата',
             'value': 'ks',
             'options': [
                 {
@@ -87,6 +87,14 @@ dialog_income = {
                 {
                     'label': 'Mello Bank',
                     'value': 'Mello Bank'
+                },
+                {
+                    'label': 'Mello Cash',
+                    'value': 'Mello Cash'
+                },
+                {
+                    'label': 'Никита',
+                    'value': 'Никита'
                 }
             ]
         },
@@ -95,6 +103,47 @@ dialog_income = {
             'type': 'text',
             'label': 'Комментарий',
             'name': 'comment'
+        }
+    ]
+}
+
+dialog_income_email = {
+    'title': 'Email-доход',
+    'submit_label': 'Submit',
+    'callback_id': 'income_form_email',
+    'elements': [
+        {
+            'label': 'Категория email',
+            'type': 'select',
+            'name': 'income_form_email',
+            'placeholder': 'Уточнените категорию',
+            'value': 'products',
+            'options': [
+                {
+                    'label': 'Direct',
+                    'value': 'Direct'
+                },
+                {
+                    'label': 'BSA/Syndicate',
+                    'value': 'BSA/Syndicate'
+                },
+                {
+                    'label': 'Baw Media',
+                    'value': 'Baw Media'
+                },
+                {
+                    'label': 'Hacking UI',
+                    'value': 'Hacking UI'
+                },
+                {
+                    'label': 'Design Cuts',
+                    'value': 'Design Cuts'
+                },
+                {
+                    'label': 'Paved',
+                    'value': 'Paved'
+                }
+            ]
         }
     ]
 }
@@ -192,6 +241,10 @@ dialog_expense = {
                 {
                     'label': 'Mello Bank',
                     'value': 'Mello Bank'
+                },
+                {
+                    'label': 'Mello Cash',
+                    'value': 'Mello Cash'
                 },
                 {
                     'label': 'Никита',
