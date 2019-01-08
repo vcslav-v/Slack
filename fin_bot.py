@@ -136,7 +136,6 @@ def write_income_gdoc(message):
         else:
             response_text = (resources.plus_income+submission['income_value'] + submission['income_currency'] + ' / '
                             + submission['income_to'] + ' / ' + submission['comment'])
-        pp(response_text)
         gdoc_writer(table_currency_changer(submission['income_currency']), submission['income_value'], tm, resources.PLUS_ROW)
     
     elif submission['income_from'] == 'banners':
@@ -278,6 +277,7 @@ def table_currency_changer(cur):
     return sheet
 
 def gdoc_writer(table, income, tm, row):
+    pp('fffaf')
     letter = resources.month_dic[str(tm)]
     place = letter + row
     data = table.acell(place, 'FORMULA')
