@@ -162,6 +162,8 @@ def write_income_gdoc(message):
             db.session.add(new_row)
             db.session.commit()
 
+            slack_send_webhook(text=response_text, channel=message['channel']['id'], icon=':chart_with_upwards_trend:')
+
             data = {
             'token': SLACK_BOT_TOKEN,
             'channel': message['channel']['id'],
@@ -177,11 +179,11 @@ def write_income_gdoc(message):
         response_text = 'Products'
 
 
-    # slack_send_webhook(
-    #     text=response_text,
-    #     channel=message['channel']['id'],
-    #     icon=':chart_with_upwards_trend:'
-    # )
+    slack_send_webhook(
+        text=response_text,
+        channel=message['channel']['id'],
+        icon=':chart_with_upwards_trend:'
+    )
 
 def write_email_income(message):
 
