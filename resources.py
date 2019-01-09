@@ -40,7 +40,7 @@ dialog_income = {
             'type': 'select',
             'name': 'income_currency',
             'placeholder': 'Выберите валюту',
-            'value': 'usd',
+            'value': 'USD',
             'options': [
                 {
                     'label': 'USD',
@@ -62,7 +62,7 @@ dialog_income = {
             'type': 'select',
             'name': 'income_to',
             'placeholder': 'Укажите куда пришли деньги',
-            'value': 'ks',
+            'value': 'Ksenia PayPal',
             'options': [
                 {
                     'label': 'Ksenia PayPal',
@@ -98,26 +98,12 @@ dialog_income = {
                 }
             ]
         },
-
         {
-            'type': 'text',
-            'label': 'Комментарий',
-            'name': 'comment'
-        }
-    ]
-}
-
-dialog_income_email = {
-    'title': 'Email-доход',
-    'submit_label': 'Submit',
-    'callback_id': 'income_form_email',
-    'elements': [
-        {
-            'label': 'Категория email',
+            'label': 'Подкатегория для email',
             'type': 'select',
             'name': 'income_form_email',
-            'placeholder': 'Уточнените категорию',
-            'value': 'products',
+            'placeholder': 'Уточнените категориюemail',
+            'value': 'Direct',
             'options': [
                 {
                     'label': 'Direct',
@@ -144,7 +130,22 @@ dialog_income_email = {
                     'value': 'Paved'
                 }
             ]
+        },
+
+        {
+            'type': 'text',
+            'label': 'Комментарий',
+            'name': 'comment'
         }
+    ]
+}
+
+dialog_income_email = {
+    'title': 'Email-доход',
+    'submit_label': 'Submit',
+    'callback_id': 'income_form_email',
+    'elements': [
+        
     ]
 }
 

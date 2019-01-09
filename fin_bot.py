@@ -153,28 +153,7 @@ def write_income_gdoc(message, trigger_id):
                             tm, resources.BANNERS_ROW)
     
     elif submission['income_from'] == 'email':
-        try:
-            del_row = models.finam_income.query.filter_by(user_id = message['user']['id']).first()
-            if del_row:
-                db.session.delete(del_row)
-            new_row = models.finam_income(chanel_id = message['channel']['id'], income_value = submission['income_value'], 
-            income_currency = submission['income_currency'], income_to = submission['income_to'], 
-            comment = submission['comment'], income_from = submission['income_from'], user_id = message['user']['id'])
-            db.session.add(new_row)
-            db.session.commit()
-
-            slack_send_webhook(text='Уточните категорию', channel=message['channel']['id'], icon=':chart_with_upwards_trend:')
-
-            data = {
-            'token': SLACK_BOT_TOKEN,
-            'trigger_id': trigger_id,
-            'dialog': json.dumps(resources.dialog_income_email)
-            }
-
-            return requests.post(url='https://slack.com/api/dialog.open', data=data)
-            
-        except Exception as ex:
-            response_text = ':x: Error: `%s`' % ex
+        response_text = 'email'
 
     elif submission['income_from'] == 'products':
         response_text = 'Products'
