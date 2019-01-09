@@ -1,4 +1,4 @@
-dialog_income = {
+dialog_income_f = {
     'title': 'Доход',
     'submit_label': 'Submit',
     'callback_id': 'income_form',
@@ -98,37 +98,66 @@ dialog_income = {
             ]
         },
         {
-            'label': 'Подкатегория для email',
-            'type': 'select',
-            'name': 'income_email',
-            'placeholder': 'Уточнените категорию email',
-            'value': 'Direct',
-            'options': [
-                {
-                    'label': 'Direct',
-                    'value': 'Direct'
-                },
-                {
-                    'label': 'BSA/Syndicate',
-                    'value': 'BSA/Syndicate'
-                },
-                {
-                    'label': 'Baw Media',
-                    'value': 'Baw Media'
-                },
-                {
-                    'label': 'Hacking UI',
-                    'value': 'Hacking UI'
-                },
-                {
-                    'label': 'Design Cuts',
-                    'value': 'Design Cuts'
-                },
-                {
-                    'label': 'Paved',
-                    'value': 'Paved'
-                }
-            ]
+            'type': 'text',
+            'label': 'Комментарий',
+            'name': 'comment'
+        }
+    ]
+}
+dialog_income_f = {
+    'title': 'Доход',
+    'submit_label': 'Submit',
+    'callback_id': 'income_form',
+    'elements': [
+        {
+            'type': 'text',
+            'label': 'Сумма',
+            'name': '1'
+        },
+        {
+            'type': 'text',
+            'label': 'Сумма',
+            'name': '2'
+        },
+        {
+            'type': 'text',
+            'label': 'Сумма',
+            'name': '3'
+        },
+        {
+            'type': 'text',
+            'label': 'Сумма',
+            'name': '4'
+        },
+        {
+            'type': 'text',
+            'label': 'Сумма',
+            'name': '5'
+        },
+        {
+            'type': 'text',
+            'label': 'Сумма',
+            'name': '6'
+        },
+        {
+            'type': 'text',
+            'label': 'Сумма',
+            'name': '7'
+        },
+        {
+            'type': 'text',
+            'label': 'Сумма',
+            'name': '8'
+        },
+        {
+            'type': 'text',
+            'label': 'Сумма',
+            'name': '9'
+        },
+        {
+            'type': 'text',
+            'label': 'Сумма',
+            'name': '10'
         },
         {
             'type': 'text',
@@ -137,7 +166,6 @@ dialog_income = {
         }
     ]
 }
-
 dialog_expense = {
     'title': 'Расход',
     'submit_label': 'Submit',
@@ -250,6 +278,44 @@ dialog_expense = {
         }
     ]
 }
+dialog_email_income = {
+    'title': 'Доход',
+    'submit_label': 'Submit',
+    'callback_id': 'income_form',
+    'elements': [
+        {
+            'label': 'Подкатегория для email',
+            'type': 'select',
+            'name': 'income_email',
+            'placeholder': 'Уточнените категорию email',
+            'value': 'Direct',
+            'options': [
+                {
+                    'label': 'Direct',
+                    'value': 'Direct'
+                },
+                {
+                    'label': 'BSA/Syndicate',
+                    'value': 'BSA/Syndicate'
+                },
+                {
+                    'label': 'Baw Media',
+                    'value': 'Baw Media'
+                },
+                {
+                    'label': 'Hacking UI',
+                    'value': 'Hacking UI'
+                },
+                {
+                    'label': 'Design Cuts',
+                    'value': 'Design Cuts'
+                },
+                {
+                    'label': 'Paved',
+                    'value': 'Paved'
+                }
+            ]
+        }]}
 
 month_dic = {
     '01':'b',
