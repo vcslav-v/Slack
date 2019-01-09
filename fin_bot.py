@@ -166,7 +166,7 @@ def write_income_gdoc(message):
 
             data = {
             'token': SLACK_BOT_TOKEN,
-            'channel': message['channel']['id'],
+            'trigger_id': flask.request.values['trigger_id'],
             'dialog': json.dumps(resources.dialog_income_email)
             }
 
