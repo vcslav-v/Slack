@@ -9,6 +9,7 @@ from datetime import datetime
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from flask_sqlalchemy import SQLAlchemy
+from concurrent.futures import ThreadPoolExecutor
 
 SLACK_BOT_TOKEN = os.environ.get('SLACK_BOT_TOKEN')
 SLACK_WEBHOOK_INC = os.environ.get('SLACK_WEBHOOK_INC')
@@ -16,6 +17,7 @@ SLACK_WEBHOOK_INC = os.environ.get('SLACK_WEBHOOK_INC')
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
+executor = ThreadPoolExecutor(1)
 
 import models
 
@@ -70,7 +72,9 @@ def on_interactive_action():
 
         elif interactive_action['type'] == 'dialog_submission':
             if interactive_action['callback_id'] == 'income_form':
-                write_income_gdoc(interactive_action)
+                executor.submit(
+                write_income_gdoc,
+                interactive_action)
             elif interactive_action['callback_id'] == 'expense_form':
                 write_expense_gdoc(interactive_action)
             elif interactive_action['callback_id'] == 'dialog_income_email':
@@ -158,10 +162,6 @@ def write_income_gdoc(message):
             db.session.add(new_row)
             db.session.commit()
 
-            make_response('', 200)
-
-            pp(flask.request.values)
-
             data = {
             'token': SLACK_BOT_TOKEN,
             'channel': message['channel']['id'],
@@ -172,7 +172,6 @@ def write_income_gdoc(message):
             url='https://slack.com/api/dialog.open',
             data=data
             )
-            
         except Exception as ex:
             response_text = ':x: Error: `%s`' % ex
 
