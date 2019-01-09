@@ -102,7 +102,7 @@ dialog_income = {
             'label': 'Подкатегория для email',
             'type': 'select',
             'name': 'income_form_email',
-            'placeholder': 'Уточнените категориюemail',
+            'placeholder': 'Уточнените категорию email',
             'value': 'Direct',
             'options': [
                 {
