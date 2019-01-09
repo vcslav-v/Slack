@@ -168,12 +168,12 @@ def write_income_gdoc(message):
             'token': SLACK_BOT_TOKEN,
             'dialog': json.dumps(resources.dialog_income_email)
             }
+            response = requests.post(
+            url='https://slack.com/api/dialog.open',
+            data=data
+            )
         except Exception as ex:
             response_text = ':x: Error: `%s`' % ex
-        # response = requests.post(
-        # url='https://slack.com/api/dialog.open',
-        # data=data
-        # )
 
     elif submission['income_from'] == 'products':
         response_text = 'Products'
