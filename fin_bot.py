@@ -158,7 +158,7 @@ def write_income_gdoc(message):
             db.session.add(new_row)
             db.session.commit()
 
-            # make_response('', 200)
+            make_response('', 200)
 
             pp(flask.request.values)
 
