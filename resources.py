@@ -11,8 +11,52 @@ dialog_income = {
             'value': 'products',
             'options': [
                 {
-                    'label': 'Products',
-                    'value': 'products'
+                    'label': 'Deals - Design cuts',
+                    'value': 'Deals - Design cuts'
+                },
+                 {
+                    'label': 'Deals - Deal Jambo',
+                    'value': 'Deals - Deal Jambo'
+                },
+                {
+                    'label': 'Deals - Mighty deals',
+                    'value': 'Deals - Mighty deals'
+                },
+                {
+                    'label': 'Deals - Other',
+                    'value': 'Deals - Other'
+                },
+                {
+                    'label': 'Markets - Design cuts',
+                    'value': 'Markets - Design cuts'
+                },
+                {
+                    'label': 'Markets - Creative',
+                    'value': 'Markets - Creative'
+                },
+                {
+                    'label': 'Markets - Yello images',
+                    'value': 'Markets - Yello images'
+                },
+                {
+                    'label': 'Markets - Design cuts',
+                    'value': 'Markets - Design cuts'
+                },
+                {
+                    'label': 'Markets - Your work for them',
+                    'value': 'Markets - Your work for them'
+                },
+                {
+                    'label': 'Markets - Envano',
+                    'value': 'Markets - Envano'
+                },
+                {
+                    'label': 'Markets - Envato Elements',
+                    'value': 'Markets - Envato Elements'
+                },
+                {
+                    'label': 'Markets - Other',
+                    'value': 'Markets - Other'
                 },
                 {
                     'label': 'Email - Direct',
@@ -236,45 +280,6 @@ dialog_expense = {
         }
     ]
 }
-dialog_email_income = {
-    'title': 'Доход',
-    'submit_label': 'Submit',
-    'callback_id': 'income_form',
-    'elements': [
-        {
-            'label': 'Подкатегория для email',
-            'type': 'select',
-            'name': 'income_email',
-            'placeholder': 'Уточнените категорию email',
-            'value': 'Direct',
-            'options': [
-                {
-                    'label': 'Direct',
-                    'value': 'Direct'
-                },
-                {
-                    'label': 'BSA/Syndicate',
-                    'value': 'BSA/Syndicate'
-                },
-                {
-                    'label': 'Baw Media',
-                    'value': 'Baw Media'
-                },
-                {
-                    'label': 'Hacking UI',
-                    'value': 'Hacking UI'
-                },
-                {
-                    'label': 'Design Cuts',
-                    'value': 'Design Cuts'
-                },
-                {
-                    'label': 'Paved',
-                    'value': 'Paved'
-                }
-            ]
-        }]}
-
 month_dic = {
     '01':'b',
     '02':'c',
