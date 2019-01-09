@@ -8,24 +8,8 @@ dialog_income = {
             'type': 'select',
             'name': 'income_from',
             'placeholder': 'Выберите категорию',
-            'value': 'products',
+            'value': 'Markets - Design cuts',
             'options': [
-                {
-                    'label': 'Deals - Design cuts',
-                    'value': 'Deals - Design cuts'
-                },
-                 {
-                    'label': 'Deals - Deal Jambo',
-                    'value': 'Deals - Deal Jambo'
-                },
-                {
-                    'label': 'Deals - Mighty deals',
-                    'value': 'Deals - Mighty deals'
-                },
-                {
-                    'label': 'Deals - Other',
-                    'value': 'Deals - Other'
-                },
                 {
                     'label': 'Markets - Design cuts',
                     'value': 'Markets - Design cuts'
@@ -37,10 +21,6 @@ dialog_income = {
                 {
                     'label': 'Markets - Yello images',
                     'value': 'Markets - Yello images'
-                },
-                {
-                    'label': 'Markets - Design cuts',
-                    'value': 'Markets - Design cuts'
                 },
                 {
                     'label': 'Markets - Your work for them',
@@ -81,6 +61,22 @@ dialog_income = {
                 {
                     'label': 'Email - Paved',
                     'value': 'email'
+                },
+                {
+                    'label': 'Deals - Design cuts',
+                    'value': 'Deals - Design cuts'
+                },
+                 {
+                    'label': 'Deals - Deal Jambo',
+                    'value': 'Deals - Deal Jambo'
+                },
+                {
+                    'label': 'Deals - Mighty deals',
+                    'value': 'Deals - Mighty deals'
+                },
+                {
+                    'label': 'Deals - Other',
+                    'value': 'Deals - Other'
                 },
                 {
                     'label': 'Plus',
