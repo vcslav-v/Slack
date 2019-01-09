@@ -169,10 +169,19 @@ def write_income_gdoc(message):
             'channel': message['channel']['id'],
             'dialog': json.dumps(resources.dialog_income_email)
             }
-            response = requests.post(
-            url='https://slack.com/api/dialog.open',
-            data=data
+
+            # response = requests.post(
+            # url='https://slack.com/api/dialog.open',
+            # data=data
+            # )
+
+            slack_send_webhook(
+            text=response_text,
+            channel=message['channel']['id'],
+            icon=':chart_with_upwards_trend:',
+            dialog=json.dumps(resources.dialog_income_email)
             )
+            
         except Exception as ex:
             response_text = ':x: Error: `%s`' % ex
 
