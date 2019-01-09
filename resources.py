@@ -57,6 +57,47 @@ dialog_income = {
             ]
         },
         {
+            'label': 'Счёт',
+            'type': 'select',
+            'name': 'income_to',
+            'placeholder': 'Укажите куда пришли деньги',
+            'value': 'Ksenia PayPal',
+            'options': [
+                {
+                    'label': 'Ksenia PayPal',
+                    'value': 'Ksenia PayPal'
+                },
+                {
+                    'label': 'Milka PayPal',
+                    'value': 'Milka PayPal'
+                },
+                {
+                    'label': 'Payoner',
+                    'value': 'Payoner'
+                },
+                {
+                    'label': 'Astakhov PayPal',
+                    'value': 'Astakhov PayPal'
+                },
+                {
+                    'label': 'Mello PayPal',
+                    'value': 'Mello PayPal'
+                },
+                {
+                    'label': 'Mello Bank',
+                    'value': 'Mello Bank'
+                },
+                {
+                    'label': 'Mello Cash',
+                    'value': 'Mello Cash'
+                },
+                {
+                    'label': 'Никита',
+                    'value': 'Никита'
+                }
+            ]
+        },
+        {
             'label': 'Подкатегория для email',
             'type': 'select',
             'name': 'income_email',
