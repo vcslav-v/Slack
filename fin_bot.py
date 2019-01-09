@@ -160,13 +160,15 @@ def write_income_gdoc(message):
             db.session.add(new_row)
             db.session.commit()
 
+            pp(message)
+
             make_response('', 200)
 
-            data = {
-            'token': SLACK_BOT_TOKEN,
-            'trigger_id': flask.request.values['trigger_id'],
-            'dialog': json.dumps(resources.dialog_income_email)
-            }
+            # data = {
+            # 'token': SLACK_BOT_TOKEN,
+            # 'trigger_id': flask.request.values['trigger_id'],
+            # 'dialog': json.dumps(resources.dialog_income_email)
+            # }
         except Exception as ex:
             response_text = ':x: Error: `%s`' % ex
         # response = requests.post(
