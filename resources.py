@@ -104,7 +104,7 @@ dialog_income_f = {
         }
     ]
 }
-dialog_income_f = {
+dialog_income = {
     'title': 'Доход',
     'submit_label': 'Submit',
     'callback_id': 'income_form',
