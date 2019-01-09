@@ -99,39 +99,6 @@ dialog_income = {
             ]
         },
         {
-            'label': 'Подкатегория для email',
-            'type': 'select',
-            'name': 'income_form_email',
-            'placeholder': 'Уточнените категорию email',
-            'value': 'Direct',
-            'options': [
-                {
-                    'label': 'Direct',
-                    'value': 'Direct'
-                },
-                {
-                    'label': 'BSA/Syndicate',
-                    'value': 'BSA/Syndicate'
-                },
-                {
-                    'label': 'Baw Media',
-                    'value': 'Baw Media'
-                },
-                {
-                    'label': 'Hacking UI',
-                    'value': 'Hacking UI'
-                },
-                {
-                    'label': 'Design Cuts',
-                    'value': 'Design Cuts'
-                },
-                {
-                    'label': 'Paved',
-                    'value': 'Paved'
-                }
-            ]
-        },
-        {
             'type': 'text',
             'label': 'Комментарий',
             'name': 'comment'
