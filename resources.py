@@ -121,6 +121,16 @@ dialog_income = {
         },
         {
             'type': 'text',
+            'label': 'Сумма3',
+            'name': '3'
+        },
+        {
+            'type': 'text',
+            'label': 'Сумма4',
+            'name': '4'
+        },
+        {
+            'type': 'text',
             'label': 'Комментарий',
             'name': 'comment'
         }
