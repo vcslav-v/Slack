@@ -177,11 +177,11 @@ def write_income_gdoc(message):
         response_text = 'Products'
 
 
-    slack_send_webhook(
-        text=response_text,
-        channel=message['channel']['id'],
-        icon=':chart_with_upwards_trend:'
-    )
+    # slack_send_webhook(
+    #     text=response_text,
+    #     channel=message['channel']['id'],
+    #     icon=':chart_with_upwards_trend:'
+    # )
 
 def write_email_income(message):
 
