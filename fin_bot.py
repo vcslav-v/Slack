@@ -35,7 +35,7 @@ def income_get():
         'dialog': json.dumps(resources.dialog_income)
     }
 
-    response = requests.post(
+    requests.post(
         url='https://slack.com/api/dialog.open',
         data=data
     )
@@ -172,7 +172,6 @@ def write_income_gdoc(message):
             url='https://slack.com/api/dialog.open',
             data=data
             )
-            response_text = 'email'
         except Exception as ex:
             response_text = ':x: Error: `%s`' % ex
 
