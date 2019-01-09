@@ -34,6 +34,7 @@ def income_get():
         'trigger_id': flask.request.values['trigger_id'],
         'dialog': json.dumps(resources.dialog_income)
     }
+    pp(flask.request.values)
 
     requests.post(
         url='https://slack.com/api/dialog.open',
@@ -64,7 +65,7 @@ def expense_get():
 def on_interactive_action():
     response_text = ''
     interactive_action = json.loads(flask.request.values['payload'])
-    pp(interactive_action)
+    pp(flask.request.values)
 
     try:
         if interactive_action['type'] == 'interactive_message':
@@ -125,7 +126,7 @@ def slack_send_webhook(text, channel, **kwargs):
     ))
 
 # Пишем в google sheet
-def write_income_gdoc(message):
+def write_income_gdoc(message, trigger_id):
 
     submission = message['submission']
 
@@ -166,7 +167,7 @@ def write_income_gdoc(message):
 
             data = {
             'token': SLACK_BOT_TOKEN,
-            'trigger_id': flask.request.values['trigger_id'],
+            'trigger_id': trigger_id,
             'dialog': json.dumps(resources.dialog_income_email)
             }
 
