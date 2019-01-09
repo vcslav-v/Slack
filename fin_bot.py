@@ -32,14 +32,11 @@ def income_get():
         'trigger_id': flask.request.values['trigger_id'],
         'dialog': json.dumps(resources.dialog_income)
     }
-    pp(flask.request.values)
 
     response = requests.post(
         url='https://slack.com/api/dialog.open',
         data=data
     )
-
-    pp(response)
 
     return make_response('Processing started...', 200)
 
@@ -161,9 +158,9 @@ def write_income_gdoc(message):
             db.session.add(new_row)
             db.session.commit()
 
-            pp(message)
+            # make_response('', 200)
 
-            make_response('', 200)
+            pp(flask.request.values)
 
             data = {
             'token': SLACK_BOT_TOKEN,
@@ -171,10 +168,10 @@ def write_income_gdoc(message):
             'dialog': json.dumps(resources.dialog_income_email)
             }
 
-            # response = requests.post(
-            # url='https://slack.com/api/dialog.open',
-            # data=data
-            # )
+            response = requests.post(
+            url='https://slack.com/api/dialog.open',
+            data=data
+            )
             
         except Exception as ex:
             response_text = ':x: Error: `%s`' % ex
