@@ -162,7 +162,7 @@ def write_income_gdoc(message):
             db.session.add(new_row)
             db.session.commit()
 
-            slack_send_webhook(text=response_text, channel=message['channel']['id'], icon=':chart_with_upwards_trend:')
+            slack_send_webhook(text='Уточните категорию', channel=message['channel']['id'], icon=':chart_with_upwards_trend:')
 
             data = {
             'token': SLACK_BOT_TOKEN,
@@ -170,7 +170,7 @@ def write_income_gdoc(message):
             'dialog': json.dumps(resources.dialog_income_email)
             }
 
-            requests.post(url='https://slack.com/api/dialog.open', data=data)
+            return requests.post(url='https://slack.com/api/dialog.open', data=data)
             
         except Exception as ex:
             response_text = ':x: Error: `%s`' % ex
