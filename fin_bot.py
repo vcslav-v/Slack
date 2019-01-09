@@ -33,7 +33,7 @@ def income_get():
         'token': SLACK_BOT_TOKEN,
         'trigger_id': flask.request.values['trigger_id'],
         'dialog': json.dumps(resources.dialog_income)
-        }
+    }
 
     requests.post(
         url='https://slack.com/api/dialog.open',
@@ -64,7 +64,7 @@ def expense_get():
 def on_interactive_action():
     response_text = ''
     interactive_action = json.loads(flask.request.values['payload'])
-    pp(flask.request.values)
+    pp(interactive_action)
 
     try:
         if interactive_action['type'] == 'interactive_message':
@@ -125,7 +125,7 @@ def slack_send_webhook(text, channel, **kwargs):
     ))
 
 # Пишем в google sheet
-def write_income_gdoc(message, trigger_id):
+def write_income_gdoc(message):
 
     submission = message['submission']
 
@@ -162,15 +162,15 @@ def write_income_gdoc(message, trigger_id):
             db.session.add(new_row)
             db.session.commit()
 
-            slack_send_webhook(text='Уточните категорию', channel=message['channel']['id'], icon=':chart_with_upwards_trend:')
+            slack_send_webhook(text='Уточните', channel=message['channel']['id'], icon=':chart_with_upwards_trend:')
 
             data = {
             'token': SLACK_BOT_TOKEN,
-            'trigger_id': trigger_id,
+            'channel': message['channel']['id'],
             'dialog': json.dumps(resources.dialog_income_email)
             }
 
-            return requests.post(url='https://slack.com/api/dialog.open', data=data)
+            requests.post(url='https://slack.com/api/dialog.open', data=data)
             
         except Exception as ex:
             response_text = ':x: Error: `%s`' % ex
