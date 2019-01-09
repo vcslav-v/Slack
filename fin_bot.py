@@ -32,6 +32,7 @@ def income_get():
         'trigger_id': flask.request.values['trigger_id'],
         'dialog': json.dumps(resources.dialog_income)
     }
+    pp(flask.request.values)
 
     response = requests.post(
         url='https://slack.com/api/dialog.open',
@@ -174,13 +175,6 @@ def write_income_gdoc(message):
             # url='https://slack.com/api/dialog.open',
             # data=data
             # )
-
-            slack_send_webhook(
-            text=response_text,
-            channel=message['channel']['id'],
-            icon=':chart_with_upwards_trend:',
-            dialog=json.dumps(resources.dialog_income_email)
-            )
             
         except Exception as ex:
             response_text = ':x: Error: `%s`' % ex
