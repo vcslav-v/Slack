@@ -131,21 +131,11 @@ dialog_income = {
                 }
             ]
         },
-
         {
             'type': 'text',
             'label': 'Комментарий',
             'name': 'comment'
         }
-    ]
-}
-
-dialog_income_email = {
-    'title': 'Email-доход',
-    'submit_label': 'Submit',
-    'callback_id': 'income_form_email',
-    'elements': [
-        
     ]
 }
 
