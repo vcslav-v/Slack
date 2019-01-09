@@ -36,7 +36,7 @@ def income_get():
     }
     pp(flask.request.values)
 
-    requests.post(
+    request = requests.post(
         url='https://slack.com/api/dialog.open',
         data=data
     )
