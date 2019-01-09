@@ -1,4 +1,4 @@
-dialog_income_f = {
+dialog_income = {
     'title': 'Доход',
     'submit_label': 'Submit',
     'callback_id': 'income_form',
@@ -15,7 +15,27 @@ dialog_income_f = {
                     'value': 'products'
                 },
                 {
-                    'label': 'Email',
+                    'label': 'Email - Direct',
+                    'value': 'Email - Direct'
+                },
+                {
+                    'label': 'Email - BSA/Syndicate',
+                    'value': 'email'
+                },
+                {
+                    'label': 'Email - Baw Media',
+                    'value': 'email'
+                },    
+                {
+                    'label': 'Email - Hacking UI',
+                    'value': 'email'
+                },
+                {
+                    'label': 'Email - Design Cuts',
+                    'value': 'email'
+                },
+                {
+                    'label': 'Email - Paved',
                     'value': 'email'
                 },
                 {
@@ -96,43 +116,6 @@ dialog_income_f = {
                     'value': 'Никита'
                 }
             ]
-        },
-        {
-            'type': 'text',
-            'label': 'Комментарий',
-            'name': 'comment'
-        }
-    ]
-}
-dialog_income = {
-    'title': 'Доход',
-    'submit_label': 'Submit',
-    'callback_id': 'income_form',
-    'elements': [
-        {
-            'type': 'text',
-            'label': 'Сумма',
-            'name': '1'
-        },
-        {
-            'type': 'text',
-            'label': 'Сумма2',
-            'name': '2'
-        },
-        {
-            'type': 'text',
-            'label': 'Сумма3',
-            'name': '3'
-        },
-        {
-            'type': 'text',
-            'label': 'Сумма4',
-            'name': '4'
-        },
-        {
-            'type': 'text',
-            'label': 'Сумма5',
-            'name': '5'
         },
         {
             'type': 'text',
