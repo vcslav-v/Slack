@@ -166,6 +166,7 @@ def write_income_gdoc(message):
 
             data = {
             'token': SLACK_BOT_TOKEN,
+            'channel': message['channel']['id'],
             'dialog': json.dumps(resources.dialog_income_email)
             }
             response = requests.post(
