@@ -130,47 +130,58 @@ def write_income_gdoc(message):
         if submission['comment'] == '':
             response_text = (resources.plus_income+submission['income_value'] + submission['income_currency'] + ' / '
                             + submission['income_to'])
+            comment = submission['income_from']
         else:
             response_text = (resources.plus_income + submission['income_value'] + submission['income_currency'] + ' / '
                             + submission['income_to'] + ' / ' + submission['comment'])
-        gdoc_writer(table_currency_changer(submission['income_currency']), submission['income_value'], tm, resources.PLUS_ROW)
+            comment = submission['income_from'] + ' / ' + submission['comment']
+        table = table_currency_changer(submission['income_currency'])
+        gdoc_writer(table, submission['income_value'], tm, resources.PLUS_ROW)
         gdoc_account_writer(table, submission['income_value'], submission['income_to'], comment)
     
     elif submission['income_from'] == 'banners':
         if submission['comment'] == '':
             response_text = (resources.banner_income+submission['income_value'] + submission['income_currency'] + ' / '
                             + submission['income_to'])
+            comment = submission['income_from']
         else:
             response_text = (resources.banner_income+submission['income_value'] + submission['income_currency'] + ' / '
                             + submission['income_to'] + ' / ' + submission['comment'])
-        gdoc_writer(table_currency_changer(submission['income_currency']), submission['income_value'], 
-                            tm, resources.BANNERS_ROW)
+            comment = submission['income_from'] + ' / ' + submission['comment']
+        table = table_currency_changer(submission['income_currency'])
+        gdoc_writer(table, submission['income_value'], tm, resources.BANNERS_ROW)
         gdoc_account_writer(table, submission['income_value'], submission['income_to'], comment)
     
     elif submission['income_from'][:5] == 'Email':
         if submission['comment'] == '':
             response_text = (resources.income + submission['income_from'] + '* / ' + submission['income_value'] 
                             + submission['income_currency'] + ' / ' + submission['income_to'])
+            comment = submission['income_from']
         else:
             response_text = (resources.income + submission['income_from'] + '* / ' +submission['income_value'] 
                             + submission['income_currency'] + ' / ' + submission['income_to'] + ' / ' 
                             + submission['comment'])
+            comment = submission['income_from'] + ' / ' + submission['comment']
 
-        gdoc_writer(table_currency_changer(submission['income_currency']), submission['income_value'], 
-                            tm, resources.EMAIL_COLUMNS[submission['income_from']], False, 'Доход-Email')
+        table = table_currency_changer(submission['income_currency'])
+        gdoc_writer(table, submission['income_value'], tm, resources.EMAIL_COLUMNS[submission['income_from']],
+                    False, 'Доход-Email')
         gdoc_account_writer(table, submission['income_value'], submission['income_to'], comment)
 
     elif submission['income_from'][:7] == 'Markets' or submission['income_from'][:5] == 'Deals':
         if submission['comment'] == '':
             response_text = (resources.income + submission['income_from'] + '* / ' + submission['income_value'] 
                             + submission['income_currency'] + ' / ' + submission['income_to'])
+            comment = submission['income_from']
         else:
             response_text = (resources.income + submission['income_from'] + '* / ' +submission['income_value'] 
                             + submission['income_currency'] + ' / ' + submission['income_to'] + ' / ' 
                             + submission['comment'])
+            comment = submission['income_from'] + ' / ' + submission['comment']
 
-        gdoc_writer(table_currency_changer(submission['income_currency']), submission['income_value'], 
-                            tm, resources.PRODUCTS_COLUMNS[submission['income_from']], False, 'Доход-Products')
+        table = table_currency_changer(submission['income_currency'])
+        gdoc_writer(table, submission['income_value'], tm, resources.PRODUCTS_COLUMNS[submission['income_from']], 
+                    False, 'Доход-Products')
         gdoc_account_writer(table, submission['income_value'], submission['income_to'], comment)
 
 
@@ -191,13 +202,16 @@ def write_expense_gdoc(message):
         if submission['comment'] == '':
             response_text = (resources.expense + submission['expense_to'] + '* / ' + submission['expense_value'] 
                             + submission['expense_currency'] + ' / ' + submission['expense_from'])
+            comment = submission['expense_to']
         else:
             response_text = (resources.expense + submission['expense_to'] + '* / ' + submission['expense_value'] 
                             + submission['expense_currency'] + ' / ' + submission['expense_from'] + ' / ' 
                             + submission['comment'])
+            comment = submission['expense_to'] + ' / ' + submission['comment']
 
-        gdoc_writer(table_currency_changer(submission['expense_currency']), submission['expense_value'], 
-                            tm, resources.PRODUCTS_EXPENSE_COLUMNS[submission['expense_to']], False, 'Расх-Products')
+        table = table_currency_changer(submission['expense_currency'])
+        gdoc_writer(table, submission['expense_value'], tm, resources.PRODUCTS_EXPENSE_COLUMNS[submission['expense_to']],
+                    False, 'Расх-Products')
         gdoc_account_writer(table, str(int(submission['expense_value']) * (-1)), submission['expense_from'],
                             comment)
 
@@ -220,11 +234,13 @@ def write_expense_gdoc(message):
         if submission['comment'] == '':
             response_text = (resources.rent + submission['expense_value'] + submission['expense_currency'] + ' / '
                             + submission['expense_from'])
+            comment = submission['expense_to']
         else:
             response_text = (resources.rent + submission['expense_value'] + submission['expense_currency'] + ' / '
                             + submission['expense_from'] + ' / ' + submission['comment'])
-        gdoc_writer(table_currency_changer(submission['expense_currency']), submission['expense_value'], tm, 
-                    resources.RENT_ROW)
+            comment = submission['expense_to'] + ' / ' + submission['comment']
+        table = table_currency_changer(submission['expense_currency'])
+        gdoc_writer(table, submission['expense_value'], tm, resources.RENT_ROW)
         gdoc_account_writer(table, str(int(submission['expense_value']) * (-1)), submission['expense_from'],
                             comment)
 
@@ -232,11 +248,13 @@ def write_expense_gdoc(message):
         if submission['comment'] == '':
             response_text = (resources.invest + submission['expense_value'] + submission['expense_currency'] + ' / '
                             + submission['expense_from'])
+            comment = submission['expense_to']
         else:
             response_text = (resources.invest + submission['expense_value'] + submission['expense_currency'] + ' / '
                             + submission['expense_from'] + ' / ' + submission['comment'])
-        gdoc_writer(table_currency_changer(submission['expense_currency']), submission['expense_value'], tm, 
-                    resources.INVEST_ROW)
+            comment = submission['expense_to'] + ' / ' + submission['comment']
+        table = table_currency_changer(submission['expense_currency'])
+        gdoc_writer(table, submission['expense_value'], tm, resources.INVEST_ROW)
         gdoc_account_writer(table, str(int(submission['expense_value']) * (-1)), submission['expense_from'],
                             comment)
 
@@ -244,11 +262,13 @@ def write_expense_gdoc(message):
         if submission['comment'] == '':
             response_text = (resources.other_expense + submission['expense_value'] + submission['expense_currency'] + ' / '
                             + submission['expense_from'])
+            comment = submission['expense_to']
         else:
             response_text = (resources.other_expense + submission['expense_value'] + submission['expense_currency'] + ' / '
                             + submission['expense_from'] + ' / ' + submission['comment'])
-        gdoc_writer(table_currency_changer(submission['expense_currency']), submission['expense_value'], tm, 
-                    resources.OTHER_EXP_ROW)
+            comment = submission['expense_to'] + ' / ' + submission['comment']
+        table = table_currency_changer(submission['expense_currency'])
+        gdoc_writer(table, submission['expense_value'], tm, resources.OTHER_EXP_ROW)
         gdoc_account_writer(table, str(int(submission['expense_value']) * (-1)), submission['expense_from'],
                             comment)
 
