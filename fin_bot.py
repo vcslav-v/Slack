@@ -16,8 +16,6 @@ SLACK_WEBHOOK_INC = os.environ.get('SLACK_WEBHOOK_INC')
 app = Flask(__name__)
 executor = ThreadPoolExecutor(1)
 
-import models
-
 # штука чисто для теста - отдает hello world если зайти на url бота
 @app.route('/', methods=['GET'])
 def on_root():
