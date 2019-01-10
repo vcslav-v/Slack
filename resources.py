@@ -140,8 +140,8 @@ dialog_income = {
                     'value': 'Astakhov PayPal'
                 },
                 {
-                    'label': 'Mello PayPal',
-                    'value': 'Mello PayPal'
+                    'label': 'Plus PayPal',
+                    'value': 'Plus PayPal'
                 },
                 {
                     'label': 'Mello Bank',
@@ -150,10 +150,10 @@ dialog_income = {
                 {
                     'label': 'Mello Cash',
                     'value': 'Mello Cash'
-                },
+                }
                 {
-                    'label': 'Никита',
-                    'value': 'Никита'
+                    'label': 'Nick Cash',
+                    'value': 'Nick Cash'
                 }
             ]
         },
@@ -174,7 +174,7 @@ dialog_expense = {
             'type': 'select',
             'name': 'expense_to',
             'placeholder': 'Выберите категорию',
-            'value': 'products',
+            'value': 'Products - Freebie',
             'options': [
                 {
                     'label': 'Products - Freebie',
@@ -214,7 +214,7 @@ dialog_expense = {
             'type': 'select',
             'name': 'expense_currency',
             'placeholder': 'Выберите валюту',
-            'value': 'usd',
+            'value': 'USD',
             'options': [
                 {
                     'label': 'USD',
@@ -236,7 +236,7 @@ dialog_expense = {
             'type': 'select',
             'name': 'expense_from',
             'placeholder': 'Укажите c какого счёта была оплата',
-            'value': 'ks',
+            'value': 'Ksenia PayPal',
             'options': [
                 {
                     'label': 'Ksenia PayPal',
@@ -255,8 +255,8 @@ dialog_expense = {
                     'value': 'Astakhov PayPal'
                 },
                 {
-                    'label': 'Mello PayPal',
-                    'value': 'Mello PayPal'
+                    'label': 'Plus PayPal',
+                    'value': 'Plus PayPal'
                 },
                 {
                     'label': 'Mello Bank',
@@ -265,10 +265,10 @@ dialog_expense = {
                 {
                     'label': 'Mello Cash',
                     'value': 'Mello Cash'
-                },
+                }
                 {
-                    'label': 'Никита',
-                    'value': 'Никита'
+                    'label': 'Nick Cash',
+                    'value': 'Nick Cash'
                 }
             ]
         },
@@ -345,6 +345,45 @@ PRODUCTS_COLUMNS = {
 PRODUCTS_EXPENSE_COLUMNS = {
     'Products - Freebie':'b',
     'Products - Plus':'c'
+}
+
+ACC_COLUMNS = {
+    'Ksenia PayPal':'a',
+    'Milka PayPal':'c',
+    'Payoner':'e',
+    'Astakhov PayPal':'g',
+    'Plus PayPal':'i',
+    'Mello Bank':'k',
+    'Mello Cash':'m',
+    'Nick Cash':'o'
+}
+NUM_to_COLUMNS = {
+    1:'a',
+    2:'b',
+    3:'c',
+    4:'d',
+    5:'e',
+    6:'f',
+    7:'g',
+    8:'h',
+    9:'i',
+    10:'j',
+    11:'k',
+    12:'l',
+    13:'m',
+    14:'n',
+    15:'o',
+    16:'p',
+    17:'q',
+    18:'r',
+    19:'s',
+    20:'t',
+    21:'u',
+    22:'v',
+    23:'w',
+    24:'x',
+    25:'y',
+    26:'z'
 }
 
 plus_income = '*Доход Plus* / '

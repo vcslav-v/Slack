@@ -202,8 +202,10 @@ def write_expense_gdoc(message):
         else:
             response_text = (resources.tech_expense + submission['expense_value'] + submission['expense_currency'] + ' / '
                             + submission['expense_from'] + ' / ' + submission['comment'])
-        gdoc_writer(table_currency_changer(submission['expense_currency']), submission['expense_value'], tm, 
-                    resources.TECH_ROW)
+        table = table_currency_changer(submission['expense_currency'])
+
+        gdoc_writer(table, submission['expense_value'], tm, resources.TECH_ROW)
+        gdoc_account_writer(table, str(int(submission['expense_value']) * (-1)), submission['expense_from'])
 
     elif submission['expense_to'] == 'Аренда':
         if submission['comment'] == '':
@@ -275,7 +277,16 @@ def gdoc_writer(table, income, tm, category, flat=True, sheet = ''):
         data = '=' + income
 
     table.update_acell(place, data)
-    
+
+def gdoc_account_writer(table, value, acc):
+    table = table.spreadsheet.worksheet('Счета')
+    letter = resources.ACC_COLUMNS[acc]
+    rows = scheta.col_values(resources.NUM_to_COLUMNS(letter))
+    new_row = rows.count() + 1
+    place = letter + str(new_row)
+
+    table.update_acell(place, value)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, threaded=True)
