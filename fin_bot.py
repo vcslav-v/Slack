@@ -282,7 +282,13 @@ def gdoc_account_writer(table, value, acc):
     table = table.spreadsheet.worksheet('Счета')
     pp('table')
     letter = resources.ACC_COLUMNS[acc]
-    pp('letter')
+    pp(letter)
+    try:
+        text = resources.NUM_to_COLUMNS[letter]
+    except Exception as ex:
+        text = ':x: Error: `%s`' % ex
+    pp(text)
+    
     rows = table.col_values(resources.NUM_to_COLUMNS[letter])
     pp(rows)
     new_row = rows.count() + 1
