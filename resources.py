@@ -150,7 +150,7 @@ dialog_income = {
                 {
                     'label': 'Mello Cash',
                     'value': 'Mello Cash'
-                }
+                },
                 {
                     'label': 'Nick Cash',
                     'value': 'Nick Cash'
@@ -265,7 +265,7 @@ dialog_expense = {
                 {
                     'label': 'Mello Cash',
                     'value': 'Mello Cash'
-                }
+                },
                 {
                     'label': 'Nick Cash',
                     'value': 'Nick Cash'
