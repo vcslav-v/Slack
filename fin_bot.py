@@ -284,7 +284,7 @@ def gdoc_account_writer(table, value, acc):
     letter = resources.ACC_COLUMNS[acc]
     pp('letter')
     rows = table.col_values(resources.NUM_to_COLUMNS[letter])
-    pp(row)
+    pp(rows)
     new_row = rows.count() + 1
     pp(new_row)
     place = letter + str(new_row)
