@@ -199,13 +199,16 @@ def write_expense_gdoc(message):
         if submission['comment'] == '':
             response_text = (resources.tech_expense + submission['expense_value'] + submission['expense_currency'] + ' / '
                             + submission['expense_from'])
+            comment = submission['expense_to']
         else:
             response_text = (resources.tech_expense + submission['expense_value'] + submission['expense_currency'] + ' / '
                             + submission['expense_from'] + ' / ' + submission['comment'])
+            comment = submission['expense_to'] + ' / ' + submission['comment']
         table = table_currency_changer(submission['expense_currency'])
 
         gdoc_writer(table, submission['expense_value'], tm, resources.TECH_ROW)
-        gdoc_account_writer(table, str(int(submission['expense_value']) * (-1)), submission['expense_from'])
+        gdoc_account_writer(table, str(int(submission['expense_value']) * (-1)), submission['expense_from'],
+                            commetn)
 
     elif submission['expense_to'] == 'Аренда':
         if submission['comment'] == '':
@@ -278,13 +281,13 @@ def gdoc_writer(table, income, tm, category, flat=True, sheet = ''):
 
     table.update_acell(place, data)
 
-def gdoc_account_writer(table, value, acc):
+def gdoc_account_writer(table, value, acc, comment):
     table = table.spreadsheet.worksheet('Счета')
     pp('table')
     letter = resources.ACC_COLUMNS[acc]
     pp(letter)
 
-    rows = table.col_values(resources.NUM_to_COLUMNS[letter])
+    rows = table.col_values(resources.COLUMNS_TO_NUM[letter])
     pp(rows)
     new_row = len(rows) + 1
     pp(new_row)
@@ -292,6 +295,13 @@ def gdoc_account_writer(table, value, acc):
     pp(place)
 
     table.update_acell(place, value)
+
+
+    c_letter = resources.NUM_to_COLUMNS[resources.COLUMNS_TO_NUM[letter]+1]
+    comment_place = c_letter + str(new_row)
+
+    table.update_acell(place, comment)
+
 
 
 if __name__ == '__main__':
