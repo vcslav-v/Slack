@@ -281,7 +281,7 @@ def gdoc_writer(table, income, tm, category, flat=True, sheet = ''):
 def gdoc_account_writer(table, value, acc):
     table = table.spreadsheet.worksheet('Счета')
     letter = resources.ACC_COLUMNS[acc]
-    rows = scheta.col_values(resources.NUM_to_COLUMNS(letter))
+    rows = table.col_values(resources.NUM_to_COLUMNS(letter))
     new_row = rows.count() + 1
     place = letter + str(new_row)
 
