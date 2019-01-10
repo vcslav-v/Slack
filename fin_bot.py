@@ -69,7 +69,6 @@ def on_interactive_action():
     try:
         if interactive_action['type'] == 'interactive_message':
             pass
-
         elif interactive_action['type'] == 'dialog_submission':
             if interactive_action['callback_id'] == 'income_form':
                 executor.submit(
@@ -151,7 +150,7 @@ def write_income_gdoc(message):
         gdoc_writer(table_currency_changer(submission['income_currency']), submission['income_value'], 
                             tm, resources.BANNERS_ROW)
     
-    elif submission['income_from'] == 'email':
+    elif submission['income_from'][:5] == 'Email':
         response_text = 'Email'
 
     elif submission['income_from'] == 'products':
