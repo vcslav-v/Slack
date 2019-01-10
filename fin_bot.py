@@ -72,7 +72,7 @@ def on_interactive_action():
                     write_income_gdoc,
                     interactive_action)
                 except Exception as ex:
-                    slack_send_webhook(text=ex, channel=message['channel']['id'])
+                    slack_send_webhook(text=ex, channel=interactive_action['channel']['id'])
                     
             elif interactive_action['callback_id'] == 'expense_form':
                 try:
@@ -81,7 +81,7 @@ def on_interactive_action():
                     write_expense_gdoc,
                     interactive_action)
                 except Exception as ex:
-                    slack_send_webhook(text=ex, channel=message['channel']['id'])
+                    slack_send_webhook(text=ex, channel=interactive_action['channel']['id'])
 
     except Exception as ex:
         response_text = ':x: Error: `%s`' % ex
