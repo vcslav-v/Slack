@@ -315,9 +315,18 @@ TECH_ROW = '13'
 RENT_ROW = '14'
 INVEST_ROW = '15'
 OTHER_EXP_ROW = '16'
+EMAIL_COLUMNS = {
+    'Email - Direct':'b',
+    'Email - BSA/Syndicate':'c',
+    'Email - Baw Media':'d',
+    'Email - Hacking UI':'e',
+    'Email - Design Cuts':'f',
+    'Email - Paved':'g'
+}
 
 plus_income = '*Доход Plus* / '
 banner_income = '*Доход Banners* / '
+income = '*Доход '
 tech_expense = '*Расход Tech* / '
 rent = '*Расход Аренда* / '
 invest = '*Расход Инвестиции* / '

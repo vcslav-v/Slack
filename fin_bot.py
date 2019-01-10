@@ -151,7 +151,16 @@ def write_income_gdoc(message):
                             tm, resources.BANNERS_ROW)
     
     elif submission['income_from'][:5] == 'Email':
-        response_text = 'Email'
+        if submission['comment'] == '':
+            response_text = (resources.income + submission['income_from'] + '* / ' +submission['income_value'] 
+                            + submission['income_currency'] + ' / ' + submission['income_to'])
+        else:
+            response_text = (resources.income + submission['income_from'] + '* / ' +submission['income_value'] 
+                            + submission['income_value'] + submission['income_currency'] + ' / '
+                            + submission['income_to'] + ' / ' + submission['comment'])
+
+        gdoc_writer(table_currency_changer(submission['income_currency']), submission['income_value'], 
+                            tm, resources.EMAIL_COLUMNS[submission['income_from']], False, 'Доход-Email')
 
     elif submission['income_from'] == 'products':
         response_text = 'Products'
@@ -257,10 +266,18 @@ def table_currency_changer(cur):
         sheet = client.open('PB2019EUR').sheet1
     return sheet
 
-def gdoc_writer(table, income, tm, row):
-    pp('gdoc_writer')
-    letter = resources.month_dic[str(tm)]
-    place = letter + row
+def gdoc_writer(table, income, tm, category, flat=True, sheet = ''):
+
+    if flat:
+        letter = resources.month_dic[str(tm)]
+        place = letter + category
+    else:
+        row = str(int(tm)+1)
+        place = category + row
+    
+    if sheet:
+        table = table.spreadsheet.worksheet(sheet)
+
     data = table.acell(place, 'FORMULA')
 
     if data.value[:1] == '=':
