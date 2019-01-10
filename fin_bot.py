@@ -205,7 +205,7 @@ def write_expense_gdoc(message):
         table = table_currency_changer(submission['expense_currency'])
 
         gdoc_writer(table, submission['expense_value'], tm, resources.TECH_ROW)
-        gdoc_account_writer(table, str(int(submission['expense_value']) * (-1)), submission['expense_from'])
+        # gdoc_account_writer(table, str(int(submission['expense_value']) * (-1)), submission['expense_from'])
 
     elif submission['expense_to'] == 'Аренда':
         if submission['comment'] == '':
