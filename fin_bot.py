@@ -75,9 +75,9 @@ def on_interactive_action():
                 write_income_gdoc,
                 interactive_action)
             elif interactive_action['callback_id'] == 'expense_form':
-                write_expense_gdoc(interactive_action)
-            elif interactive_action['callback_id'] == 'dialog_income_email':
-                write_email_income(interactive_action)
+                executor.submit(
+                write_expense_gdoc,
+                interactive_action)
 
     except Exception as ex:
         response_text = ':x: Error: `%s`' % ex
@@ -198,7 +198,7 @@ def write_expense_gdoc(message):
                             + submission['comment'])
 
         gdoc_writer(table_currency_changer(submission['expense_currency']), submission['expense_value'], 
-                            tm, resources.PRODUCTS_COLUMNS[submission['expense_to']], False, 'Расх-Products')
+                            tm, resources.PRODUCTS_EXPENSE_COLUMNS[submission['expense_to']], False, 'Расх-Products')
 
     elif submission['expense_to'] == 'Tech':
         if submission['comment'] == '':

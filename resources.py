@@ -181,8 +181,8 @@ dialog_expense = {
                     'value': 'Products - Freebie'
                 },
                 {
-                    'label': 'Products - Plus/Prem',
-                    'value': 'Products - Plus/Prem'
+                    'label': 'Products - Plus',
+                    'value': 'Products - Plus'
                 },
                 {
                     'label': 'Tech',
@@ -342,6 +342,10 @@ PRODUCTS_COLUMNS = {
     'Markets - Other':'l'
 }
 
+PRODUCTS_EXPENSE_COLUMNS = {
+    'Products - Freebie':'b',
+    'Products - Plus':'c'
+}
 
 plus_income = '*Доход Plus* / '
 banner_income = '*Доход Banners* / '
