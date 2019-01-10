@@ -69,7 +69,7 @@ def on_interactive_action():
                 try:
                     a = int(interactive_action['submission']['income_value'])
                 except Exception as ex:
-                    slack_send_webhook(text=response_text, channel=interactive_action['channel']['id'])
+                    slack_send_webhook(text=ex, channel=interactive_action['channel']['id'])
                     return make_response(response_text, 200)
                 executor.submit(
                 write_income_gdoc,
@@ -79,7 +79,7 @@ def on_interactive_action():
                 try:
                     a = int(interactive_action['submission']['expense_value'])
                 except Exception as ex:
-                    slack_send_webhook(text=response_text, channel=interactive_action['channel']['id'])
+                    slack_send_webhook(text=ex, channel=interactive_action['channel']['id'])
                     return make_response(response_text, 200)
 
                 executor.submit(
