@@ -300,7 +300,7 @@ def gdoc_account_writer(table, value, acc, comment):
     c_letter = resources.NUM_to_COLUMNS[resources.COLUMNS_TO_NUM[letter]+1]
     comment_place = c_letter + str(new_row)
 
-    table.update_acell(place, comment)
+    table.update_acell(comment_place, comment)
 
 
 
