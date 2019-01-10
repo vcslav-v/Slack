@@ -280,10 +280,15 @@ def gdoc_writer(table, income, tm, category, flat=True, sheet = ''):
 
 def gdoc_account_writer(table, value, acc):
     table = table.spreadsheet.worksheet('Счета')
+    pp('table')
     letter = resources.ACC_COLUMNS[acc]
+    pp('letter')
     rows = table.col_values(resources.NUM_to_COLUMNS[letter])
+    pp(row)
     new_row = rows.count() + 1
+    pp(new_row)
     place = letter + str(new_row)
+    pp(place)
 
     table.update_acell(place, value)
 
