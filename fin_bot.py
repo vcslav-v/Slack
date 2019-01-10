@@ -67,7 +67,7 @@ def on_interactive_action():
         elif interactive_action['type'] == 'dialog_submission':
             if interactive_action['callback_id'] == 'income_form':
                 try:
-                    a = int(interactive_action['submission']['income_from'])
+                    a = int(interactive_action['submission']['income_value'])
                     pp(a)
                 except Exception as ex:
                     pp(ex)
