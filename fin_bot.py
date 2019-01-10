@@ -134,6 +134,7 @@ def write_income_gdoc(message):
             response_text = (resources.plus_income + submission['income_value'] + submission['income_currency'] + ' / '
                             + submission['income_to'] + ' / ' + submission['comment'])
         gdoc_writer(table_currency_changer(submission['income_currency']), submission['income_value'], tm, resources.PLUS_ROW)
+        gdoc_account_writer(table, submission['income_value'], submission['income_to'], comment)
     
     elif submission['income_from'] == 'banners':
         if submission['comment'] == '':
@@ -144,6 +145,7 @@ def write_income_gdoc(message):
                             + submission['income_to'] + ' / ' + submission['comment'])
         gdoc_writer(table_currency_changer(submission['income_currency']), submission['income_value'], 
                             tm, resources.BANNERS_ROW)
+        gdoc_account_writer(table, submission['income_value'], submission['income_to'], comment)
     
     elif submission['income_from'][:5] == 'Email':
         if submission['comment'] == '':
@@ -156,6 +158,7 @@ def write_income_gdoc(message):
 
         gdoc_writer(table_currency_changer(submission['income_currency']), submission['income_value'], 
                             tm, resources.EMAIL_COLUMNS[submission['income_from']], False, 'Доход-Email')
+        gdoc_account_writer(table, submission['income_value'], submission['income_to'], comment)
 
     elif submission['income_from'][:7] == 'Markets' or submission['income_from'][:5] == 'Deals':
         if submission['comment'] == '':
@@ -168,6 +171,7 @@ def write_income_gdoc(message):
 
         gdoc_writer(table_currency_changer(submission['income_currency']), submission['income_value'], 
                             tm, resources.PRODUCTS_COLUMNS[submission['income_from']], False, 'Доход-Products')
+        gdoc_account_writer(table, submission['income_value'], submission['income_to'], comment)
 
 
     slack_send_webhook(
@@ -194,6 +198,8 @@ def write_expense_gdoc(message):
 
         gdoc_writer(table_currency_changer(submission['expense_currency']), submission['expense_value'], 
                             tm, resources.PRODUCTS_EXPENSE_COLUMNS[submission['expense_to']], False, 'Расх-Products')
+        gdoc_account_writer(table, str(int(submission['expense_value']) * (-1)), submission['expense_from'],
+                            comment)
 
     elif submission['expense_to'] == 'Tech':
         if submission['comment'] == '':
@@ -219,6 +225,8 @@ def write_expense_gdoc(message):
                             + submission['expense_from'] + ' / ' + submission['comment'])
         gdoc_writer(table_currency_changer(submission['expense_currency']), submission['expense_value'], tm, 
                     resources.RENT_ROW)
+        gdoc_account_writer(table, str(int(submission['expense_value']) * (-1)), submission['expense_from'],
+                            comment)
 
     elif submission['expense_to'] == 'Инвестиции':
         if submission['comment'] == '':
@@ -229,6 +237,8 @@ def write_expense_gdoc(message):
                             + submission['expense_from'] + ' / ' + submission['comment'])
         gdoc_writer(table_currency_changer(submission['expense_currency']), submission['expense_value'], tm, 
                     resources.INVEST_ROW)
+        gdoc_account_writer(table, str(int(submission['expense_value']) * (-1)), submission['expense_from'],
+                            comment)
 
     elif submission['expense_to'] == 'Иное':
         if submission['comment'] == '':
@@ -239,6 +249,8 @@ def write_expense_gdoc(message):
                             + submission['expense_from'] + ' / ' + submission['comment'])
         gdoc_writer(table_currency_changer(submission['expense_currency']), submission['expense_value'], tm, 
                     resources.OTHER_EXP_ROW)
+        gdoc_account_writer(table, str(int(submission['expense_value']) * (-1)), submission['expense_from'],
+                            comment)
 
     slack_send_webhook(
         text=response_text,
