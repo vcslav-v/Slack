@@ -208,7 +208,7 @@ def write_expense_gdoc(message):
 
         gdoc_writer(table, submission['expense_value'], tm, resources.TECH_ROW)
         gdoc_account_writer(table, str(int(submission['expense_value']) * (-1)), submission['expense_from'],
-                            commetn)
+                            comment)
 
     elif submission['expense_to'] == 'Аренда':
         if submission['comment'] == '':
