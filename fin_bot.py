@@ -155,6 +155,8 @@ def write_income_gdoc(message):
 
     elif submission['income_from'] == 'products':
         response_text = 'Products'
+    
+    response_text = submission['income_from'][:5]
 
 
     slack_send_webhook(
