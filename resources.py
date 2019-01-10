@@ -44,23 +44,23 @@ dialog_income = {
                 },
                 {
                     'label': 'Email - BSA/Syndicate',
-                    'value': 'email'
+                    'value': 'Email - BSA/Syndicate'
                 },
                 {
                     'label': 'Email - Baw Media',
-                    'value': 'email'
+                    'value': 'Email - Baw Media'
                 },    
                 {
                     'label': 'Email - Hacking UI',
-                    'value': 'email'
+                    'value': 'Email - Hacking UI'
                 },
                 {
                     'label': 'Email - Design Cuts',
-                    'value': 'email'
+                    'value': 'Email - Design Cuts'
                 },
                 {
                     'label': 'Email - Paved',
-                    'value': 'email'
+                    'value': 'Email - Paved'
                 },
                 {
                     'label': 'Deals - Design cuts',
