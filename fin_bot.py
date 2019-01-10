@@ -132,6 +132,7 @@ def slack_send_webhook(text, channel, **kwargs):
 
 # Пишем в google sheet
 def write_income_gdoc(message):
+    pp('write_income_gdoc')
 
     submission = message['submission']
 
