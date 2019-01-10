@@ -8,15 +8,12 @@ from pprint import pprint as pp
 from datetime import datetime
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-from flask_sqlalchemy import SQLAlchemy
 from concurrent.futures import ThreadPoolExecutor
 
 SLACK_BOT_TOKEN = os.environ.get('SLACK_BOT_TOKEN')
 SLACK_WEBHOOK_INC = os.environ.get('SLACK_WEBHOOK_INC')
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-db = SQLAlchemy(app)
 executor = ThreadPoolExecutor(1)
 
 import models
@@ -193,7 +190,7 @@ def write_expense_gdoc(message):
             response_text = (resources.expense + submission['expense_to'] + '* / ' + submission['expense_value'] 
                             + submission['expense_currency'] + ' / ' + submission['expense_from'])
         else:
-            response_text = (resources.income + submission['expense_to'] + '* / ' + submission['expense_value'] 
+            response_text = (resources.expense + submission['expense_to'] + '* / ' + submission['expense_value'] 
                             + submission['expense_currency'] + ' / ' + submission['expense_from'] + ' / ' 
                             + submission['comment'])
 
