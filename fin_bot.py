@@ -152,43 +152,28 @@ def write_income_gdoc(message):
     
     elif submission['income_from'][:5] == 'Email':
         if submission['comment'] == '':
-            response_text = (resources.income + submission['income_from'] + '* / ' +submission['income_value'] 
+            response_text = (resources.income + submission['income_from'] + '* / ' + submission['income_value'] 
                             + submission['income_currency'] + ' / ' + submission['income_to'])
         else:
             response_text = (resources.income + submission['income_from'] + '* / ' +submission['income_value'] 
-                            + submission['income_value'] + submission['income_currency'] + ' / '
-                            + submission['income_to'] + ' / ' + submission['comment'])
+                            + submission['income_currency'] + ' / ' + submission['income_to'] + ' / ' 
+                            + submission['comment'])
 
         gdoc_writer(table_currency_changer(submission['income_currency']), submission['income_value'], 
                             tm, resources.EMAIL_COLUMNS[submission['income_from']], False, 'Доход-Email')
 
-    elif submission['income_from'] == 'products':
-        response_text = 'Products'
+    elif submission['income_from'][:7] == 'Markets' or submission['income_from'][:5] == 'Deals':
+        if submission['comment'] == '':
+            response_text = (resources.income + submission['income_from'] + '* / ' + submission['income_value'] 
+                            + submission['income_currency'] + ' / ' + submission['income_to'])
+        else:
+            response_text = (resources.income + submission['income_from'] + '* / ' +submission['income_value'] 
+                            + submission['income_currency'] + ' / ' + submission['income_to'] + ' / ' 
+                            + submission['comment'])
 
+        gdoc_writer(table_currency_changer(submission['income_currency']), submission['income_value'], 
+                            tm, resources.PRODUCTS_COLUMNS[submission['income_from']], False, 'Доход-Products')
 
-    slack_send_webhook(
-        text=response_text,
-        channel=message['channel']['id'],
-        icon=':chart_with_upwards_trend:'
-    )
-
-def write_email_income(message):
-
-    submission = message['submission']
-
-    response_text = 'Smth bad'
-    tm = int(datetime.strftime(datetime.now(), '%m'))
-    data = models.finam_income.query.filter_by(user_id = message['user']['id']).first()
-    response_text = data['comment']
-
-
-    # if data['comment'] == '':
-    #         response_text = (resources.plus_income+submission['income_value'] + submission['income_currency'] + ' / '
-    #                         + submission['income_to'])
-    #     else:
-    #         response_text = (resources.plus_income+submission['income_value'] + submission['income_currency'] + ' / '
-    #                         + submission['income_to'] + ' / ' + submission['comment'])
-    #     gdoc_writer(table_currency_changer(submission['income_currency']), submission['income_value'], tm, resources.PLUS_ROW)
 
     slack_send_webhook(
         text=response_text,
@@ -203,8 +188,17 @@ def write_expense_gdoc(message):
     response_text = 'Smth bad'
     tm = datetime.strftime(datetime.now(), '%m')
 
-    if submission['expense_to'] == 'Products':
-        pass
+    if submission['expense_to'][:8] == 'Products':
+        if submission['comment'] == '':
+            response_text = (resources.expense + submission['expense_to'] + '* / ' + submission['expense_value'] 
+                            + submission['expense_currency'] + ' / ' + submission['expense_from'])
+        else:
+            response_text = (resources.income + submission['expense_to'] + '* / ' + submission['expense_value'] 
+                            + submission['expense_currency'] + ' / ' + submission['expense_from'] + ' / ' 
+                            + submission['comment'])
+
+        gdoc_writer(table_currency_changer(submission['expense_currency']), submission['expense_value'], 
+                            tm, resources.PRODUCTS_COLUMNS[submission['expense_to']], False, 'Расх-Products')
 
     elif submission['expense_to'] == 'Tech':
         if submission['comment'] == '':

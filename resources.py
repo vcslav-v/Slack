@@ -177,8 +177,12 @@ dialog_expense = {
             'value': 'products',
             'options': [
                 {
-                    'label': 'Products',
-                    'value': 'Products'
+                    'label': 'Products - Freebie',
+                    'value': 'Products - Freebie'
+                },
+                {
+                    'label': 'Products - Plus/Prem',
+                    'value': 'Products - Plus/Prem'
                 },
                 {
                     'label': 'Tech',
@@ -324,6 +328,21 @@ EMAIL_COLUMNS = {
     'Email - Paved':'g'
 }
 
+PRODUCTS_COLUMNS = {
+    'Deals - Design cuts':'b',
+    'Deals - Deal Jambo':'c',
+    'Deals - Mighty deals':'d',
+    'Deals - Other':'e',
+    'Markets - Design cuts':'f',
+    'Markets - Creative':'g',
+    'Markets - Yello images':'h',
+    'Markets - Your work for them':'i',
+    'Markets - Envano':'j',
+    'Markets - Envato Elements':'k',
+    'Markets - Other':'l'
+}
+
+
 plus_income = '*Доход Plus* / '
 banner_income = '*Доход Banners* / '
 income = '*Доход '
@@ -331,3 +350,4 @@ tech_expense = '*Расход Tech* / '
 rent = '*Расход Аренда* / '
 invest = '*Расход Инвестиции* / '
 other_expense = '*Расход Иное* / '
+expense = '*Расход '
