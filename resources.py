@@ -8,35 +8,35 @@ dialog_income = {
             'type': 'select',
             'name': 'income_from',
             'placeholder': 'Выберите категорию',
-            'value': 'Markets - Design cuts',
+            'value': 'Marketplaces - Design cuts',
             'options': [
                 {
-                    'label': 'Markets - Design cuts',
-                    'value': 'Markets - Design cuts'
+                    'label': 'Marketplaces - Design cuts',
+                    'value': 'Marketplaces - Design cuts'
                 },
                 {
-                    'label': 'Markets - Creative Market',
-                    'value': 'Markets - Creative Market'
+                    'label': 'Marketplaces - Creative Market',
+                    'value': 'Marketplaces - Creative Market'
                 },
                 {
-                    'label': 'Markets - Yellow Images',
-                    'value': 'Markets - Yellow Images'
+                    'label': 'Marketplaces - Yellow Images',
+                    'value': 'Marketplaces - Yellow Images'
                 },
                 {
-                    'label': 'Markets - YouWorkForThem',
-                    'value': 'Markets - YouWorkForThem'
+                    'label': 'Marketplaces - YouWorkForThem',
+                    'value': 'Marketplaces - YouWorkForThem'
                 },
                 {
-                    'label': 'Markets - Envato',
-                    'value': 'Markets - Envato'
+                    'label': 'Marketplaces - Envato',
+                    'value': 'Marketplaces - Envato'
                 },
                 {
-                    'label': 'Markets - Envato Elements',
-                    'value': 'Markets - Envato Elements'
+                    'label': 'Marketplaces - Envato Elements',
+                    'value': 'Marketplaces - Envato Elements'
                 },
                 {
-                    'label': 'Markets - Other',
-                    'value': 'Markets - Other'
+                    'label': 'Marketplaces - Other',
+                    'value': 'Marketplaces - Other'
                 },
                 {
                     'label': 'Email - Direct',
@@ -333,13 +333,13 @@ PRODUCTS_COLUMNS = {
     'Deals - Deal Jambo':'c',
     'Deals - Mighty deals':'d',
     'Deals - Other':'e',
-    'Markets - Design cuts':'f',
-    'Markets - Creative Market':'g',
-    'Markets - Yellow Images':'h',
-    'Markets - YouWorkForThem':'i',
-    'Markets - Envato':'j',
-    'Markets - Envato Elements':'k',
-    'Markets - Other':'l'
+    'Marketplaces - Design cuts':'f',
+    'Marketplaces - Creative Market':'g',
+    'Marketplaces - Yellow Images':'h',
+    'Marketplaces - YouWorkForThem':'i',
+    'Marketplaces - Envato':'j',
+    'Marketplaces - Envato Elements':'k',
+    'Marketplaces - Other':'l'
 }
 
 PRODUCTS_EXPENSE_COLUMNS = {

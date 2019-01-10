@@ -181,7 +181,7 @@ def write_income_gdoc(message):
                     False, 'Доход-Email')
         gdoc_account_writer(table, submission['income_value'], submission['income_to'], comment)
 
-    elif submission['income_from'][:7] == 'Markets' or submission['income_from'][:5] == 'Deals':
+    elif submission['income_from'][:12] == 'Marketplaces' or submission['income_from'][:5] == 'Deals':
         if submission['comment'] == '':
             response_text = (resources.income + submission['income_from'] + '* / ' + submission['income_value'] 
                             + submission['income_currency'] + ' / ' + submission['income_to'])
