@@ -19,16 +19,16 @@ dialog_income = {
                     'value': 'Markets - Creative Market'
                 },
                 {
-                    'label': 'Markets - Yello images',
-                    'value': 'Markets - Yello images'
+                    'label': 'Markets - Yellow Images',
+                    'value': 'Markets - Yellow Images'
                 },
                 {
-                    'label': 'Markets - Your work for them',
-                    'value': 'Markets - Your work for them'
+                    'label': 'Markets - YouWorkForThem',
+                    'value': 'Markets - YouWorkForThem'
                 },
                 {
-                    'label': 'Markets - Envano',
-                    'value': 'Markets - Envano'
+                    'label': 'Markets - Envato',
+                    'value': 'Markets - Envato'
                 },
                 {
                     'label': 'Markets - Envato Elements',
@@ -335,9 +335,9 @@ PRODUCTS_COLUMNS = {
     'Deals - Other':'e',
     'Markets - Design cuts':'f',
     'Markets - Creative Market':'g',
-    'Markets - Yello images':'h',
-    'Markets - Your work for them':'i',
-    'Markets - Envano':'j',
+    'Markets - Yellow Images':'h',
+    'Markets - YouWorkForThem':'i',
+    'Markets - Envato':'j',
     'Markets - Envato Elements':'k',
     'Markets - Other':'l'
 }
