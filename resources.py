@@ -15,8 +15,8 @@ dialog_income = {
                     'value': 'Markets - Design cuts'
                 },
                 {
-                    'label': 'Markets - Creative',
-                    'value': 'Markets - Creative'
+                    'label': 'Markets - Creative Market',
+                    'value': 'Markets - Creative Market'
                 },
                 {
                     'label': 'Markets - Yello images',
@@ -334,7 +334,7 @@ PRODUCTS_COLUMNS = {
     'Deals - Mighty deals':'d',
     'Deals - Other':'e',
     'Markets - Design cuts':'f',
-    'Markets - Creative':'g',
+    'Markets - Creative Market':'g',
     'Markets - Yello images':'h',
     'Markets - Your work for them':'i',
     'Markets - Envano':'j',
