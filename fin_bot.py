@@ -67,21 +67,24 @@ def on_interactive_action():
         elif interactive_action['type'] == 'dialog_submission':
             if interactive_action['callback_id'] == 'income_form':
                 try:
-                    int(interactive_action['submission']['income_from'])
-                    executor.submit(
-                    write_income_gdoc,
-                    interactive_action)
+                    a = int(interactive_action['submission']['income_from'])
                 except Exception as ex:
                     slack_send_webhook(text=ex, channel=interactive_action['channel']['id'])
+                    return make_response(response_text, 200)
+                executor.submit(
+                write_income_gdoc,
+                interactive_action)
                     
             elif interactive_action['callback_id'] == 'expense_form':
                 try:
-                    int(interactive_action['submission']['expense_value'])
-                    executor.submit(
-                    write_expense_gdoc,
-                    interactive_action)
+                    a = int(interactive_action['submission']['expense_value'])
                 except Exception as ex:
                     slack_send_webhook(text=ex, channel=interactive_action['channel']['id'])
+                    return make_response(response_text, 200)
+
+                executor.submit(
+                write_expense_gdoc,
+                interactive_action)
 
     except Exception as ex:
         response_text = ':x: Error: `%s`' % ex
