@@ -185,6 +185,10 @@ dialog_expense = {
                     'value': 'Products - Plus'
                 },
                 {
+                    'label': 'Content - TheDesignest',
+                    'value': 'Content - TheDesignest'
+                },
+                {
                     'label': 'Tech',
                     'value': 'Tech'
                 },
@@ -315,10 +319,11 @@ client_secret = {
 
 PLUS_ROW = '3'
 BANNERS_ROW = '6'
-TECH_ROW = '13'
-RENT_ROW = '14'
-INVEST_ROW = '15'
-OTHER_EXP_ROW = '16'
+DESIGNEST_ROW = '13'
+TECH_ROW = '14'
+RENT_ROW = '15'
+INVEST_ROW = '16'
+OTHER_EXP_ROW = '17'
 EMAIL_COLUMNS = {
     'Email - Direct':'b',
     'Email - BSA/Syndicate':'c',

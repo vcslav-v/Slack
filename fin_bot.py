@@ -228,6 +228,21 @@ def write_expense_gdoc(message):
         gdoc_account_writer(table, str(int(submission['expense_value']) * (-1)), submission['expense_from'],
                             comment)
 
+    elif submission['expense_to'] == 'Content - TheDesignest':
+        if submission['comment'] == '':
+            response_text = (resources.tech_expense + submission['expense_value'] + submission['expense_currency'] + ' / '
+                            + submission['expense_from'])
+            comment = submission['expense_to']
+        else:
+            response_text = (resources.tech_expense + submission['expense_value'] + submission['expense_currency'] + ' / '
+                            + submission['expense_from'] + ' / ' + submission['comment'])
+            comment = submission['expense_to'] + ' / ' + submission['comment']
+        table = table_currency_changer(submission['expense_currency'])
+
+        gdoc_writer(table, submission['expense_value'], tm, resources.DESIGNEST_ROW)
+        gdoc_account_writer(table, str(int(submission['expense_value']) * (-1)), submission['expense_from'],
+                            comment)
+
     elif submission['expense_to'] == 'Tech':
         if submission['comment'] == '':
             response_text = (resources.tech_expense + submission['expense_value'] + submission['expense_currency'] + ' / '
