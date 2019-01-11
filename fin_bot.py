@@ -35,6 +35,8 @@ def income_get():
         data=data
     )
 
+    return make_response('Processing started...', 200)
+
 @app.route('/api/expense', methods=['POST'])
 def expense_get():
     data = {
@@ -50,6 +52,7 @@ def expense_get():
 
     pp(response)
 
+    return make_response('Processing started...', 200)
 
 # Обрабатываем форму
 @app.route('/api/interactive_action', methods=['POST'])
