@@ -67,7 +67,7 @@ def on_interactive_action():
         elif interactive_action['type'] == 'dialog_submission':
             if interactive_action['callback_id'] == 'income_form':
                 try:
-                    a = int(interactive_action['submission']['income_value'])
+                    a = float(interactive_action['submission']['income_value'])
                 except Exception as ex:
                     slack_send_webhook(text=ex, channel=interactive_action['channel']['id'])
                     return make_response(response_text, 200)
@@ -77,7 +77,7 @@ def on_interactive_action():
                     
             elif interactive_action['callback_id'] == 'expense_form':
                 try:
-                    a = int(interactive_action['submission']['expense_value'])
+                    a = float(interactive_action['submission']['expense_value'])
                 except Exception as ex:
                     slack_send_webhook(text=ex, channel=interactive_action['channel']['id'])
                     return make_response(response_text, 200)
@@ -225,7 +225,12 @@ def write_expense_gdoc(message):
         table = table_currency_changer(submission['expense_currency'])
         gdoc_writer(table, submission['expense_value'], tm, resources.PRODUCTS_EXPENSE_COLUMNS[submission['expense_to']],
                     False, 'Расх-Products')
-        gdoc_account_writer(table, str(int(submission['expense_value']) * (-1)), submission['expense_from'],
+        try:
+            value = int(submission['expense_value'])
+        except:
+            value = float(submission['expense_value'])
+        
+        gdoc_account_writer(table, str(value * (-1)), submission['expense_from'],
                             comment)
 
     elif submission['expense_to'] == 'Content - TheDesignest':
@@ -240,7 +245,13 @@ def write_expense_gdoc(message):
         table = table_currency_changer(submission['expense_currency'])
 
         gdoc_writer(table, submission['expense_value'], tm, resources.DESIGNEST_ROW)
-        gdoc_account_writer(table, str(int(submission['expense_value']) * (-1)), submission['expense_from'],
+        
+        try:
+            value = int(submission['expense_value'])
+        except:
+            value = float(submission['expense_value'])
+
+        gdoc_account_writer(table, str(value * (-1)), submission['expense_from'],
                             comment)
 
     elif submission['expense_to'] == 'Tech':
@@ -255,7 +266,13 @@ def write_expense_gdoc(message):
         table = table_currency_changer(submission['expense_currency'])
 
         gdoc_writer(table, submission['expense_value'], tm, resources.TECH_ROW)
-        gdoc_account_writer(table, str(int(submission['expense_value']) * (-1)), submission['expense_from'],
+
+        try:
+            value = int(submission['expense_value'])
+        except:
+            value = float(submission['expense_value'])
+            
+        gdoc_account_writer(table, str(value * (-1)), submission['expense_from'],
                             comment)
 
     elif submission['expense_to'] == 'Аренда':
@@ -269,7 +286,12 @@ def write_expense_gdoc(message):
             comment = submission['expense_to'] + ' / ' + submission['comment']
         table = table_currency_changer(submission['expense_currency'])
         gdoc_writer(table, submission['expense_value'], tm, resources.RENT_ROW)
-        gdoc_account_writer(table, str(int(submission['expense_value']) * (-1)), submission['expense_from'],
+        try:
+            value = int(submission['expense_value'])
+        except:
+            value = float(submission['expense_value'])
+        
+        gdoc_account_writer(table, str(value * (-1)), submission['expense_from'],
                             comment)
 
     elif submission['expense_to'] == 'Инвестиции':
@@ -283,7 +305,12 @@ def write_expense_gdoc(message):
             comment = submission['expense_to'] + ' / ' + submission['comment']
         table = table_currency_changer(submission['expense_currency'])
         gdoc_writer(table, submission['expense_value'], tm, resources.INVEST_ROW)
-        gdoc_account_writer(table, str(int(submission['expense_value']) * (-1)), submission['expense_from'],
+        try:
+            value = int(submission['expense_value'])
+        except:
+            value = float(submission['expense_value'])
+        
+        gdoc_account_writer(table, str(value * (-1)), submission['expense_from'],
                             comment)
 
     elif submission['expense_to'] == 'Иное':
@@ -297,7 +324,13 @@ def write_expense_gdoc(message):
             comment = submission['expense_to'] + ' / ' + submission['comment']
         table = table_currency_changer(submission['expense_currency'])
         gdoc_writer(table, submission['expense_value'], tm, resources.OTHER_EXP_ROW)
-        gdoc_account_writer(table, str(int(submission['expense_value']) * (-1)), submission['expense_from'],
+
+        try:
+            value = int(submission['expense_value'])
+        except:
+            value = float(submission['expense_value'])
+
+        gdoc_account_writer(table, str(value * (-1)), submission['expense_from'],
                             comment)
 
     slack_send_webhook(
