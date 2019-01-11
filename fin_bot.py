@@ -230,11 +230,11 @@ def write_expense_gdoc(message):
 
     elif submission['expense_to'] == 'Content - TheDesignest':
         if submission['comment'] == '':
-            response_text = (resources.tech_expense + submission['expense_value'] + submission['expense_currency'] + ' / '
+            response_text = (resources.designest_content + submission['expense_value'] + submission['expense_currency'] + ' / '
                             + submission['expense_from'])
             comment = submission['expense_to']
         else:
-            response_text = (resources.tech_expense + submission['expense_value'] + submission['expense_currency'] + ' / '
+            response_text = (resources.designest_content + submission['expense_value'] + submission['expense_currency'] + ' / '
                             + submission['expense_from'] + ' / ' + submission['comment'])
             comment = submission['expense_to'] + ' / ' + submission['comment']
         table = table_currency_changer(submission['expense_currency'])
