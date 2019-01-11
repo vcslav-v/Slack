@@ -149,8 +149,14 @@ def write_income_gdoc(message):
                             + submission['income_to'] + ' / ' + submission['comment'])
             comment = submission['income_from'] + ' / ' + submission['comment']
         table = table_currency_changer(submission['income_currency'])
-        gdoc_writer(table, submission['income_value'], tm, resources.PLUS_ROW)
-        gdoc_account_writer(table, submission['income_value'], submission['income_to'], comment)
+        
+        try:
+            value = int(submission['expense_value'])
+        except:
+            value = float(submission['expense_value'])
+
+        gdoc_writer(table, value, tm, resources.PLUS_ROW)
+        gdoc_account_writer(table, value, submission['income_to'], comment)
     
     elif submission['income_from'] == 'banners':
         if submission['comment'] == '':
@@ -330,7 +336,7 @@ def write_expense_gdoc(message):
         except:
             value = float(submission['expense_value'])
 
-        gdoc_account_writer(table, str(value * (-1)), submission['expense_from'],
+        gdoc_account_writer(table, str(float(submission['expense_value']) * (-1)), submission['expense_from'],
                             comment)
 
     slack_send_webhook(
