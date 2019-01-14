@@ -365,7 +365,8 @@ def gdoc_account_writer(table, value, acc, comment):
             comment_place = c_letter + str(new_row)
             balance.update_acell(comment_place, comment)
 
-        except:
+        except Exception as ex:
+            pp(ex)
             comment = comment + ' / ' + 'НЕ В БАЛАНСЕ!'
 
     table = table.spreadsheet.worksheet('Счета')
