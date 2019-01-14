@@ -151,7 +151,7 @@ def write_income_gdoc(message):
         table = table_currency_changer(submission['income_currency'])
 
         gdoc_writer(table, submission['income_value'], tm, resources.PLUS_ROW)
-        gdoc_account_writer(table, value, submission['income_to'], comment)
+        gdoc_account_writer(table, submission['income_value'], submission['income_to'], comment)
     
     elif submission['income_from'] == 'banners':
         if submission['comment'] == '':
@@ -314,7 +314,7 @@ def write_expense_gdoc(message):
     )
 
 def table_currency_changer(cur):
-    pp('table_currency_changer')
+
     scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
     creds = ServiceAccountCredentials.from_json_keyfile_dict(resources.client_secret, scope)
     client = gspread.authorize(creds)
@@ -349,17 +349,26 @@ def gdoc_writer(table, income, tm, category, flat=True, sheet = ''):
     table.update_acell(place, data)
 
 def gdoc_account_writer(table, value, acc, comment):
+    
+    if acc=='Nick Cash' or acc=='Mello Cash' or acc== 'Mello Bank':
+        b_letter = 'b'
+        try:
+            balance = table.spreadsheet.worksheet('Баланс Ник/Мелло')
+            if acc=='Nick Cash': 
+                b_letter = 'a'
+            rows = balance.col_count(resources.COLUMNS_TO_NUM[b_letter])
+            new_row = len(rows) + 1
+            place = b_letter + str(new_row)
+            balance.update_acell(place, value)
+        except Exception as ex:
+            comment = comment + ' / ' + 'НЕ В БАЛАНСЕ!'
+
     table = table.spreadsheet.worksheet('Счета')
-    pp('table')
     letter = resources.ACC_COLUMNS[acc]
-    pp(letter)
 
     rows = table.col_values(resources.COLUMNS_TO_NUM[letter])
-    pp(rows)
     new_row = len(rows) + 1
-    pp(new_row)
     place = letter + str(new_row)
-    pp(place)
 
     table.update_acell(place, value)
 
