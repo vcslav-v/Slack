@@ -351,7 +351,7 @@ def gdoc_writer(table, income, tm, category, flat=True, sheet = ''):
 def gdoc_account_writer(table, value, acc, comment):
     
     if float(value)<0 and acc=='Nick Cash' or acc=='Mello Cash' or acc== 'Mello Bank':
-        b_letter = 'b'
+        b_letter = 'c'
         try:
             balance = table.spreadsheet.worksheet('Баланс Ник/Мелло')
             if acc=='Nick Cash': 
