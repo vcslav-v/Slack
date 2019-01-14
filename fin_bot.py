@@ -350,13 +350,13 @@ def gdoc_writer(table, income, tm, category, flat=True, sheet = ''):
 
 def gdoc_account_writer(table, value, acc, comment):
     
-    if acc=='Nick Cash' or acc=='Mello Cash' or acc== 'Mello Bank':
+    if value<0 and acc=='Nick Cash' or acc=='Mello Cash' or acc== 'Mello Bank':
         b_letter = 'b'
         try:
             balance = table.spreadsheet.worksheet('Баланс Ник/Мелло')
             if acc=='Nick Cash': 
                 b_letter = 'a'
-            rows = balance.col_count(resources.COLUMNS_TO_NUM[b_letter])
+            rows = balance.col_values(resources.COLUMNS_TO_NUM[b_letter])
             new_row = len(rows) + 1
             place = b_letter + str(new_row)
             balance.update_acell(place, value)
