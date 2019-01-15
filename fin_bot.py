@@ -110,9 +110,9 @@ def on_interactive_action():
                     slack_send_webhook(text=ex, channel=interactive_action['channel']['id'])
                     return make_response(response_text, 200)
 
-                # executor.submit(
-                # write_expense_gdoc,
-                # interactive_action)
+                executor.submit(
+                write_trans_gdoc,
+                interactive_action)
                 pass
 
     except Exception as ex:
@@ -233,6 +233,32 @@ def write_income_gdoc(message):
         channel=message['channel']['id'],
         icon=':chart_with_upwards_trend:'
     )
+
+def write_trans_gdoc(message):
+    submission = message['submission']
+    if submission['trans_currency'][:3]==submission['trans_currency'][-3:]:
+        table = table_currency_changer(submission['trans_currency'][:3])
+        table = table.spreadsheet.worksheet('Счета')
+        from_letter = resources.ACC_COLUMNS[submission['trans_from']]
+        rows = table.col_values(resources.COLUMNS_TO_NUM[from_letter])
+        new_row = len(rows) + 1
+        place = from_letter + str(new_row)
+        table.update_acell(place, '-' + submission['trans_value_from'])
+        c_from_letter = resources.NUM_to_COLUMNS[resources.COLUMNS_TO_NUM[from_letter]+1]
+        comment_place = c_from_letter + str(new_row)
+        table.update_acell(comment_place, 'Перевод в ' + submission['trans_to'])
+
+        to_letter = resources.ACC_COLUMNS[submission['trans_to']]
+        rows = table.col_values(resources.COLUMNS_TO_NUM[to_letter])
+        new_row = len(rows) + 1
+        place = to_letter + str(new_row)
+        table.update_acell(place, submission['trans_value_to'])
+        c_to_letter = resources.NUM_to_COLUMNS[resources.COLUMNS_TO_NUM[to_letter]+1]
+        comment_place = c_to_letter + str(new_row)
+        table.update_acell(comment_place, 'Перевод  из ' + submission['trans_to'])
+    else:
+        pass
+        
 
 def write_expense_gdoc(message):
 
