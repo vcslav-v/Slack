@@ -211,99 +211,99 @@ dialog_trans = {
                 }
             ]
         },
-        {
-            'type': 'text',
-            'label': 'Сумма',
-            'name': 'trans_value_from'
-        },
-        {
-            'label': 'Валюта',
-            'type': 'select',
-            'name': 'trans_currency_from',
-            'placeholder': 'Выберите валюту',
-            'value': 'USD',
-            'options': [
-                {
-                    'label': 'USD',
-                    'value': 'USD'
-                },
-                {
-                    'label': 'RUR',
-                    'value': 'RUR'
-                },
-                {
-                    'label': 'EUR',
-                    'value': 'EUR'
-                }
-            ]
-        },
-        {
-            'label': 'Куда',
-            'type': 'select',
-            'name': 'trans_to',
-            'placeholder': 'Укажите куда пришли деньги',
-            'value': 'Ksenia PayPal',
-            'options': [
-                {
-                    'label': 'Ksenia PayPal',
-                    'value': 'Ksenia PayPal'
-                },
-                {
-                    'label': 'Milka PayPal',
-                    'value': 'Milka PayPal'
-                },
-                {
-                    'label': 'Payoner',
-                    'value': 'Payoner'
-                },
-                {
-                    'label': 'Astakhov PayPal',
-                    'value': 'Astakhov PayPal'
-                },
-                {
-                    'label': 'Plus PayPal',
-                    'value': 'Plus PayPal'
-                },
-                {
-                    'label': 'Mello Bank',
-                    'value': 'Mello Bank'
-                },
-                {
-                    'label': 'Mello Cash',
-                    'value': 'Mello Cash'
-                },
-                {
-                    'label': 'Nick Cash',
-                    'value': 'Nick Cash'
-                }
-            ]
-        },
-        {
-            'type': 'text',
-            'label': 'Сумма',
-            'name': 'trans_value_to'
-        },
-        {
-            'label': 'Валюта',
-            'type': 'select',
-            'name': 'trans_currency_to',
-            'placeholder': 'Выберите валюту',
-            'value': 'USD',
-            'options': [
-                {
-                    'label': 'USD',
-                    'value': 'USD'
-                },
-                {
-                    'label': 'RUR',
-                    'value': 'RUR'
-                },
-                {
-                    'label': 'EUR',
-                    'value': 'EUR'
-                }
-            ]
-        }
+        # {
+        #     'type': 'text',
+        #     'label': 'Сумма',
+        #     'name': 'trans_value_from'
+        # },
+        # {
+        #     'label': 'Валюта',
+        #     'type': 'select',
+        #     'name': 'trans_currency_from',
+        #     'placeholder': 'Выберите валюту',
+        #     'value': 'USD',
+        #     'options': [
+        #         {
+        #             'label': 'USD',
+        #             'value': 'USD'
+        #         },
+        #         {
+        #             'label': 'RUR',
+        #             'value': 'RUR'
+        #         },
+        #         {
+        #             'label': 'EUR',
+        #             'value': 'EUR'
+        #         }
+        #     ]
+        # },
+        # {
+        #     'label': 'Куда',
+        #     'type': 'select',
+        #     'name': 'trans_to',
+        #     'placeholder': 'Укажите куда пришли деньги',
+        #     'value': 'Ksenia PayPal',
+        #     'options': [
+        #         {
+        #             'label': 'Ksenia PayPal',
+        #             'value': 'Ksenia PayPal'
+        #         },
+        #         {
+        #             'label': 'Milka PayPal',
+        #             'value': 'Milka PayPal'
+        #         },
+        #         {
+        #             'label': 'Payoner',
+        #             'value': 'Payoner'
+        #         },
+        #         {
+        #             'label': 'Astakhov PayPal',
+        #             'value': 'Astakhov PayPal'
+        #         },
+        #         {
+        #             'label': 'Plus PayPal',
+        #             'value': 'Plus PayPal'
+        #         },
+        #         {
+        #             'label': 'Mello Bank',
+        #             'value': 'Mello Bank'
+        #         },
+        #         {
+        #             'label': 'Mello Cash',
+        #             'value': 'Mello Cash'
+        #         },
+        #         {
+        #             'label': 'Nick Cash',
+        #             'value': 'Nick Cash'
+        #         }
+        #     ]
+        # },
+        # {
+        #     'type': 'text',
+        #     'label': 'Сумма',
+        #     'name': 'trans_value_to'
+        # },
+        # {
+        #     'label': 'Валюта',
+        #     'type': 'select',
+        #     'name': 'trans_currency_to',
+        #     'placeholder': 'Выберите валюту',
+        #     'value': 'USD',
+        #     'options': [
+        #         {
+        #             'label': 'USD',
+        #             'value': 'USD'
+        #         },
+        #         {
+        #             'label': 'RUR',
+        #             'value': 'RUR'
+        #         },
+        #         {
+        #             'label': 'EUR',
+        #             'value': 'EUR'
+        #         }
+        #     ]
+        # }
     ]
 }
 
