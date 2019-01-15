@@ -217,27 +217,6 @@ dialog_trans = {
             'name': 'trans_value_from'
         },
         {
-            'label': 'Валюта',
-            'type': 'select',
-            'name': 'trans_currency_from',
-            'placeholder': 'Выберите валюту',
-            'value': 'USD',
-            'options': [
-                {
-                    'label': 'USD',
-                    'value': 'USD'
-                },
-                {
-                    'label': 'RUR',
-                    'value': 'RUR'
-                },
-                {
-                    'label': 'EUR',
-                    'value': 'EUR'
-                }
-            ]
-        },
-        {
             'label': 'Куда',
             'type': 'select',
             'name': 'trans_to',
@@ -283,27 +262,51 @@ dialog_trans = {
             'label': 'Сумма',
             'name': 'trans_value_to'
         },
-        # {
-        #     'label': 'Валюта',
-        #     'type': 'select',
-        #     'name': 'trans_currency_to',
-        #     'placeholder': 'Выберите валюту',
-        #     'value': 'USD',
-        #     'options': [
-        #         {
-        #             'label': 'USD',
-        #             'value': 'USD'
-        #         },
-        #         {
-        #             'label': 'RUR',
-        #             'value': 'RUR'
-        #         },
-        #         {
-        #             'label': 'EUR',
-        #             'value': 'EUR'
-        #         }
-        #     ]
-        # }
+        {
+            'label': 'Валюта',
+            'type': 'select',
+            'name': 'trans_currency',
+            'placeholder': 'Выберите валюту',
+            'value': 'USD',
+            'options': [
+                {
+                    'label': 'USD to USD',
+                    'value': 'USD to USD'
+                },
+                {
+                    'label': 'RUR to RUR',
+                    'value': 'RUR to RUR'
+                },
+                {
+                    'label': 'USD to RUR',
+                    'value': 'USD to RUR'
+                },
+                {
+                    'label': 'RUR to USD',
+                    'value': 'RUR to USD'
+                },
+                {
+                    'label': 'EUR to EUR',
+                    'value': 'EUR to EUR'
+                },
+                {
+                    'label': 'USD to EUR',
+                    'value': 'USD to EUR'
+                },
+                {
+                    'label': 'RUR to EUR',
+                    'value': 'RUR to EUR'
+                },
+                {
+                    'label': 'EUR to USD',
+                    'value': 'EUR to USD'
+                },
+                {
+                    'label': 'EUR to RUR',
+                    'value': 'EUR to RUR'
+                },
+            ]
+        }
     ]
 }
 
