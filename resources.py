@@ -166,7 +166,7 @@ dialog_income = {
 }
 
 dialog_trans = {
-    'title': 'trans',
+    'title': 'Перевод',
     'submit_label': 'Submit',
     'callback_id': 'trans_form',
     'elements': [
