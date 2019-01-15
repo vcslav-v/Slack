@@ -54,6 +54,22 @@ def expense_get():
 
     return make_response('Processing started...', 200)
 
+@app.route('/api/trans', methods=['POST'])
+def trans():
+    data = {
+        'token': SLACK_BOT_TOKEN,
+        'trigger_id': flask.request.values['trigger_id'],
+        'dialog': json.dumps(resources.dialog_trans)
+    }
+
+    requests.post(
+        url='https://slack.com/api/dialog.open',
+        data=data
+    )
+
+    return make_response('Processing started...', 200)
+
+
 # Обрабатываем форму
 @app.route('/api/interactive_action', methods=['POST'])
 def on_interactive_action():
@@ -85,6 +101,19 @@ def on_interactive_action():
                 executor.submit(
                 write_expense_gdoc,
                 interactive_action)
+
+            elif interactive_action['callback_id'] == 'trans_form':
+                try:
+                    float(interactive_action['submission']['trans_value_from'])
+                    float(interactive_action['submission']['trans_value_to'])
+                except Exception as ex:
+                    slack_send_webhook(text=ex, channel=interactive_action['channel']['id'])
+                    return make_response(response_text, 200)
+
+                # executor.submit(
+                # write_expense_gdoc,
+                # interactive_action)
+                pass
 
     except Exception as ex:
         response_text = ':x: Error: `%s`' % ex
