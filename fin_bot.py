@@ -236,25 +236,29 @@ def write_income_gdoc(message):
 
 def write_trans_gdoc(message):
     submission = message['submission']
-    table = table_currency_changer(submission['trans_currency'])
-    table = table.spreadsheet.worksheet('Счета')
-    from_letter = resources.ACC_COLUMNS[submission['trans_from']]
-    rows = table.col_values(resources.COLUMNS_TO_NUM[from_letter])
-    new_row = len(rows) + 1
-    place = from_letter + str(new_row)
-    table.update_acell(place, '-' + submission['trans_value'])
-    c_from_letter = resources.NUM_to_COLUMNS[resources.COLUMNS_TO_NUM[from_letter]+1]
-    comment_place = c_from_letter + str(new_row)
-    table.update_acell(comment_place, 'Перевод в ' + submission['trans_to'])
+    try:
+        table = table_currency_changer(submission['trans_currency'])
+        table = table.spreadsheet.worksheet('Счета')
+        from_letter = resources.ACC_COLUMNS[submission['trans_from']]
+        rows = table.col_values(resources.COLUMNS_TO_NUM[from_letter])
+        new_row = len(rows) + 1
+        place = from_letter + str(new_row)
+        table.update_acell(place, '-' + submission['trans_value'])
+        c_from_letter = resources.NUM_to_COLUMNS[resources.COLUMNS_TO_NUM[from_letter]+1]
+        comment_place = c_from_letter + str(new_row)
+        table.update_acell(comment_place, 'Перевод в ' + submission['trans_to'])
 
-    to_letter = resources.ACC_COLUMNS[submission['trans_to']]
-    rows = table.col_values(resources.COLUMNS_TO_NUM[to_letter])
-    new_row = len(rows) + 1
-    place = to_letter + str(new_row)
-    table.update_acell(place, submission['trans_value'])
-    c_to_letter = resources.NUM_to_COLUMNS[resources.COLUMNS_TO_NUM[to_letter]+1]
-    comment_place = c_to_letter + str(new_row)
-    table.update_acell(comment_place, 'Перевод  из ' + submission['trans_from'])
+        to_letter = resources.ACC_COLUMNS[submission['trans_to']]
+        rows = table.col_values(resources.COLUMNS_TO_NUM[to_letter])
+        new_row = len(rows) + 1
+        place = to_letter + str(new_row)
+        table.update_acell(place, submission['trans_value'])
+        c_to_letter = resources.NUM_to_COLUMNS[resources.COLUMNS_TO_NUM[to_letter]+1]
+        comment_place = c_to_letter + str(new_row)
+        table.update_acell(comment_place, 'Перевод  из ' + submission['trans_from'])
+        
+    except Exception as ex:
+            pp(ex)
 
     response_text = ('*Перевод* из ' + submission['trans_from'] + ' в ' + submission['trans_to'] + ' ' +
                     submission['trans_value'] + submission['trans_currency'])
