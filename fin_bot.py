@@ -104,8 +104,7 @@ def on_interactive_action():
 
             elif interactive_action['callback_id'] == 'trans_form':
                 try:
-                    float(interactive_action['submission']['trans_value_from'])
-                    float(interactive_action['submission']['trans_value_to'])
+                    float(interactive_action['submission']['trans_value'])
                 except Exception as ex:
                     slack_send_webhook(text=ex, channel=interactive_action['channel']['id'])
                     return make_response(response_text, 200)
@@ -256,7 +255,7 @@ def write_trans_gdoc(message):
         c_to_letter = resources.NUM_to_COLUMNS[resources.COLUMNS_TO_NUM[to_letter]+1]
         comment_place = c_to_letter + str(new_row)
         table.update_acell(comment_place, 'Перевод  из ' + submission['trans_from'])
-        
+
     except Exception as ex:
             pp(ex)
 
