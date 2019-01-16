@@ -216,7 +216,7 @@ dialog_trans = {
             'type': 'select',
             'name': 'trans_to',
             'placeholder': 'Укажите куда пришли деньги',
-            'value': 'Ksenia PayPal',
+            'value': 'Milka PayPal',
             'options': [
                 {
                     'label': 'Ksenia PayPal',
@@ -261,6 +261,81 @@ dialog_trans = {
             'label': 'Валюта',
             'type': 'select',
             'name': 'trans_currency',
+            'placeholder': 'Выберите валюту',
+            'value': 'USD',
+            'options': [
+                {
+                    'label': 'USD',
+                    'value': 'USD'
+                },
+                {
+                    'label': 'RUR',
+                    'value': 'RUR'
+                },
+                {
+                    'label': 'EUR',
+                    'value': 'EUR'
+                }
+            ]
+        }
+    ]
+}
+
+dialog_trans = {
+    'title': 'Вывод',
+    'submit_label': 'Submit',
+    'callback_id': 'tocash_form',
+    'elements': [
+        {
+            'label': 'Счет',
+            'type': 'select',
+            'name': 'to_cash_acc',
+            'placeholder': 'Счет',
+            'value': 'Ksenia PayPal',
+            'options': [
+                {
+                    'label': 'Ksenia PayPal',
+                    'value': 'Ksenia PayPal'
+                },
+                {
+                    'label': 'Milka PayPal',
+                    'value': 'Milka PayPal'
+                },
+                {
+                    'label': 'Payoner',
+                    'value': 'Payoner'
+                },
+                {
+                    'label': 'Astakhov PayPal',
+                    'value': 'Astakhov PayPal'
+                },
+                {
+                    'label': 'Plus PayPal',
+                    'value': 'Plus PayPal'
+                },
+                {
+                    'label': 'Mello Bank',
+                    'value': 'Mello Bank'
+                },
+                {
+                    'label': 'Mello Cash',
+                    'value': 'Mello Cash'
+                },
+                {
+                    'label': 'Nick Cash',
+                    'value': 'Nick Cash'
+                }
+            ]
+        },
+        {
+            'type': 'text',
+            'label': 'Сумма',
+            'name': 'value'
+        },
+        {
+            'label': 'Валюта',
+            'type': 'select',
+            'name': 'currency',
             'placeholder': 'Выберите валюту',
             'value': 'USD',
             'options': [

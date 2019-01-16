@@ -69,6 +69,21 @@ def trans():
 
     return make_response('Processing started...', 200)
 
+@app.route('/api/tocash', methods=['POST'])
+def tocash():
+    data = {
+        'token': SLACK_BOT_TOKEN,
+        'trigger_id': flask.request.values['trigger_id'],
+        'dialog': json.dumps(resources.dialog_tocash)
+    }
+
+    requests.post(
+        url='https://slack.com/api/dialog.open',
+        data=data
+    )
+
+    return make_response('Processing started...', 200)
+
 
 # Обрабатываем форму
 @app.route('/api/interactive_action', methods=['POST'])
@@ -111,6 +126,17 @@ def on_interactive_action():
 
                 executor.submit(
                 write_trans_gdoc,
+                interactive_action)
+            
+            elif interactive_action['callback_id'] == 'tocash_form':
+                try:
+                    float(interactive_action['submission']['value'])
+                except Exception as ex:
+                    slack_send_webhook(text=ex, channel=interactive_action['channel']['id'])
+                    return make_response(response_text, 200)
+
+                executor.submit(
+                write_tocash_gdoc,
                 interactive_action)
                 pass
 
@@ -261,6 +287,31 @@ def write_trans_gdoc(message):
 
     response_text = ('*Перевод* из ' + submission['trans_from'] + ' в ' + submission['trans_to'] + ' ' +
                     submission['trans_value'] + submission['trans_currency'])
+
+    slack_send_webhook(
+        text=response_text,
+        channel=message['channel']['id'],
+        icon=':chart_with_upwards_trend:'
+    )
+    
+def write_tocash_gdoc(message):
+    submission = message['submission']
+    try:
+        table = table_currency_changer(submission['currency'])
+        table = table.spreadsheet.worksheet('Счета')
+        letter = resources.ACC_COLUMNS[submission['to_cash_acc']]
+        rows = table.col_values(resources.COLUMNS_TO_NUM[letter])
+        new_row = len(rows) + 1
+        place = letter + str(new_row)
+        table.update_acell(place, '-' + submission['value'])
+        c_letter = resources.NUM_to_COLUMNS[resources.COLUMNS_TO_NUM[letter]+1]
+        comment_place = c_etter + str(new_row)
+        table.update_acell(comment_place, 'Вывод' + submission['value'] + submission['currency'])
+
+    except Exception as ex:
+            pp(ex)
+
+    response_text = ('*Вывод* из ' + submission['to_cash_acc'] + ' ' + submission['value'] + submission['currency'])
 
     slack_send_webhook(
         text=response_text,
