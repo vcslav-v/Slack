@@ -236,6 +236,25 @@ def write_income_gdoc(message):
 
 def write_trans_gdoc(message):
     submission = message['submission']
+
+    fee_table = table_currency_changer('FEE')
+    fee = float(submission['trans_value_from']) - float(submission['trans_value_to'])
+    if fee != 0:
+        com_letter = 'a'
+        rows = table_from.col_values(resources.COLUMNS_TO_NUM[from_letter])
+        new_row = len(rows) + 1
+        place = com_letter + str(new_row)
+        table_from.update_acell(place, str(fee))
+        com_letter = 'b'
+        place = com_letter + str(new_row)
+        table_from.update_acell(place, submission['trans_currency'])
+        com_letter = 'c'
+        place = com_letter + str(new_row)
+        table_from.update_acell(place, submission['trans_from'])
+        com_letter = 'd'
+        place = com_letter + str(new_row)
+        table_from.update_acell(place, submission['trans_to'])
+
     if submission['trans_currency'][:3]==submission['trans_currency'][-3:]:
         table = table_currency_changer(submission['trans_currency'][:3])
         table = table.spreadsheet.worksheet('Счета')
@@ -256,8 +275,30 @@ def write_trans_gdoc(message):
         c_to_letter = resources.NUM_to_COLUMNS[resources.COLUMNS_TO_NUM[to_letter]+1]
         comment_place = c_to_letter + str(new_row)
         table.update_acell(comment_place, 'Перевод  из ' + submission['trans_to'])
+
     else:
-        pass
+        table_from = table_currency_changer(submission['trans_currency'][:3])
+        table_to = table_currency_changer(submission['trans_currency'][-3:])
+        table_from = table_from.spreadsheet.worksheet('Счета')
+        table_to = table_to.spreadsheet.worksheet('Счета')
+
+        from_letter = resources.ACC_COLUMNS[submission['trans_from']]
+        rows = table_from.col_values(resources.COLUMNS_TO_NUM[from_letter])
+        new_row = len(rows) + 1
+        place = from_letter + str(new_row)
+        table_from.update_acell(place, '-' + submission['trans_value_from'])
+        c_from_letter = resources.NUM_to_COLUMNS[resources.COLUMNS_TO_NUM[from_letter]+1]
+        comment_place = c_from_letter + str(new_row)
+        table_from.update_acell(comment_place, 'Перевод в ' + submission['trans_to'])
+
+        to_letter = resources.ACC_COLUMNS[submission['trans_to']]
+        rows = table_to.col_values(resources.COLUMNS_TO_NUM[to_letter])
+        new_row = len(rows) + 1
+        place = to_letter + str(new_row)
+        table_to.update_acell(place, submission['trans_value_to'])
+        c_to_letter = resources.NUM_to_COLUMNS[resources.COLUMNS_TO_NUM[to_letter]+1]
+        comment_place = c_to_letter + str(new_row)
+        table_to.update_acell(comment_place, 'Перевод  из ' + submission['trans_to'])
         
 
 def write_expense_gdoc(message):
@@ -380,6 +421,8 @@ def table_currency_changer(cur):
         sheet = client.open('PB2019RUR').sheet1
     elif cur == 'EUR':
         sheet = client.open('PB2019EUR').sheet1
+    elif cur == 'FEE':
+        sheet = client.open('FEE').sheet1
     return sheet
 
 def gdoc_writer(table, income, tm, category, flat=True, sheet = ''):
