@@ -236,24 +236,26 @@ def write_income_gdoc(message):
 
 def write_trans_gdoc(message):
     submission = message['submission']
-
-    fee_table = table_currency_changer('FEE')
-    fee = float(submission['trans_value_from']) - float(submission['trans_value_to'])
-    if fee != 0:
-        com_letter = 'a'
-        rows = fee_table.col_values(resources.COLUMNS_TO_NUM[com_letter])
-        new_row = len(rows) + 1
-        place = com_letter + str(new_row)
-        fee_table.update_acell(place, str(fee))
-        com_letter = 'b'
-        place = com_letter + str(new_row)
-        fee_table.update_acell(place, submission['trans_currency'])
-        com_letter = 'c'
-        place = com_letter + str(new_row)
-        fee_table.update_acell(place, submission['trans_from'])
-        com_letter = 'd'
-        place = com_letter + str(new_row)
-        fee_table.update_acell(place, submission['trans_to'])
+    try:
+        fee_table = table_currency_changer('FEE')
+        fee = float(submission['trans_value_from']) - float(submission['trans_value_to'])
+        if fee != 0:
+            com_letter = 'a'
+            rows = fee_table.col_values(resources.COLUMNS_TO_NUM[com_letter])
+            new_row = len(rows) + 1
+            place = com_letter + str(new_row)
+            fee_table.update_acell(place, str(fee))
+            com_letter = 'b'
+            place = com_letter + str(new_row)
+            fee_table.update_acell(place, submission['trans_currency'])
+            com_letter = 'c'
+            place = com_letter + str(new_row)
+            fee_table.update_acell(place, submission['trans_from'])
+            com_letter = 'd'
+            place = com_letter + str(new_row)
+            fee_table.update_acell(place, submission['trans_to'])
+        except expression as ex:
+            pp(ex)
 
     if submission['trans_currency'][:3]==submission['trans_currency'][-3:]:
         table = table_currency_changer(submission['trans_currency'][:3])
