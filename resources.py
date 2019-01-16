@@ -212,11 +212,6 @@ dialog_trans = {
             ]
         },
         {
-            'type': 'text',
-            'label': 'Сумма',
-            'name': 'trans_value_from'
-        },
-        {
             'label': 'Куда',
             'type': 'select',
             'name': 'trans_to',
@@ -260,7 +255,7 @@ dialog_trans = {
         {
             'type': 'text',
             'label': 'Сумма',
-            'name': 'trans_value_to'
+            'name': 'trans_value'
         },
         {
             'label': 'Валюта',
@@ -270,41 +265,17 @@ dialog_trans = {
             'value': 'USD',
             'options': [
                 {
-                    'label': 'USD to USD',
-                    'value': 'USD to USD'
+                    'label': 'USD',
+                    'value': 'USD'
                 },
                 {
-                    'label': 'RUR to RUR',
-                    'value': 'RUR to RUR'
+                    'label': 'RUR',
+                    'value': 'RUR'
                 },
                 {
-                    'label': 'USD to RUR',
-                    'value': 'USD to RUR'
-                },
-                {
-                    'label': 'RUR to USD',
-                    'value': 'RUR to USD'
-                },
-                {
-                    'label': 'EUR to EUR',
-                    'value': 'EUR to EUR'
-                },
-                {
-                    'label': 'USD to EUR',
-                    'value': 'USD to EUR'
-                },
-                {
-                    'label': 'RUR to EUR',
-                    'value': 'RUR to EUR'
-                },
-                {
-                    'label': 'EUR to USD',
-                    'value': 'EUR to USD'
-                },
-                {
-                    'label': 'EUR to RUR',
-                    'value': 'EUR to RUR'
-                },
+                    'label': 'EUR',
+                    'value': 'EUR'
+                }
             ]
         }
     ]

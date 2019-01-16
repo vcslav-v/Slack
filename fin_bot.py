@@ -236,71 +236,34 @@ def write_income_gdoc(message):
 
 def write_trans_gdoc(message):
     submission = message['submission']
-    try:
-        fee_table = table_currency_changer('FEE')
-        fee = float(submission['trans_value_from']) - float(submission['trans_value_to'])
-        if fee != 0:
-            com_letter = 'a'
-            rows = fee_table.col_values(resources.COLUMNS_TO_NUM[com_letter])
-            new_row = len(rows) + 1
-            place = com_letter + str(new_row)
-            fee_table.update_acell(place, str(fee))
-            com_letter = 'b'
-            place = com_letter + str(new_row)
-            fee_table.update_acell(place, submission['trans_currency'])
-            com_letter = 'c'
-            place = com_letter + str(new_row)
-            fee_table.update_acell(place, submission['trans_from'])
-            com_letter = 'd'
-            place = com_letter + str(new_row)
-            fee_table.update_acell(place, submission['trans_to'])
-    except Exception as ex:
-        pp(ex)
+    table = table_currency_changer(submission['trans_currency'])
+    table = table.spreadsheet.worksheet('Счета')
+    from_letter = resources.ACC_COLUMNS[submission['trans_from']]
+    rows = table.col_values(resources.COLUMNS_TO_NUM[from_letter])
+    new_row = len(rows) + 1
+    place = from_letter + str(new_row)
+    table.update_acell(place, '-' + submission['trans_value'])
+    c_from_letter = resources.NUM_to_COLUMNS[resources.COLUMNS_TO_NUM[from_letter]+1]
+    comment_place = c_from_letter + str(new_row)
+    table.update_acell(comment_place, 'Перевод в ' + submission['trans_to'])
 
-    if submission['trans_currency'][:3]==submission['trans_currency'][-3:]:
-        table = table_currency_changer(submission['trans_currency'][:3])
-        table = table.spreadsheet.worksheet('Счета')
-        from_letter = resources.ACC_COLUMNS[submission['trans_from']]
-        rows = table.col_values(resources.COLUMNS_TO_NUM[from_letter])
-        new_row = len(rows) + 1
-        place = from_letter + str(new_row)
-        table.update_acell(place, '-' + submission['trans_value_from'])
-        c_from_letter = resources.NUM_to_COLUMNS[resources.COLUMNS_TO_NUM[from_letter]+1]
-        comment_place = c_from_letter + str(new_row)
-        table.update_acell(comment_place, 'Перевод в ' + submission['trans_to'])
+    to_letter = resources.ACC_COLUMNS[submission['trans_to']]
+    rows = table.col_values(resources.COLUMNS_TO_NUM[to_letter])
+    new_row = len(rows) + 1
+    place = to_letter + str(new_row)
+    table.update_acell(place, submission['trans_value'])
+    c_to_letter = resources.NUM_to_COLUMNS[resources.COLUMNS_TO_NUM[to_letter]+1]
+    comment_place = c_to_letter + str(new_row)
+    table.update_acell(comment_place, 'Перевод  из ' + submission['trans_from'])
 
-        to_letter = resources.ACC_COLUMNS[submission['trans_to']]
-        rows = table.col_values(resources.COLUMNS_TO_NUM[to_letter])
-        new_row = len(rows) + 1
-        place = to_letter + str(new_row)
-        table.update_acell(place, submission['trans_value_to'])
-        c_to_letter = resources.NUM_to_COLUMNS[resources.COLUMNS_TO_NUM[to_letter]+1]
-        comment_place = c_to_letter + str(new_row)
-        table.update_acell(comment_place, 'Перевод  из ' + submission['trans_to'])
+    response_text = ('*Перевод* из ' + submission['trans_from'] + ' в ' + submission['trans_to'] + ' ' +
+                    submission['trans_value'] + submission['trans_currency'])
 
-    else:
-        table_from = table_currency_changer(submission['trans_currency'][:3])
-        table_to = table_currency_changer(submission['trans_currency'][-3:])
-        table_from = table_from.spreadsheet.worksheet('Счета')
-        table_to = table_to.spreadsheet.worksheet('Счета')
-
-        from_letter = resources.ACC_COLUMNS[submission['trans_from']]
-        rows = table_from.col_values(resources.COLUMNS_TO_NUM[from_letter])
-        new_row = len(rows) + 1
-        place = from_letter + str(new_row)
-        table_from.update_acell(place, '-' + submission['trans_value_from'])
-        c_from_letter = resources.NUM_to_COLUMNS[resources.COLUMNS_TO_NUM[from_letter]+1]
-        comment_place = c_from_letter + str(new_row)
-        table_from.update_acell(comment_place, 'Перевод в ' + submission['trans_to'])
-
-        to_letter = resources.ACC_COLUMNS[submission['trans_to']]
-        rows = table_to.col_values(resources.COLUMNS_TO_NUM[to_letter])
-        new_row = len(rows) + 1
-        place = to_letter + str(new_row)
-        table_to.update_acell(place, submission['trans_value_to'])
-        c_to_letter = resources.NUM_to_COLUMNS[resources.COLUMNS_TO_NUM[to_letter]+1]
-        comment_place = c_to_letter + str(new_row)
-        table_to.update_acell(comment_place, 'Перевод  из ' + submission['trans_to'])
+    slack_send_webhook(
+        text=response_text,
+        channel=message['channel']['id'],
+        icon=':chart_with_upwards_trend:'
+    )
         
 
 def write_expense_gdoc(message):
