@@ -355,7 +355,6 @@ dialog_tocash = {
         }
     ]
 }
-
 dialog_expense = {
     'title': 'Расход',
     'submit_label': 'Submit',
