@@ -281,7 +281,7 @@ dialog_trans = {
     ]
 }
 
-dialog_trans = {
+dialog_tocash = {
     'title': 'Вывод',
     'submit_label': 'Submit',
     'callback_id': 'tocash_form',

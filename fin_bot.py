@@ -305,7 +305,7 @@ def write_tocash_gdoc(message):
         place = letter + str(new_row)
         table.update_acell(place, '-' + submission['value'])
         c_letter = resources.NUM_to_COLUMNS[resources.COLUMNS_TO_NUM[letter]+1]
-        comment_place = c_etter + str(new_row)
+        comment_place = c_letter + str(new_row)
         table.update_acell(comment_place, 'Вывод' + submission['value'] + submission['currency'])
 
     except Exception as ex:
@@ -440,8 +440,6 @@ def table_currency_changer(cur):
         sheet = client.open('PB2019RUR').sheet1
     elif cur == 'EUR':
         sheet = client.open('PB2019EUR').sheet1
-    elif cur == 'FEE':
-        sheet = client.open('FEE').sheet1
     return sheet
 
 def gdoc_writer(table, income, tm, category, flat=True, sheet = ''):
