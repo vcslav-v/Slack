@@ -241,19 +241,19 @@ def write_trans_gdoc(message):
     fee = float(submission['trans_value_from']) - float(submission['trans_value_to'])
     if fee != 0:
         com_letter = 'a'
-        rows = table_from.col_values(resources.COLUMNS_TO_NUM[from_letter])
+        rows = fee_table.col_values(resources.COLUMNS_TO_NUM[com_letter])
         new_row = len(rows) + 1
         place = com_letter + str(new_row)
-        table_from.update_acell(place, str(fee))
+        fee_table.update_acell(place, str(fee))
         com_letter = 'b'
         place = com_letter + str(new_row)
-        table_from.update_acell(place, submission['trans_currency'])
+        fee_table.update_acell(place, submission['trans_currency'])
         com_letter = 'c'
         place = com_letter + str(new_row)
-        table_from.update_acell(place, submission['trans_from'])
+        fee_table.update_acell(place, submission['trans_from'])
         com_letter = 'd'
         place = com_letter + str(new_row)
-        table_from.update_acell(place, submission['trans_to'])
+        fee_table.update_acell(place, submission['trans_to'])
 
     if submission['trans_currency'][:3]==submission['trans_currency'][-3:]:
         table = table_currency_changer(submission['trans_currency'][:3])
