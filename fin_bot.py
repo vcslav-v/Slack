@@ -254,7 +254,7 @@ def write_trans_gdoc(message):
             com_letter = 'd'
             place = com_letter + str(new_row)
             fee_table.update_acell(place, submission['trans_to'])
-    except expression as ex:
+    except Exception as ex:
         pp(ex)
 
     if submission['trans_currency'][:3]==submission['trans_currency'][-3:]:
