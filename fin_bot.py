@@ -195,11 +195,11 @@ def write_income_gdoc(message):
 
     if submission['income_from'] == 'plus':
         if submission['comment'] == '':
-            response_text = (resources.plus_income+submission['income_value'] + submission['income_currency'] + ' / '
+            response_text = (resources.plus_income+submission['income_value'] + ' ' +submission['income_currency'] + ' / '
                             + submission['income_to'])
             comment = submission['income_from']
         else:
-            response_text = (resources.plus_income + submission['income_value'] + submission['income_currency'] + ' / '
+            response_text = (resources.plus_income + submission['income_value'] + ' ' + submission['income_currency'] + ' / '
                             + submission['income_to'] + ' / ' + submission['comment'])
             comment = submission['income_from'] + ' / ' + submission['comment']
         table = table_currency_changer(submission['income_currency'])
@@ -209,11 +209,11 @@ def write_income_gdoc(message):
     
     elif submission['income_from'] == 'banners':
         if submission['comment'] == '':
-            response_text = (resources.banner_income+submission['income_value'] + submission['income_currency'] + ' / '
+            response_text = (resources.banner_income+submission['income_value'] + ' ' + submission['income_currency'] + ' / '
                             + submission['income_to'])
             comment = submission['income_from']
         else:
-            response_text = (resources.banner_income+submission['income_value'] + submission['income_currency'] + ' / '
+            response_text = (resources.banner_income+submission['income_value'] + ' ' + submission['income_currency'] + ' / '
                             + submission['income_to'] + ' / ' + submission['comment'])
             comment = submission['income_from'] + ' / ' + submission['comment']
         table = table_currency_changer(submission['income_currency'])
@@ -223,11 +223,11 @@ def write_income_gdoc(message):
     elif submission['income_from'][:5] == 'Email':
         if submission['comment'] == '':
             response_text = (resources.income + submission['income_from'] + '* / ' + submission['income_value'] 
-                            + submission['income_currency'] + ' / ' + submission['income_to'])
+                            + ' ' + submission['income_currency'] + ' / ' + submission['income_to'])
             comment = submission['income_from']
         else:
             response_text = (resources.income + submission['income_from'] + '* / ' +submission['income_value'] 
-                            + submission['income_currency'] + ' / ' + submission['income_to'] + ' / ' 
+                            + ' ' + submission['income_currency'] + ' / ' + submission['income_to'] + ' / ' 
                             + submission['comment'])
             comment = submission['income_from'] + ' / ' + submission['comment']
 
@@ -239,11 +239,11 @@ def write_income_gdoc(message):
     elif submission['income_from'][:12] == 'Marketplaces' or submission['income_from'][:5] == 'Deals':
         if submission['comment'] == '':
             response_text = (resources.income + submission['income_from'] + '* / ' + submission['income_value'] 
-                            + submission['income_currency'] + ' / ' + submission['income_to'])
+                            + ' ' + submission['income_currency'] + ' / ' + submission['income_to'])
             comment = submission['income_from']
         else:
             response_text = (resources.income + submission['income_from'] + '* / ' +submission['income_value'] 
-                            + submission['income_currency'] + ' / ' + submission['income_to'] + ' / ' 
+                            + ' ' + submission['income_currency'] + ' / ' + submission['income_to'] + ' / ' 
                             + submission['comment'])
             comment = submission['income_from'] + ' / ' + submission['comment']
 
@@ -286,7 +286,7 @@ def write_trans_gdoc(message):
             pp(ex)
 
     response_text = ('*Перевод* из ' + submission['trans_from'] + ' в ' + submission['trans_to'] + ' ' +
-                    submission['trans_value'] + submission['trans_currency'])
+                    submission['trans_value'] + ' ' + submission['trans_currency'])
 
     slack_send_webhook(
         text=response_text,
@@ -306,12 +306,12 @@ def write_tocash_gdoc(message):
         table.update_acell(place, '-' + submission['value'])
         c_letter = resources.NUM_to_COLUMNS[resources.COLUMNS_TO_NUM[letter]+1]
         comment_place = c_letter + str(new_row)
-        table.update_acell(comment_place, 'Вывод' + submission['value'] + submission['currency'])
+        table.update_acell(comment_place, 'Вывод')
 
     except Exception as ex:
             pp(ex)
 
-    response_text = ('*Вывод* из ' + submission['to_cash_acc'] + ' ' + submission['value'] + submission['currency'])
+    response_text = ('*Вывод* из ' + submission['to_cash_acc'] + ' / ' + submission['value'] + ' ' + submission['currency'])
 
     slack_send_webhook(
         text=response_text,
@@ -330,11 +330,11 @@ def write_expense_gdoc(message):
     if submission['expense_to'][:8] == 'Products':
         if submission['comment'] == '':
             response_text = (resources.expense + submission['expense_to'] + '* / ' + submission['expense_value'] 
-                            + submission['expense_currency'] + ' / ' + submission['expense_from'])
+                            + ' ' + submission['expense_currency'] + ' / ' + submission['expense_from'])
             comment = submission['expense_to']
         else:
             response_text = (resources.expense + submission['expense_to'] + '* / ' + submission['expense_value'] 
-                            + submission['expense_currency'] + ' / ' + submission['expense_from'] + ' / ' 
+                            + ' ' + submission['expense_currency'] + ' / ' + submission['expense_from'] + ' / ' 
                             + submission['comment'])
             comment = submission['expense_to'] + ' / ' + submission['comment']
 
@@ -347,11 +347,11 @@ def write_expense_gdoc(message):
 
     elif submission['expense_to'] == 'Content - TheDesignest':
         if submission['comment'] == '':
-            response_text = (resources.designest_content + submission['expense_value'] + submission['expense_currency'] + ' / '
+            response_text = (resources.designest_content + submission['expense_value'] + ' ' + submission['expense_currency'] + ' / '
                             + submission['expense_from'])
             comment = submission['expense_to']
         else:
-            response_text = (resources.designest_content + submission['expense_value'] + submission['expense_currency'] + ' / '
+            response_text = (resources.designest_content + submission['expense_value'] + ' ' + submission['expense_currency'] + ' / '
                             + submission['expense_from'] + ' / ' + submission['comment'])
             comment = submission['expense_to'] + ' / ' + submission['comment']
         table = table_currency_changer(submission['expense_currency'])
@@ -363,11 +363,11 @@ def write_expense_gdoc(message):
 
     elif submission['expense_to'] == 'Tech':
         if submission['comment'] == '':
-            response_text = (resources.tech_expense + submission['expense_value'] + submission['expense_currency'] + ' / '
+            response_text = (resources.tech_expense + submission['expense_value'] + ' ' + submission['expense_currency'] + ' / '
                             + submission['expense_from'])
             comment = submission['expense_to']
         else:
-            response_text = (resources.tech_expense + submission['expense_value'] + submission['expense_currency'] + ' / '
+            response_text = (resources.tech_expense + submission['expense_value'] + ' ' + submission['expense_currency'] + ' / '
                             + submission['expense_from'] + ' / ' + submission['comment'])
             comment = submission['expense_to'] + ' / ' + submission['comment']
         table = table_currency_changer(submission['expense_currency'])
@@ -379,11 +379,11 @@ def write_expense_gdoc(message):
 
     elif submission['expense_to'] == 'Аренда':
         if submission['comment'] == '':
-            response_text = (resources.rent + submission['expense_value'] + submission['expense_currency'] + ' / '
+            response_text = (resources.rent + submission['expense_value'] + ' ' + submission['expense_currency'] + ' / '
                             + submission['expense_from'])
             comment = submission['expense_to']
         else:
-            response_text = (resources.rent + submission['expense_value'] + submission['expense_currency'] + ' / '
+            response_text = (resources.rent + submission['expense_value'] + ' ' + submission['expense_currency'] + ' / '
                             + submission['expense_from'] + ' / ' + submission['comment'])
             comment = submission['expense_to'] + ' / ' + submission['comment']
         table = table_currency_changer(submission['expense_currency'])
@@ -394,11 +394,11 @@ def write_expense_gdoc(message):
 
     elif submission['expense_to'] == 'Инвестиции':
         if submission['comment'] == '':
-            response_text = (resources.invest + submission['expense_value'] + submission['expense_currency'] + ' / '
+            response_text = (resources.invest + submission['expense_value'] + ' ' + submission['expense_currency'] + ' / '
                             + submission['expense_from'])
             comment = submission['expense_to']
         else:
-            response_text = (resources.invest + submission['expense_value'] + submission['expense_currency'] + ' / '
+            response_text = (resources.invest + submission['expense_value'] + ' ' + submission['expense_currency'] + ' / '
                             + submission['expense_from'] + ' / ' + submission['comment'])
             comment = submission['expense_to'] + ' / ' + submission['comment']
         table = table_currency_changer(submission['expense_currency'])
@@ -409,11 +409,11 @@ def write_expense_gdoc(message):
 
     elif submission['expense_to'] == 'Иное':
         if submission['comment'] == '':
-            response_text = (resources.other_expense + submission['expense_value'] + submission['expense_currency'] + ' / '
+            response_text = (resources.other_expense + submission['expense_value'] + ' ' + submission['expense_currency'] + ' / '
                             + submission['expense_from'])
             comment = submission['expense_to']
         else:
-            response_text = (resources.other_expense + submission['expense_value'] + submission['expense_currency'] + ' / '
+            response_text = (resources.other_expense + submission['expense_value'] + ' ' + submission['expense_currency'] + ' / '
                             + submission['expense_from'] + ' / ' + submission['comment'])
             comment = submission['expense_to'] + ' / ' + submission['comment']
         table = table_currency_changer(submission['expense_currency'])
