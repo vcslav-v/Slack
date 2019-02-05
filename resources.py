@@ -132,6 +132,10 @@ dialog_income = {
                     'value': 'Milka PayPal'
                 },
                 {
+                    'label': 'Antonina PayPal',
+                    'value': 'Antonina PayPal'
+                },
+                {
                     'label': 'Payoner',
                     'value': 'Payoner'
                 },
@@ -227,6 +231,10 @@ dialog_trans = {
                     'value': 'Milka PayPal'
                 },
                 {
+                    'label': 'Antonina PayPal',
+                    'value': 'Antonina PayPal'
+                },
+                {
                     'label': 'Payoner',
                     'value': 'Payoner'
                 },
@@ -300,6 +308,10 @@ dialog_tocash = {
                 {
                     'label': 'Milka PayPal',
                     'value': 'Milka PayPal'
+                },
+                {
+                    'label': 'Antonina PayPal',
+                    'value': 'Antonina PayPal'
                 },
                 {
                     'label': 'Payoner',
@@ -442,6 +454,10 @@ dialog_expense = {
                     'value': 'Milka PayPal'
                 },
                 {
+                    'label': 'Antonina PayPal',
+                    'value': 'Antonina PayPal'
+                },
+                {
                     'label': 'Payoner',
                     'value': 'Payoner'
                 },
@@ -551,7 +567,8 @@ ACC_COLUMNS = {
     'Plus PayPal':'i',
     'Mello Bank':'k',
     'Mello Cash':'m',
-    'Nick Cash':'o'
+    'Nick Cash':'o',
+    'Antonina PayPal':'q'
 }
 COLUMNS_TO_NUM = {
     'a':1,
