@@ -19,7 +19,13 @@ executor = ThreadPoolExecutor(1)
 # штука чисто для теста - отдает hello world если зайти на url бота
 @app.route('/', methods=['GET'])
 def on_root():
-    return make_response('sec', 200)
+    scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+    creds = ServiceAccountCredentials.from_json_keyfile_dict(resources.client_secret, scope)
+    client = gspread.authorize(creds)
+    sheet = client.open('PB2019USD').sheet1
+    cop = client.copy(sheet.id, "PB2019USD-copy", True) 
+
+    return make_response(cop, 200)
 
 # поднимается на слэш команду /income добавляем новый доход
 @app.route('/api/income', methods=['POST'])
