@@ -23,9 +23,9 @@ def on_root():
     creds = ServiceAccountCredentials.from_json_keyfile_dict(resources.client_secret, scope)
     client = gspread.authorize(creds)
     sheet = client.open('PB2019USD').sheet1
-    cop = str(sheet.id) #client.copy(sheet.id, 'PB2019USD-copy', True) 
+    cop = client.copy('1MER7Evxjaszv1aAjPONZqvogpYCQ5EmWV49zI3q7MeY', 'PB2019USD-copy', True) 
 
-    return make_response(cop, 200)
+    return make_response(str(cop), 200)
 
 # поднимается на слэш команду /income добавляем новый доход
 @app.route('/api/income', methods=['POST'])
