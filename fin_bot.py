@@ -23,7 +23,7 @@ def on_root():
     creds = ServiceAccountCredentials.from_json_keyfile_dict(resources.client_secret, scope)
     client = gspread.authorize(creds)
     sheet = client.open('PB2019USD').sheet1
-    cop = client.copy(sheet.id, "PB2019USD-copy", True) 
+    cop = sheet.id #client.copy(sheet.id, 'PB2019USD-copy', True) 
 
     return make_response(cop, 200)
 
