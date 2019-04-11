@@ -556,7 +556,7 @@ PRODUCTS_COLUMNS = {
     'Marketplaces - Envato':'j',
     'Marketplaces - Envato Elements':'k',
     'Marketplaces - Other':'l',
-    'Products - Direct':'m'
+    'Marketplaces - Self':'m'
 }
 
 PRODUCTS_EXPENSE_COLUMNS = {
