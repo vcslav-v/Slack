@@ -39,8 +39,8 @@ dialog_income = {
                     'value': 'Marketplaces - Other'
                 },
                 {
-                    'label': 'Products - Direct',
-                    'value': 'Products - Direct'
+                    'label': 'Marketplaces - Self',
+                    'value': 'Marketplaces - Self'
                 },
                 {
                     'label': 'Email - Direct',
