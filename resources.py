@@ -39,6 +39,10 @@ dialog_income = {
                     'value': 'Marketplaces - Other'
                 },
                 {
+                    'label': 'Products - Direct',
+                    'value': 'Products - Direct'
+                },
+                {
                     'label': 'Email - Direct',
                     'value': 'Email - Direct'
                 },
@@ -551,7 +555,8 @@ PRODUCTS_COLUMNS = {
     'Marketplaces - YouWorkForThem':'i',
     'Marketplaces - Envato':'j',
     'Marketplaces - Envato Elements':'k',
-    'Marketplaces - Other':'l'
+    'Marketplaces - Other':'l',
+    'Products - Direct':'m'
 }
 
 PRODUCTS_EXPENSE_COLUMNS = {
