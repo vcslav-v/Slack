@@ -89,6 +89,10 @@ dialog_income = {
                 {
                     'label': 'Banners',
                     'value': 'banners'
+                },
+                {
+                    'label': 'The Designest',
+                    'value': 'inthedesignest'
                 }
             ]
         },
@@ -530,6 +534,7 @@ client_secret = {
 
 PLUS_ROW = '3'
 BANNERS_ROW = '6'
+DESIGNEST_INCOME_ROW = '7'
 DESIGNEST_ROW = '13'
 TECH_ROW = '14'
 RENT_ROW = '15'

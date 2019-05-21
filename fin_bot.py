@@ -225,6 +225,19 @@ def write_income_gdoc(message):
         table = table_currency_changer(submission['income_currency'])
         gdoc_writer(table, submission['income_value'], tm, resources.BANNERS_ROW)
         gdoc_account_writer(table, submission['income_value'], submission['income_to'], comment)
+
+    elif submission['income_from'] == 'inthedesignest':
+        if submission['comment'] == '':
+            response_text = (resources.banner_income+submission['income_value'] + ' ' + submission['income_currency'] + ' / '
+                            + submission['income_to'])
+            comment = submission['income_from']
+        else:
+            response_text = (resources.banner_income+submission['income_value'] + ' ' + submission['income_currency'] + ' / '
+                            + submission['income_to'] + ' / ' + submission['comment'])
+            comment = submission['income_from'] + ' / ' + submission['comment']
+        table = table_currency_changer(submission['income_currency'])
+        gdoc_writer(table, submission['income_value'], tm, resources.DESIGNEST_INCOME_ROW)
+        gdoc_account_writer(table, submission['income_value'], submission['income_to'], comment)
     
     elif submission['income_from'][:5] == 'Email':
         if submission['comment'] == '':
