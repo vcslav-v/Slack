@@ -637,9 +637,9 @@ NUM_to_COLUMNS = {
     25:'y',
     26:'z'
 }
-
 plus_income = '*Доход Plus* / '
 banner_income = '*Доход Banners* / '
+designest_income = '*Доход Banners* / '
 income = '*Доход '
 tech_expense = '*Расход Tech* / '
 designest_content = '*Расход на контент TheDesignest* / '

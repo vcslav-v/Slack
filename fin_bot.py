@@ -228,11 +228,11 @@ def write_income_gdoc(message):
 
     elif submission['income_from'] == 'inthedesignest':
         if submission['comment'] == '':
-            response_text = (resources.banner_income+submission['income_value'] + ' ' + submission['income_currency'] + ' / '
+            response_text = (resources.designest_income+submission['income_value'] + ' ' + submission['income_currency'] + ' / '
                             + submission['income_to'])
             comment = submission['income_from']
         else:
-            response_text = (resources.banner_income+submission['income_value'] + ' ' + submission['income_currency'] + ' / '
+            response_text = (resources.designest_income+submission['income_value'] + ' ' + submission['income_currency'] + ' / '
                             + submission['income_to'] + ' / ' + submission['comment'])
             comment = submission['income_from'] + ' / ' + submission['comment']
         table = table_currency_changer(submission['income_currency'])
