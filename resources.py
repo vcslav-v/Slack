@@ -639,7 +639,7 @@ NUM_to_COLUMNS = {
 }
 plus_income = '*Доход Plus* / '
 banner_income = '*Доход Banners* / '
-designest_income = '*Доход Banners* / '
+designest_income = '*Доход The Designest* / '
 income = '*Доход '
 tech_expense = '*Расход Tech* / '
 designest_content = '*Расход на контент TheDesignest* / '
