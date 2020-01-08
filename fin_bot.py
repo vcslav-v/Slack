@@ -22,8 +22,8 @@ def on_root():
     scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
     creds = ServiceAccountCredentials.from_json_keyfile_dict(resources.client_secret, scope)
     client = gspread.authorize(creds)
-    sheet = client.open('PB2019USD').sheet1
-    cop = client.copy('1MER7Evxjaszv1aAjPONZqvogpYCQ5EmWV49zI3q7MeY', 'PB2019USD-copy', True) 
+    sheet = client.open('PB2020USD').sheet1
+    cop = client.copy('1MER7Evxjaszv1aAjPONZqvogpYCQ5EmWV49zI3q7MeY', 'PB2020USD-copy', True) 
 
     return make_response(str(cop), 200)
 
@@ -454,11 +454,11 @@ def table_currency_changer(cur):
     client = gspread.authorize(creds)
 
     if cur == 'USD':
-        sheet = client.open('PB2019USD').sheet1
+        sheet = client.open('PB2020USD').sheet1
     elif cur == 'RUR':
-        sheet = client.open('PB2019RUR').sheet1
+        sheet = client.open('PB2020RUR').sheet1
     elif cur == 'EUR':
-        sheet = client.open('PB2019EUR').sheet1
+        sheet = client.open('PB2020EUR').sheet1
     return sheet
 
 def gdoc_writer(table, income, tm, category, flat=True, sheet = ''):
