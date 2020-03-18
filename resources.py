@@ -107,8 +107,8 @@ dialog_income = {
                     'value': 'Stock - Shutter'
                 },
                 {
-                    'label': 'Stock - iSotock Photo',
-                    'value': 'Stock - iSotock Photo'
+                    'label': 'Stock - iStock Photo',
+                    'value': 'Stock - iStock Photo'
                 }
             ]
         },
@@ -160,8 +160,8 @@ dialog_income = {
                     'value': 'Antonina PayPal'
                 },
                 {
-                    'label': 'Payoner',
-                    'value': 'Payoner'
+                    'label': 'Payoneer',
+                    'value': 'Payoneer'
                 },
                 {
                     'label': 'Astakhov PayPal',
@@ -214,8 +214,8 @@ dialog_trans = {
                     'value': 'Milka PayPal'
                 },
                 {
-                    'label': 'Payoner',
-                    'value': 'Payoner'
+                    'label': 'Payoneer',
+                    'value': 'Payoneer'
                 },
                 {
                     'label': 'Astakhov PayPal',
@@ -259,8 +259,8 @@ dialog_trans = {
                     'value': 'Antonina PayPal'
                 },
                 {
-                    'label': 'Payoner',
-                    'value': 'Payoner'
+                    'label': 'Payoneer',
+                    'value': 'Payoneer'
                 },
                 {
                     'label': 'Astakhov PayPal',
@@ -338,8 +338,8 @@ dialog_tocash = {
                     'value': 'Antonina PayPal'
                 },
                 {
-                    'label': 'Payoner',
-                    'value': 'Payoner'
+                    'label': 'Payoneer',
+                    'value': 'Payoneer'
                 },
                 {
                     'label': 'Astakhov PayPal',
@@ -482,8 +482,8 @@ dialog_expense = {
                     'value': 'Antonina PayPal'
                 },
                 {
-                    'label': 'Payoner',
-                    'value': 'Payoner'
+                    'label': 'Payoneer',
+                    'value': 'Payoneer'
                 },
                 {
                     'label': 'Astakhov PayPal',
@@ -584,7 +584,7 @@ STOCKS_COLUMNS = {
     'Stock - Freepik':'b',
     'Stock - Adobe Stock':'c',
     'Stock - Shutter':'d',
-    'Stock - iSotock Photo':'e'
+    'Stock - iStock Photo':'e'
 }
 
 PRODUCTS_EXPENSE_COLUMNS = {
@@ -595,7 +595,7 @@ PRODUCTS_EXPENSE_COLUMNS = {
 ACC_COLUMNS = {
     'Ksenia PayPal':'a',
     'Milka PayPal':'c',
-    'Payoner':'e',
+    'Payoneer':'e',
     'Astakhov PayPal':'g',
     'Plus PayPal':'i',
     'Mello Bank':'k',
