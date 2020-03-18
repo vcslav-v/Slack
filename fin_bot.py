@@ -294,12 +294,6 @@ def write_income_gdoc(message):
         icon=':chart_with_upwards_trend:'
     )
 
-    slack_send_webhook(
-        text=response_text,
-        channel=message['channel']['id'],
-        icon=':chart_with_upwards_trend:'
-    )
-
 def write_trans_gdoc(message):
     submission = message['submission']
     try:
