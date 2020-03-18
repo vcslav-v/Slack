@@ -271,6 +271,28 @@ def write_income_gdoc(message):
                     False, 'Доход-Products')
         gdoc_account_writer(table, submission['income_value'], submission['income_to'], comment)
 
+    elif submission['income_from'][:5] == 'Stock':
+        if submission['comment'] == '':
+            response_text = (resources.income + submission['income_from'] + '* / ' + submission['income_value'] 
+                            + ' ' + submission['income_currency'] + ' / ' + submission['income_to'])
+            comment = submission['income_from']
+        else:
+            response_text = (resources.income + submission['income_from'] + '* / ' +submission['income_value'] 
+                            + ' ' + submission['income_currency'] + ' / ' + submission['income_to'] + ' / ' 
+                            + submission['comment'])
+            comment = submission['income_from'] + ' / ' + submission['comment']
+
+        table = table_currency_changer(submission['income_currency'])
+        gdoc_writer(table, submission['income_value'], tm, resources.STOCKS_COLUMNS[submission['income_from']], 
+                    False, 'Доход-Stocks')
+        gdoc_account_writer(table, submission['income_value'], submission['income_to'], comment)
+
+
+    slack_send_webhook(
+        text=response_text,
+        channel=message['channel']['id'],
+        icon=':chart_with_upwards_trend:'
+    )
 
     slack_send_webhook(
         text=response_text,

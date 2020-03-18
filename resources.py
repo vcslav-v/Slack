@@ -93,6 +93,22 @@ dialog_income = {
                 {
                     'label': 'The Designest',
                     'value': 'inthedesignest'
+                },
+                {
+                    'label': 'Stock - Freepik',
+                    'value': 'Stock - Freepik'
+                },
+                {
+                    'label': 'Stock - Adobe Stock',
+                    'value': 'Stock - Adobe Stock'
+                },
+                {
+                    'label': 'Stock - Shutter',
+                    'value': 'Stock - Shutter'
+                },
+                {
+                    'label': 'Stock - iSotock Photo',
+                    'value': 'Stock - iSotock Photo'
                 }
             ]
         },
@@ -564,6 +580,13 @@ PRODUCTS_COLUMNS = {
     'Marketplaces - Self':'m'
 }
 
+STOCKS_COLUMNS = {
+    'Stock - Freepik':'b',
+    'Stock - Adobe Stock':'c',
+    'Stock - Shutter':'d',
+    'Stock - iSotock Photo':'e'
+}
+
 PRODUCTS_EXPENSE_COLUMNS = {
     'Products - Freebie':'b',
     'Products - Plus':'c'
@@ -638,6 +661,10 @@ NUM_to_COLUMNS = {
     26:'z'
 }
 plus_income = '*Доход Plus* / '
+freepik_income = '*Доход freepik* '
+shutter_income = '*Доход shutter* '
+adobe_income = '*Доход adobe Stock*'
+istock_income = '*Доход istock photo*'
 banner_income = '*Доход Banners* / '
 designest_income = '*Доход The Designest* / '
 income = '*Доход '
