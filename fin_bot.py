@@ -93,10 +93,11 @@ def tocash():
 # Обрабатываем форму
 @app.route('/api/interactive_action', methods=['POST'])
 def on_interactive_action():
-    #response_text = ''
-    #interactive_action = json.loads(flask.request.values['payload'])
+    pp(flask.request.values)
+    """
+    response_text = ''
+    interactive_action = json.loads(flask.request.values['payload'])
     pp(interactive_action)
-"""
     try:
         if interactive_action['type'] == 'interactive_message':
             pass
@@ -147,8 +148,8 @@ def on_interactive_action():
 
     except Exception as ex:
         response_text = ':x: Error: `%s`' % ex
-"""
-    return make_response(response_text, 200)
+    """
+    return make_response('response_text', 200)
 
 def slack_post_msg(text, channel, **kwargs):
     data = {
