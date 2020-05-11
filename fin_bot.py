@@ -30,7 +30,6 @@ def on_root():
 # поднимается на слэш команду /income добавляем новый доход
 @app.route('/api/income', methods=['POST'])
 def income_get():
-    pp(flask.request.values)
     data = {
         'trigger_id': flask.request.values['trigger_id'],
         'url':'https://{}/api/interactive_action'.format(os.environ.get('SelfUrl')),
@@ -95,7 +94,7 @@ def tocash():
 # Обрабатываем форму
 @app.route('/api/interactive_action', methods=['POST'])
 def on_interactive_action():
-    print(flask.request)
+    pp(flask.request.values)
     """
     response_text = ''
     interactive_action = json.loads(flask.request.values['payload'])
