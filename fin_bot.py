@@ -154,6 +154,7 @@ def write_income_gdoc(message):
     pp(submission)
     response_text = 'Smth bad'
     tm = datetime.strftime(datetime.now(), '%m')
+    pp(submission['income_from'] == 'inthedesignest')
 
     if submission['income_from'] == 'plus':
         if submission['comment'] == '':
