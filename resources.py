@@ -1,10 +1,7 @@
-from os import environ 
-
 dialog_income = {
     'title': 'Доход',
-    'url':'https://{}/api/interactive_action'.format(environ.get('SelfUrl')),
     'submit_label': 'Submit',
-    'state': 'income_form',
+    'callback_id': 'income_form',
     'elements': [
         {
             'display_name': 'Категория',

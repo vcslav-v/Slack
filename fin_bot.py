@@ -33,7 +33,8 @@ def income_get():
     pp(flask.request.values)
     data = {
         'trigger_id': flask.request.values['trigger_id'],
-        'dialog': json.dumps(resources.dialog_income)
+        'url':'https://{}/api/interactive_action'.format(environ.get('SelfUrl')),
+        'dialog': resources.dialog_income
     }
 
     requests.post(
