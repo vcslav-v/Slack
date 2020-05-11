@@ -199,11 +199,11 @@ def write_income_gdoc(message):
     
     elif submission['income_from'][:5] == 'Email':
         if submission['comment'] == '':
-            response_text = (resources.income + submission['income_from'] + '* / ' + submission['income_value'] 
+            response_text = (resources.income + submission['income_from'] + '** / ' + submission['income_value'] 
                             + ' ' + submission['income_currency'] + ' / ' + submission['income_to'])
             comment = submission['income_from']
         else:
-            response_text = (resources.income + submission['income_from'] + '* / ' +submission['income_value'] 
+            response_text = (resources.income + submission['income_from'] + '** / ' +submission['income_value'] 
                             + ' ' + submission['income_currency'] + ' / ' + submission['income_to'] + ' / ' 
                             + submission['comment'])
             comment = submission['income_from'] + ' / ' + submission['comment']
@@ -215,11 +215,11 @@ def write_income_gdoc(message):
 
     elif submission['income_from'][:12] == 'Marketplaces' or submission['income_from'][:5] == 'Deals':
         if submission['comment'] == '':
-            response_text = (resources.income + submission['income_from'] + '* / ' + submission['income_value'] 
+            response_text = (resources.income + submission['income_from'] + '** / ' + submission['income_value'] 
                             + ' ' + submission['income_currency'] + ' / ' + submission['income_to'])
             comment = submission['income_from']
         else:
-            response_text = (resources.income + submission['income_from'] + '* / ' +submission['income_value'] 
+            response_text = (resources.income + submission['income_from'] + '** / ' +submission['income_value'] 
                             + ' ' + submission['income_currency'] + ' / ' + submission['income_to'] + ' / ' 
                             + submission['comment'])
             comment = submission['income_from'] + ' / ' + submission['comment']
@@ -231,11 +231,11 @@ def write_income_gdoc(message):
 
     elif submission['income_from'][:5] == 'Stock':
         if submission['comment'] == '':
-            response_text = (resources.income + submission['income_from'] + '* / ' + submission['income_value'] 
+            response_text = (resources.income + submission['income_from'] + '** / ' + submission['income_value'] 
                             + ' ' + submission['income_currency'] + ' / ' + submission['income_to'])
             comment = submission['income_from']
         else:
-            response_text = (resources.income + submission['income_from'] + '* / ' +submission['income_value'] 
+            response_text = (resources.income + submission['income_from'] + '** / ' +submission['income_value'] 
                             + ' ' + submission['income_currency'] + ' / ' + submission['income_to'] + ' / ' 
                             + submission['comment'])
             comment = submission['income_from'] + ' / ' + submission['comment']
@@ -253,6 +253,7 @@ def write_income_gdoc(message):
 """
 def write_trans_gdoc(message):
     submission = message['submission']
+    submission.update({'income_value':str(submission['income_value'])})
     try:
         table = table_currency_changer(submission['trans_currency'])
         table = table.spreadsheet.worksheet('Счета')
@@ -288,6 +289,7 @@ def write_trans_gdoc(message):
     
 def write_tocash_gdoc(message):
     submission = message['submission']
+    submission.update({'income_value':str(submission['income_value'])})
     try:
         table = table_currency_changer(submission['currency'])
         table = table.spreadsheet.worksheet('Счета')
@@ -316,15 +318,16 @@ def write_expense_gdoc(message):
     submission = message['submission']
 
     response_text = 'Smth bad'
+    submission.update({'income_value':str(submission['income_value'])})
     tm = datetime.strftime(datetime.now(), '%m')
 
     if submission['expense_to'][:8] == 'Products':
         if submission['comment'] == '':
-            response_text = (resources.expense + submission['expense_to'] + '* / ' + submission['expense_value'] 
+            response_text = (resources.expense + submission['expense_to'] + '** / ' + submission['expense_value'] 
                             + ' ' + submission['expense_currency'] + ' / ' + submission['expense_from'])
             comment = submission['expense_to']
         else:
-            response_text = (resources.expense + submission['expense_to'] + '* / ' + submission['expense_value'] 
+            response_text = (resources.expense + submission['expense_to'] + '** / ' + submission['expense_value'] 
                             + ' ' + submission['expense_currency'] + ' / ' + submission['expense_from'] + ' / ' 
                             + submission['comment'])
             comment = submission['expense_to'] + ' / ' + submission['comment']
