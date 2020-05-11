@@ -10,8 +10,7 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from concurrent.futures import ThreadPoolExecutor
 
-SLACK_BOT_TOKEN = os.environ.get('SLACK_BOT_TOKEN')
-SLACK_WEBHOOK_INC = os.environ.get('SLACK_WEBHOOK_INC')
+MATTERMOST_WEBHOOK_INC = os.environ.get('mattermostWebhook')
 
 app = Flask(__name__)
 executor = ThreadPoolExecutor(1)
@@ -94,95 +93,51 @@ def tocash():
 # Обрабатываем форму
 @app.route('/api/interactive_action', methods=['POST'])
 def on_interactive_action():
-    pp(flask.request.json)
-    """
-    response_text = ''
-    interactive_action = json.loads(flask.request.values['payload'])
+    interactive_action = flask.request.json
     pp(interactive_action)
     try:
         if interactive_action['type'] == 'interactive_message':
             pass
         elif interactive_action['type'] == 'dialog_submission':
             if interactive_action['callback_id'] == 'income_form':
-                try:
-                    float(interactive_action['submission']['income_value'])
-                except Exception as ex:
-                    slack_send_webhook(text=ex, channel=interactive_action['channel']['id'])
-                    return make_response(response_text, 200)
                 executor.submit(
                 write_income_gdoc,
                 interactive_action)
                     
             elif interactive_action['callback_id'] == 'expense_form':
-                try:
-                    float(interactive_action['submission']['expense_value'])
-                except Exception as ex:
-                    slack_send_webhook(text=ex, channel=interactive_action['channel']['id'])
-                    return make_response(response_text, 200)
-
                 executor.submit(
                 write_expense_gdoc,
                 interactive_action)
-
+            """
+            Тк эти опции работали не верно - закоменчено до лучших времён
             elif interactive_action['callback_id'] == 'trans_form':
-                try:
-                    float(interactive_action['submission']['trans_value'])
-                except Exception as ex:
-                    slack_send_webhook(text=ex, channel=interactive_action['channel']['id'])
-                    return make_response(response_text, 200)
-
                 executor.submit(
                 write_trans_gdoc,
                 interactive_action)
             
             elif interactive_action['callback_id'] == 'tocash_form':
-                try:
-                    float(interactive_action['submission']['value'])
-                except Exception as ex:
-                    slack_send_webhook(text=ex, channel=interactive_action['channel']['id'])
-                    return make_response(response_text, 200)
-
                 executor.submit(
                 write_tocash_gdoc,
                 interactive_action)
                 pass
-
+            """
     except Exception as ex:
         response_text = ':x: Error: `%s`' % ex
-    """
+
     return make_response('response_text', 200)
 
-def slack_post_msg(text, channel, **kwargs):
+
+def mattermost_send_webhook(text, **kwargs):
+
     data = {
-        'token': SLACK_BOT_TOKEN,
-        'channel': channel,
         'text': text
     }
 
     data.update(kwargs)
 
     response = requests.post(
-        url='https://slack.com/api/chat.postMessage',
-        data=data
-    )
-
-    pp("response from 'slack_post_msg' [%d]: %s" % (
-            response.status_code,
-            json.dumps(json.loads(response.text), indent=4)
-    ))
-
-def slack_send_webhook(text, channel, **kwargs):
-
-    data = {
-        'channel': channel,
-        'text': text
-    }
-
-    data.update(kwargs)
-
-    response = requests.post(
-        url=SLACK_WEBHOOK_INC,
-        data=json.dumps(data),
+        url=MATTERMOST_WEBHOOK_INC,
+        json=data,
         headers={'content-type': 'application/json'}
     )
 
@@ -289,12 +244,11 @@ def write_income_gdoc(message):
         gdoc_account_writer(table, submission['income_value'], submission['income_to'], comment)
 
 
-    slack_send_webhook(
+    mattermost_send_webhook(
         text=response_text,
-        channel=message['channel']['id'],
         icon=':chart_with_upwards_trend:'
     )
-
+"""
 def write_trans_gdoc(message):
     submission = message['submission']
     try:
@@ -324,7 +278,7 @@ def write_trans_gdoc(message):
     response_text = ('*Перевод* из ' + submission['trans_from'] + ' в ' + submission['trans_to'] + ' ' +
                     submission['trans_value'] + ' ' + submission['trans_currency'])
 
-    slack_send_webhook(
+    mattermost_send_webhook(
         text=response_text,
         channel=message['channel']['id'],
         icon=':chart_with_upwards_trend:'
@@ -349,13 +303,12 @@ def write_tocash_gdoc(message):
 
     response_text = ('*Вывод* из ' + submission['to_cash_acc'] + ' / ' + submission['value'] + ' ' + submission['currency'])
 
-    slack_send_webhook(
+    mattermost_send_webhook(
         text=response_text,
         channel=message['channel']['id'],
         icon=':chart_with_upwards_trend:'
-    )
-        
-
+    )       
+"""
 def write_expense_gdoc(message):
 
     submission = message['submission']
@@ -458,9 +411,8 @@ def write_expense_gdoc(message):
         gdoc_account_writer(table, str(float(submission['expense_value']) * (-1)), submission['expense_from'],
                             comment)
 
-    slack_send_webhook(
+    mattermost_send_webhook(
         text=response_text,
-        channel=message['channel']['id'],
         icon=':chart_with_upwards_trend:'
     )
 
@@ -534,8 +486,6 @@ def gdoc_account_writer(table, value, acc, comment):
     comment_place = c_letter + str(new_row)
 
     table.update_acell(comment_place, comment)
-
-
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, threaded=True)
