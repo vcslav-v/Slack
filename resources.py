@@ -1,113 +1,116 @@
+import environ from os
+
 dialog_income = {
     'title': 'Доход',
+    'url':'https://{}/api/interactive_action'.format(environ.get('SelfUrl')),
     'submit_label': 'Submit',
-    'callback_id': 'income_form',
+    'state': 'income_form',
     'elements': [
         {
-            'label': 'Категория',
+            'display_name': 'Категория',
             'type': 'select',
             'name': 'income_from',
             'placeholder': 'Выберите категорию',
-            'value': 'Marketplaces - Design cuts',
+            'default': 'Marketplaces - Design cuts',
             'options': [
                 {
-                    'label': 'Marketplaces - Design cuts',
+                    'text': 'Marketplaces - Design cuts',
                     'value': 'Marketplaces - Design cuts'
                 },
                 {
-                    'label': 'Marketplaces - Creative Market',
+                    'text': 'Marketplaces - Creative Market',
                     'value': 'Marketplaces - Creative Market'
                 },
                 {
-                    'label': 'Marketplaces - Yellow Images',
+                    'text': 'Marketplaces - Yellow Images',
                     'value': 'Marketplaces - Yellow Images'
                 },
                 {
-                    'label': 'Marketplaces - YouWorkForThem',
+                    'text': 'Marketplaces - YouWorkForThem',
                     'value': 'Marketplaces - YouWorkForThem'
                 },
                 {
-                    'label': 'Marketplaces - Envato',
+                    'text': 'Marketplaces - Envato',
                     'value': 'Marketplaces - Envato'
                 },
                 {
-                    'label': 'Marketplaces - Envato Elements',
+                    'text': 'Marketplaces - Envato Elements',
                     'value': 'Marketplaces - Envato Elements'
                 },
                 {
-                    'label': 'Marketplaces - Other',
+                    'text': 'Marketplaces - Other',
                     'value': 'Marketplaces - Other'
                 },
                 {
-                    'label': 'Marketplaces - Self',
+                    'text': 'Marketplaces - Self',
                     'value': 'Marketplaces - Self'
                 },
                 {
-                    'label': 'Email - Direct',
+                    'text': 'Email - Direct',
                     'value': 'Email - Direct'
                 },
                 {
-                    'label': 'Email - BSA/Syndicate',
+                    'text': 'Email - BSA/Syndicate',
                     'value': 'Email - BSA/Syndicate'
                 },
                 {
-                    'label': 'Email - Baw Media',
+                    'text': 'Email - Baw Media',
                     'value': 'Email - Baw Media'
                 },    
                 {
-                    'label': 'Email - Hacking UI',
+                    'text': 'Email - Hacking UI',
                     'value': 'Email - Hacking UI'
                 },
                 {
-                    'label': 'Email - Design Cuts',
+                    'text': 'Email - Design Cuts',
                     'value': 'Email - Design Cuts'
                 },
                 {
-                    'label': 'Email - Paved',
+                    'text': 'Email - Paved',
                     'value': 'Email - Paved'
                 },
                 {
-                    'label': 'Deals - Design cuts',
+                    'text': 'Deals - Design cuts',
                     'value': 'Deals - Design cuts'
                 },
                  {
-                    'label': 'Deals - Deal Jambo',
+                    'text': 'Deals - Deal Jambo',
                     'value': 'Deals - Deal Jambo'
                 },
                 {
-                    'label': 'Deals - Mighty deals',
+                    'text': 'Deals - Mighty deals',
                     'value': 'Deals - Mighty deals'
                 },
                 {
-                    'label': 'Deals - Other',
+                    'text': 'Deals - Other',
                     'value': 'Deals - Other'
                 },
                 {
-                    'label': 'Plus',
+                    'text': 'Plus',
                     'value': 'plus'
                 },
                 {
-                    'label': 'Banners',
+                    'text': 'Banners',
                     'value': 'banners'
                 },
                 {
-                    'label': 'The Designest',
+                    'text': 'The Designest',
                     'value': 'inthedesignest'
                 },
                 {
-                    'label': 'Stock - Freepik',
+                    'text': 'Stock - Freepik',
                     'value': 'Stock - Freepik'
                 },
                 {
-                    'label': 'Stock - Adobe Stock',
+                    'text': 'Stock - Adobe Stock',
                     'value': 'Stock - Adobe Stock'
                 },
                 {
-                    'label': 'Stock - Shutter',
+                    'text': 'Stock - Shutter',
                     'value': 'Stock - Shutter'
                 },
                 {
-                    'label': 'Stock - iStock Photo',
+                    'text': 'Stock - iStock Photo',
                     'value': 'Stock - iStock Photo'
                 }
             ]
@@ -115,80 +118,82 @@ dialog_income = {
 
         {
             'type': 'text',
-            'label': 'Сумма',
-            'name': 'income_value'
+            'display_name': 'Сумма',
+            'name': 'income_value',
+            'subtype': 'number'
         },
 
         {
-            'label': 'Валюта',
+            'display_name': 'Валюта',
             'type': 'select',
             'name': 'income_currency',
             'placeholder': 'Выберите валюту',
-            'value': 'USD',
+            'default': 'USD',
             'options': [
                 {
-                    'label': 'USD',
+                    'text': 'USD',
                     'value': 'USD'
                 },
                 {
-                    'label': 'RUR',
+                    'text': 'RUR',
                     'value': 'RUR'
                 },
                 {
-                    'label': 'EUR',
+                    'text': 'EUR',
                     'value': 'EUR'
                 }
             ]
         },
         {
-            'label': 'Счёт',
+            'display_name': 'Счёт',
             'type': 'select',
             'name': 'income_to',
             'placeholder': 'Укажите куда пришли деньги',
-            'value': 'Ksenia PayPal',
+            'default': 'Ksenia PayPal',
             'options': [
                 {
-                    'label': 'Ksenia PayPal',
+                    'text': 'Ksenia PayPal',
                     'value': 'Ksenia PayPal'
                 },
                 {
-                    'label': 'Milka PayPal',
+                    'text': 'Milka PayPal',
                     'value': 'Milka PayPal'
                 },
                 {
-                    'label': 'Antonina PayPal',
+                    'text': 'Antonina PayPal',
                     'value': 'Antonina PayPal'
                 },
                 {
-                    'label': 'Payoneer',
+                    'text': 'Payoneer',
                     'value': 'Payoneer'
                 },
                 {
-                    'label': 'Astakhov PayPal',
+                    'text': 'Astakhov PayPal',
                     'value': 'Astakhov PayPal'
                 },
                 {
-                    'label': 'Plus PayPal',
+                    'text': 'Plus PayPal',
                     'value': 'Plus PayPal'
                 },
                 {
-                    'label': 'Mello Bank',
+                    'text': 'Mello Bank',
                     'value': 'Mello Bank'
                 },
                 {
-                    'label': 'Mello Cash',
+                    'text': 'Mello Cash',
                     'value': 'Mello Cash'
                 },
                 {
-                    'label': 'Nick Cash',
+                    'text': 'Nick Cash',
                     'value': 'Nick Cash'
                 }
             ]
         },
         {
             'type': 'text',
-            'label': 'Комментарий',
-            'name': 'comment'
+            'display_name': 'Комментарий',
+            'name': 'comment',
+            'subtype': 'text'
         }
     ]
 }

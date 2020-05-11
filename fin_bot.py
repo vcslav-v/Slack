@@ -31,13 +31,12 @@ def on_root():
 @app.route('/api/income', methods=['POST'])
 def income_get():
     data = {
-        'token': SLACK_BOT_TOKEN,
         'trigger_id': flask.request.values['trigger_id'],
         'dialog': json.dumps(resources.dialog_income)
     }
 
     requests.post(
-        url='https://slack.com/api/dialog.open',
+        url='https://{}/api/v4/actions/dialogs/open'.format(os.environ.get('MattermostUrl')),
         data=data
     )
 
@@ -94,10 +93,10 @@ def tocash():
 # Обрабатываем форму
 @app.route('/api/interactive_action', methods=['POST'])
 def on_interactive_action():
-    response_text = ''
-    interactive_action = json.loads(flask.request.values['payload'])
+    #response_text = ''
+    #interactive_action = json.loads(flask.request.values['payload'])
     pp(interactive_action)
-
+"""
     try:
         if interactive_action['type'] == 'interactive_message':
             pass
@@ -148,7 +147,7 @@ def on_interactive_action():
 
     except Exception as ex:
         response_text = ':x: Error: `%s`' % ex
-
+"""
     return make_response(response_text, 200)
 
 def slack_post_msg(text, channel, **kwargs):
