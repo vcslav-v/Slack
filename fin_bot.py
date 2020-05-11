@@ -34,12 +34,12 @@ def income_get():
     data = {
         'trigger_id': flask.request.values['trigger_id'],
         'url':'https://{}/api/interactive_action'.format(os.environ.get('SelfUrl')),
-        'dialog': resources.dialog_income
+        'dialog': resources.dialog_test
     }
 
     requests.post(
         url='https://{}/api/v4/actions/dialogs/open'.format(os.environ.get('MattermostUrl')),
-        params=data
+        json=data
     )
 
     return make_response('Processing started...', 200)
