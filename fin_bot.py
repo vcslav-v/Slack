@@ -33,7 +33,7 @@ def income_get():
     data = {
         'trigger_id': flask.request.values['trigger_id'],
         'url':'https://{}/api/interactive_action'.format(os.environ.get('SelfUrl')),
-        'dialog': resources.dialog_income
+        'dialog': resources.test
     }
 
     requests.post(
@@ -94,7 +94,7 @@ def tocash():
 # Обрабатываем форму
 @app.route('/api/interactive_action', methods=['POST'])
 def on_interactive_action():
-    pp(dict(flask.request.values))
+    pp(flask.request.values)
     """
     response_text = ''
     interactive_action = json.loads(flask.request.values['payload'])
