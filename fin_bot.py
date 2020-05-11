@@ -154,7 +154,6 @@ def write_income_gdoc(message):
     pp(submission)
     response_text = 'Smth bad'
     tm = datetime.strftime(datetime.now(), '%m')
-    pp(submission['income_from'] == 'inthedesignest')
 
     if submission['income_from'] == 'plus':
         if submission['comment'] == '':
@@ -184,6 +183,7 @@ def write_income_gdoc(message):
         gdoc_account_writer(table, submission['income_value'], submission['income_to'], comment)
 
     elif submission['income_from'] == 'inthedesignest':
+        pp(submission)
         if submission['comment'] == '':
             response_text = (resources.designest_income+submission['income_value'] + ' ' + submission['income_currency'] + ' / '
                             + submission['income_to'])
