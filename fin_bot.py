@@ -39,7 +39,7 @@ def income_get():
 
     requests.post(
         url='https://{}/api/v4/actions/dialogs/open'.format(os.environ.get('MattermostUrl')),
-        data=data
+        params=data
     )
 
     return make_response('Processing started...', 200)
