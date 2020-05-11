@@ -315,8 +315,7 @@ def write_expense_gdoc(message):
     submission = message['submission']
 
     response_text = 'Smth bad'
-    submission.update({'income_value':str(submission['income_value'])})
-    pp(submission)
+    submission.update({'expense_value':str(submission['expense_value'])})
     tm = datetime.strftime(datetime.now(), '%m')
 
     if submission['expense_to'][:8] == 'Products':
