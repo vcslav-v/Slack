@@ -1,4 +1,4 @@
-import environ from os
+from os import environ 
 
 dialog_income = {
     'title': 'Доход',
