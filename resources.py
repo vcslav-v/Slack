@@ -207,11 +207,11 @@ dialog_test = {
             "default":"default text",
             "placeholder":"placeholder",
             "help_text":"This a regular input in an interactive dialog triggered by a test integration.",
-            "optional":false,
+            "optional":False,
             "min_length":0,
             "max_length":0,
             "data_source":"",
-            "options":null
+            "options":None
          },
          {
             "display_name":"Email",
@@ -221,11 +221,11 @@ dialog_test = {
             "default":"",
             "placeholder":"placeholder@bladekick.com",
             "help_text":"This a regular email input in an interactive dialog triggered by a test integration.",
-            "optional":false,
+            "optional":False,
             "min_length":0,
             "max_length":0,
             "data_source":"",
-            "options":null
+            "options":None
          },
          {
             "display_name":"Number",
@@ -235,11 +235,11 @@ dialog_test = {
             "default":"",
             "placeholder":"",
             "help_text":"",
-            "optional":false,
+            "optional":False,
             "min_length":0,
             "max_length":0,
             "data_source":"",
-            "options":null
+            "options":None
          },
          {
             "display_name":"Display Name Long Text Area",
@@ -249,11 +249,11 @@ dialog_test = {
             "default":"",
             "placeholder":"placeholder",
             "help_text":"",
-            "optional":true,
+            "optional":True,
             "min_length":5,
             "max_length":100,
             "data_source":"",
-            "options":null
+            "options":None
          },
          {
             "display_name":"User Selector",
@@ -263,11 +263,11 @@ dialog_test = {
             "default":"",
             "placeholder":"Select a user...",
             "help_text":"",
-            "optional":false,
+            "optional":False,
             "min_length":0,
             "max_length":0,
             "data_source":"users",
-            "options":null
+            "options":None
          },
          {
             "display_name":"Channel Selector",
@@ -277,11 +277,11 @@ dialog_test = {
             "default":"",
             "placeholder":"Select a channel...",
             "help_text":"Choose a channel from the list.",
-            "optional":true,
+            "optional":True,
             "min_length":0,
             "max_length":0,
             "data_source":"channels",
-            "options":null
+            "options":None
          },
          {
             "display_name":"Option Selector",
@@ -291,7 +291,7 @@ dialog_test = {
             "default":"",
             "placeholder":"Select an option...",
             "help_text":"",
-            "optional":false,
+            "optional":False,
             "min_length":0,
             "max_length":0,
             "data_source":"",
@@ -312,7 +312,7 @@ dialog_test = {
          }
       ],
       "submit_label":"Submit",
-      "notify_on_cancel":true,
+      "notify_on_cancel":True,
       "state":"somestate"
    }
 
