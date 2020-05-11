@@ -248,7 +248,7 @@ def write_income_gdoc(message):
     pp(response_text)
     mattermost_send_webhook(
         text=response_text,
-        icon=':chart_with_upwards_trend:'
+        icon_emoji='chart_with_upwards_trend'
     )
 """
 def write_trans_gdoc(message):
@@ -284,7 +284,7 @@ def write_trans_gdoc(message):
     mattermost_send_webhook(
         text=response_text,
         channel=message['channel']['id'],
-        icon=':chart_with_upwards_trend:'
+        icon_emoji='chart_with_upwards_trend'
     )
     
 def write_tocash_gdoc(message):
@@ -310,7 +310,7 @@ def write_tocash_gdoc(message):
     mattermost_send_webhook(
         text=response_text,
         channel=message['channel']['id'],
-        icon=':chart_with_upwards_trend:'
+        icon_emoji='chart_with_upwards_trend'
     )       
 """
 def write_expense_gdoc(message):
@@ -418,7 +418,7 @@ def write_expense_gdoc(message):
 
     mattermost_send_webhook(
         text=response_text,
-        icon=':chart_with_upwards_trend:'
+        icon_emoji='chart_with_upwards_trend'
     )
 
 def table_currency_changer(cur):
