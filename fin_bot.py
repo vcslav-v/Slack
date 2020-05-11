@@ -431,6 +431,7 @@ def table_currency_changer(cur):
     return sheet
 
 def gdoc_writer(table, income, tm, category, flat=True, sheet = ''):
+    pp('gdoc_writer')
 
     if flat:
         letter = resources.month_dic[str(tm)]
