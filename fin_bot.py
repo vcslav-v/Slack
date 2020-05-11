@@ -94,7 +94,7 @@ def tocash():
 # Обрабатываем форму
 @app.route('/api/interactive_action', methods=['POST'])
 def on_interactive_action():
-    pp(flask.request.values)
+    pp(flask.request)
     """
     response_text = ''
     interactive_action = json.loads(flask.request.values['payload'])
