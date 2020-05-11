@@ -4,6 +4,79 @@ dialog_income = {
     'callback_id': 'income_form',
     'elements': [
         {
+            'type': 'text',
+            'display_name': 'Сумма',
+            'name': 'income_value',
+            'subtype': 'number'
+        },
+
+        {
+            'display_name': 'Валюта',
+            'type': 'select',
+            'name': 'income_currency',
+            'placeholder': 'Выберите валюту',
+            'default': 'USD',
+            'options': [
+                {
+                    'text': 'USD',
+                    'value': 'USD'
+                },
+                {
+                    'text': 'RUR',
+                    'value': 'RUR'
+                },
+                {
+                    'text': 'EUR',
+                    'value': 'EUR'
+                }
+            ]
+        },
+        {
+            'display_name': 'Счёт',
+            'type': 'select',
+            'name': 'income_to',
+            'placeholder': 'Укажите куда пришли деньги',
+            'default': 'Ksenia PayPal',
+            'options': [
+                {
+                    'text': 'Ksenia PayPal',
+                    'value': 'Ksenia PayPal'
+                },
+                {
+                    'text': 'Milka PayPal',
+                    'value': 'Milka PayPal'
+                },
+                {
+                    'text': 'Antonina PayPal',
+                    'value': 'Antonina PayPal'
+                },
+                {
+                    'text': 'Payoneer',
+                    'value': 'Payoneer'
+                },
+                {
+                    'text': 'Astakhov PayPal',
+                    'value': 'Astakhov PayPal'
+                },
+                {
+                    'text': 'Plus PayPal',
+                    'value': 'Plus PayPal'
+                },
+                {
+                    'text': 'Mello Bank',
+                    'value': 'Mello Bank'
+                },
+                {
+                    'text': 'Mello Cash',
+                    'value': 'Mello Cash'
+                },
+                {
+                    'text': 'Nick Cash',
+                    'value': 'Nick Cash'
+                }
+            ]
+        },
+        {
             'display_name': 'Категория',
             'type': 'select',
             'name': 'income_from',
@@ -112,80 +185,6 @@ dialog_income = {
                 }
             ]
         },
-
-        {
-            'type': 'text',
-            'display_name': 'Сумма',
-            'name': 'income_value',
-            'subtype': 'number'
-        },
-
-        {
-            'display_name': 'Валюта',
-            'type': 'select',
-            'name': 'income_currency',
-            'placeholder': 'Выберите валюту',
-            'default': 'USD',
-            'options': [
-                {
-                    'text': 'USD',
-                    'value': 'USD'
-                },
-                {
-                    'text': 'RUR',
-                    'value': 'RUR'
-                },
-                {
-                    'text': 'EUR',
-                    'value': 'EUR'
-                }
-            ]
-        },
-        {
-            'display_name': 'Счёт',
-            'type': 'select',
-            'name': 'income_to',
-            'placeholder': 'Укажите куда пришли деньги',
-            'default': 'Ksenia PayPal',
-            'options': [
-                {
-                    'text': 'Ksenia PayPal',
-                    'value': 'Ksenia PayPal'
-                },
-                {
-                    'text': 'Milka PayPal',
-                    'value': 'Milka PayPal'
-                },
-                {
-                    'text': 'Antonina PayPal',
-                    'value': 'Antonina PayPal'
-                },
-                {
-                    'text': 'Payoneer',
-                    'value': 'Payoneer'
-                },
-                {
-                    'text': 'Astakhov PayPal',
-                    'value': 'Astakhov PayPal'
-                },
-                {
-                    'text': 'Plus PayPal',
-                    'value': 'Plus PayPal'
-                },
-                {
-                    'text': 'Mello Bank',
-                    'value': 'Mello Bank'
-                },
-                {
-                    'text': 'Mello Cash',
-                    'value': 'Mello Cash'
-                },
-                {
-                    'text': 'Nick Cash',
-                    'value': 'Nick Cash'
-                }
-            ]
-        },
         {
             'type': 'text',
             'display_name': 'Комментарий',
@@ -194,127 +193,6 @@ dialog_income = {
         }
     ]
 }
-dialog_test = {
-      "callback_id":"somecallbackid",
-      "title":"Test Title",
-      "icon_url":"http://www.mattermost.org/wp-content/uploads/2016/04/icon.png",
-      "elements":[
-         {
-            "display_name":"Display Name",
-            "name":"realname",
-            "type":"text",
-            "subtype":"",
-            "default":"default text",
-            "placeholder":"placeholder",
-            "help_text":"This a regular input in an interactive dialog triggered by a test integration.",
-            "optional":False,
-            "min_length":0,
-            "max_length":0,
-            "data_source":"",
-            "options":None
-         },
-         {
-            "display_name":"Email",
-            "name":"someemail",
-            "type":"text",
-            "subtype":"email",
-            "default":"",
-            "placeholder":"placeholder@bladekick.com",
-            "help_text":"This a regular email input in an interactive dialog triggered by a test integration.",
-            "optional":False,
-            "min_length":0,
-            "max_length":0,
-            "data_source":"",
-            "options":None
-         },
-         {
-            "display_name":"Number",
-            "name":"somenumber",
-            "type":"text",
-            "subtype":"number",
-            "default":"",
-            "placeholder":"",
-            "help_text":"",
-            "optional":False,
-            "min_length":0,
-            "max_length":0,
-            "data_source":"",
-            "options":None
-         },
-         {
-            "display_name":"Display Name Long Text Area",
-            "name":"realnametextarea",
-            "type":"textarea",
-            "subtype":"",
-            "default":"",
-            "placeholder":"placeholder",
-            "help_text":"",
-            "optional":True,
-            "min_length":5,
-            "max_length":100,
-            "data_source":"",
-            "options":None
-         },
-         {
-            "display_name":"User Selector",
-            "name":"someuserselector",
-            "type":"select",
-            "subtype":"",
-            "default":"",
-            "placeholder":"Select a user...",
-            "help_text":"",
-            "optional":False,
-            "min_length":0,
-            "max_length":0,
-            "data_source":"users",
-            "options":None
-         },
-         {
-            "display_name":"Channel Selector",
-            "name":"somechannelselector",
-            "type":"select",
-            "subtype":"",
-            "default":"",
-            "placeholder":"Select a channel...",
-            "help_text":"Choose a channel from the list.",
-            "optional":True,
-            "min_length":0,
-            "max_length":0,
-            "data_source":"channels",
-            "options":None
-         },
-         {
-            "display_name":"Option Selector",
-            "name":"someoptionselector",
-            "type":"select",
-            "subtype":"",
-            "default":"",
-            "placeholder":"Select an option...",
-            "help_text":"",
-            "optional":False,
-            "min_length":0,
-            "max_length":0,
-            "data_source":"",
-            "options":[
-               {
-                  "text":"Option1",
-                  "value":"opt1"
-               },
-               {
-                  "text":"Option2",
-                  "value":"opt2"
-               },
-               {
-                  "text":"Option3",
-                  "value":"opt3"
-               }
-            ]
-         }
-      ],
-      "submit_label":"Submit",
-      "notify_on_cancel":True,
-      "state":"somestate"
-   }
 
 dialog_trans = {
     'title': 'Перевод',
