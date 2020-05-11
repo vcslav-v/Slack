@@ -45,20 +45,18 @@ def income_get():
 @app.route('/api/expense', methods=['POST'])
 def expense_get():
     data = {
-        'token': SLACK_BOT_TOKEN,
         'trigger_id': flask.request.values['trigger_id'],
-        'dialog': json.dumps(resources.dialog_expense)
+        'url':'https://{}/api/interactive_action'.format(os.environ.get('SelfUrl')),
+        'dialog': resources.dialog_expense
     }
 
     response = requests.post(
-        url='https://slack.com/api/dialog.open',
-        data=data
+        url='https://{}/api/v4/actions/dialogs/open'.format(os.environ.get('MattermostUrl')),
+        json=data
     )
 
-    pp(response)
-
     return make_response('Processing started...', 200)
-
+"""
 @app.route('/api/trans', methods=['POST'])
 def trans():
     data = {
@@ -88,7 +86,7 @@ def tocash():
     )
 
     return make_response('Processing started...', 200)
-
+"""
 
 # Обрабатываем форму
 @app.route('/api/interactive_action', methods=['POST'])
@@ -247,8 +245,7 @@ def write_income_gdoc(message):
 
     pp(response_text)
     mattermost_send_webhook(
-        text=response_text,
-        icon_emoji='chart_with_upwards_trend'
+        text=response_text
     )
 """
 def write_trans_gdoc(message):
@@ -417,8 +414,7 @@ def write_expense_gdoc(message):
                             comment)
 
     mattermost_send_webhook(
-        text=response_text,
-        icon_emoji='chart_with_upwards_trend'
+        text=response_text
     )
 
 def table_currency_changer(cur):

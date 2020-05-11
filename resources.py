@@ -397,122 +397,124 @@ dialog_expense = {
     'submit_label': 'Submit',
     'callback_id': 'expense_form',
     'elements': [
-        {
-            'label': 'Категория',
-            'type': 'select',
-            'name': 'expense_to',
-            'placeholder': 'Выберите категорию',
-            'value': 'Products - Freebie',
-            'options': [
-                {
-                    'label': 'Products - Freebie',
-                    'value': 'Products - Freebie'
-                },
-                {
-                    'label': 'Products - Plus',
-                    'value': 'Products - Plus'
-                },
-                {
-                    'label': 'Content - TheDesignest',
-                    'value': 'Content - TheDesignest'
-                },
-                {
-                    'label': 'Tech',
-                    'value': 'Tech'
-                },
-                {
-                    'label': 'Аренда',
-                    'value': 'Аренда'
-                },
-                {
-                    'label': 'Инвестиции',
-                    'value': 'Инвестиции'
-                },
-                {
-                    'label': 'Иное',
-                    'value': 'Иное'
-                }
-            ]
-        },
 
         {
             'type': 'text',
-            'label': 'Сумма',
-            'name': 'expense_value'
+            'display_name': 'Сумма',
+            'name': 'expense_value',
+            'subtype': 'number'
         },
 
         {
-            'label': 'Валюта',
+            'display_name': 'Валюта',
             'type': 'select',
             'name': 'expense_currency',
             'placeholder': 'Выберите валюту',
-            'value': 'USD',
+            'default': 'USD',
             'options': [
                 {
-                    'label': 'USD',
+                    'text': 'USD',
                     'value': 'USD'
                 },
                 {
-                    'label': 'RUR',
+                    'text': 'RUR',
                     'value': 'RUR'
                 },
                 {
-                    'label': 'EUR',
+                    'text': 'EUR',
                     'value': 'EUR'
                 }
             ]
         },
 
         {
-            'label': 'Счёт',
+            'display_name': 'Счёт',
             'type': 'select',
             'name': 'expense_from',
             'placeholder': 'Укажите c какого счёта была оплата',
-            'value': 'Ksenia PayPal',
+            'default': 'Ksenia PayPal',
             'options': [
                 {
-                    'label': 'Ksenia PayPal',
+                    'text': 'Ksenia PayPal',
                     'value': 'Ksenia PayPal'
                 },
                 {
-                    'label': 'Milka PayPal',
+                    'text': 'Milka PayPal',
                     'value': 'Milka PayPal'
                 },
                 {
-                    'label': 'Antonina PayPal',
+                    'text': 'Antonina PayPal',
                     'value': 'Antonina PayPal'
                 },
                 {
-                    'label': 'Payoneer',
+                    'text': 'Payoneer',
                     'value': 'Payoneer'
                 },
                 {
-                    'label': 'Astakhov PayPal',
+                    'text': 'Astakhov PayPal',
                     'value': 'Astakhov PayPal'
                 },
                 {
-                    'label': 'Plus PayPal',
+                    'text': 'Plus PayPal',
                     'value': 'Plus PayPal'
                 },
                 {
-                    'label': 'Mello Bank',
+                    'text': 'Mello Bank',
                     'value': 'Mello Bank'
                 },
                 {
-                    'label': 'Mello Cash',
+                    'text': 'Mello Cash',
                     'value': 'Mello Cash'
                 },
                 {
-                    'label': 'Nick Cash',
+                    'text': 'Nick Cash',
                     'value': 'Nick Cash'
                 }
             ]
         },
 
         {
+            'display_name': 'Категория',
+            'type': 'select',
+            'name': 'expense_to',
+            'placeholder': 'Выберите категорию',
+            'default': 'Products - Freebie',
+            'options': [
+                {
+                    'text': 'Products - Freebie',
+                    'value': 'Products - Freebie'
+                },
+                {
+                    'text': 'Products - Plus',
+                    'value': 'Products - Plus'
+                },
+                {
+                    'text': 'Content - TheDesignest',
+                    'value': 'Content - TheDesignest'
+                },
+                {
+                    'text': 'Tech',
+                    'value': 'Tech'
+                },
+                {
+                    'text': 'Аренда',
+                    'value': 'Аренда'
+                },
+                {
+                    'text': 'Инвестиции',
+                    'value': 'Инвестиции'
+                },
+                {
+                    'text': 'Иное',
+                    'value': 'Иное'
+                }
+            ]
+        },
+        {
             'type': 'text',
-            'label': 'Комментарий',
-            'name': 'comment'
+            'display_name': 'Комментарий',
+            'name': 'comment',
+            'subtype': 'text'
         }
     ]
 }
