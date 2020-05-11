@@ -188,7 +188,7 @@ def write_income_gdoc(message):
                             + submission['income_to'])
             comment = submission['income_from']
         else:
-            response_text = (resources.designest_income+submission['income_value'] + ' ' + submission['income_currency'] + ' / '
+            response_text = (resources.designest_income+str(submission['income_value']) + ' ' + submission['income_currency'] + ' / '
                             + submission['income_to'] + ' / ' + submission['comment'])
             comment = submission['income_from'] + ' / ' + submission['comment']
         pp(response_text)
