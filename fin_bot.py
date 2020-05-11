@@ -183,7 +183,6 @@ def write_income_gdoc(message):
         gdoc_account_writer(table, submission['income_value'], submission['income_to'], comment)
 
     elif submission['income_from'] == 'inthedesignest':
-        pp(submission)
         if submission['comment'] == '':
             response_text = (resources.designest_income+submission['income_value'] + ' ' + submission['income_currency'] + ' / '
                             + submission['income_to'])
@@ -192,6 +191,7 @@ def write_income_gdoc(message):
             response_text = (resources.designest_income+submission['income_value'] + ' ' + submission['income_currency'] + ' / '
                             + submission['income_to'] + ' / ' + submission['comment'])
             comment = submission['income_from'] + ' / ' + submission['comment']
+        pp(submission)
         table = table_currency_changer(submission['income_currency'])
         gdoc_writer(table, submission['income_value'], tm, resources.DESIGNEST_INCOME_ROW)
         gdoc_account_writer(table, submission['income_value'], submission['income_to'], comment)
