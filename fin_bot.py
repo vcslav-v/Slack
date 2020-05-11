@@ -151,7 +151,7 @@ def write_income_gdoc(message):
     pp('write_income_gdoc')
 
     submission = message['submission']
-
+    pp(submission)
     response_text = 'Smth bad'
     tm = datetime.strftime(datetime.now(), '%m')
 
@@ -243,7 +243,7 @@ def write_income_gdoc(message):
                     False, 'Доход-Stocks')
         gdoc_account_writer(table, submission['income_value'], submission['income_to'], comment)
 
-
+    pp(response_text)
     mattermost_send_webhook(
         text=response_text,
         icon=':chart_with_upwards_trend:'
