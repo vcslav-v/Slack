@@ -97,12 +97,17 @@ def on_interactive_action():
         if interactive_action['type'] == 'interactive_message':
             pass
         elif interactive_action['type'] == 'dialog_submission':
+
             if interactive_action['callback_id'] == 'income_form':
+                interactive_action['expense_value'] = interactive_action['expense_value'].replace(',','.')
+                float(interactive_action['income_value'])
                 executor.submit(
                 write_income_gdoc,
                 interactive_action)
                     
             elif interactive_action['callback_id'] == 'expense_form':
+                interactive_action['expense_value'] = interactive_action['expense_value'].replace(',','.')
+                float(interactive_action['expense_value'])
                 executor.submit(
                 write_expense_gdoc,
                 interactive_action)

@@ -13,7 +13,7 @@ dialog_income = {
             'type': 'text',
             'display_name': 'Сумма',
             'name': 'income_value',
-            'subtype': 'number'
+            'subtype': 'text'
         },
 
         {
@@ -408,7 +408,7 @@ dialog_expense = {
             'type': 'text',
             'display_name': 'Сумма',
             'name': 'expense_value',
-            'subtype': 'number'
+            'subtype': 'text'
         },
 
         {
