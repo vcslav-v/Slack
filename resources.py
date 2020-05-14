@@ -5,6 +5,12 @@ dialog_income = {
     'elements': [
         {
             'type': 'text',
+            'display_name': 'Комментарий',
+            'name': 'comment',
+            'subtype': 'text'
+        },
+        {
+            'type': 'text',
             'display_name': 'Сумма',
             'name': 'income_value',
             'subtype': 'number'
@@ -184,12 +190,6 @@ dialog_income = {
                     'value': 'Stock - iStock Photo'
                 }
             ]
-        },
-        {
-            'type': 'text',
-            'display_name': 'Комментарий',
-            'name': 'comment',
-            'subtype': 'text'
         }
     ]
 }
@@ -397,6 +397,12 @@ dialog_expense = {
     'submit_label': 'Submit',
     'callback_id': 'expense_form',
     'elements': [
+        {
+            'type': 'text',
+            'display_name': 'Комментарий',
+            'name': 'comment',
+            'subtype': 'text'
+        },
 
         {
             'type': 'text',
@@ -509,12 +515,6 @@ dialog_expense = {
                     'value': 'Иное'
                 }
             ]
-        },
-        {
-            'type': 'text',
-            'display_name': 'Комментарий',
-            'name': 'comment',
-            'subtype': 'text'
         }
     ]
 }
