@@ -125,7 +125,7 @@ def on_interactive_action():
                 pass
             """
     except Exception as ex:
-        response_text = ':x: Error: `%s`' % ex
+        print(ex)
 
     return make_response('response_text', 200)
 
